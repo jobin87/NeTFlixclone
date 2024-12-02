@@ -19,7 +19,6 @@ const Home = () => {
   const { state } = useContext(MovieContext);
   const { movies } = state;
   const trendingList = movies.filter((item) => item.isTrending === true);
-  const recommendList = movies.filter((item) => item.isTrending !== true);
   const showrecommend = movies.filter((item) => item.isTrending)
 
   const handleSearch = (e: { target: { value: SetStateAction<string> } }) => {
@@ -31,7 +30,8 @@ const Home = () => {
   };
   return (
     <Layout>
-      <Box>
+      <Box sx={{
+      }}>
         <Paper
           component="form"
           sx={{
@@ -75,7 +75,7 @@ const Home = () => {
               </Typography>
               <MovieTrendList trendingList={trendingList} />
             </Box>
-            <Box width="100%">
+            <Box width="100%" >
               <Typography variant="h5" component="h1" my={6} fontWeight={400}>
                 Recommended For You
               </Typography>
@@ -83,7 +83,7 @@ const Home = () => {
             </Box>
           </Box>
         ) : (
-          <Box width="100%">
+          <Box width="100%" >
             <Typography>
               Found {searchList.length} results for "{search}"{""}
             </Typography>

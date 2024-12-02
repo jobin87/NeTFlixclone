@@ -1,5 +1,4 @@
 export interface MovieDataType {
-  image:string
   id: string;
   title: string;
   thumbnail: {

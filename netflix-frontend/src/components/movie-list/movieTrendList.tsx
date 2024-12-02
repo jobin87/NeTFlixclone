@@ -9,7 +9,8 @@ interface MovieTrendListProps {
 const MovieTrendList = ({ trendingList }: MovieTrendListProps) => {
   console.log("The trendingList is : ", trendingList);
   return (
-    <Box sx={{ display: "flex", gap: 2, overflowX: "scroll" }}>
+    <Box sx={{ display: "flex", gap: 2, overflow:"scroll",
+      scrollbarWidth:"none" }}>
       {trendingList.map((movie) => (
         <Grid item key={movie.id}>
           <Paper elevation={0} sx={{ backgroundColor: "transparent" }}>
