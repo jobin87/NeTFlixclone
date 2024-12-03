@@ -5,7 +5,7 @@ import Error from "../pages/error";
 import Movie from "../pages/movies";
 import TvSeries from "../pages/series";
 import Bookmark from "../pages/bookmark";
-import Login from "../pages/login";
+import Login from "../pages/login/lgview";
 
 export const router = createBrowserRouter([
   {

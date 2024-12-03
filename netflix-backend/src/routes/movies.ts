@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import Movie from '../models/movies'; // Adjust the path based on your project structure
-const router = express.Router();
+const movierouter = express.Router();
 
 /**
  * @swagger
@@ -67,7 +67,7 @@ const router = express.Router();
  *       '400':
  *         description: Invalid input
  */
-router.post('/netflix/v1/movies', async (req: Request, res: Response) => {
+movierouter.post('/netflix/v1/movies', async (req: Request, res: Response) => {
   try {
     const newMovie = new Movie(req.body);
     await newMovie.save();
@@ -98,7 +98,7 @@ router.post('/netflix/v1/movies', async (req: Request, res: Response) => {
  *       '500':
  *         description: Internal server error
  */
-router.get('/netflix/v1/movies', async (req: Request, res: Response) => {
+movierouter.get('/netflix/v1/movies', async (req: Request, res: Response) => {
   try {
     const movies = await Movie.find();
     const response = movies.map(() => ({ sellerRegistrationRequested: true }));
@@ -108,4 +108,4 @@ router.get('/netflix/v1/movies', async (req: Request, res: Response) => {
   }
 });
 
-export default router;
+export default movierouter;
