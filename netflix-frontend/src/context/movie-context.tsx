@@ -9,6 +9,7 @@ interface MovieState {
   movies: MovieDataType[];
 }
 
+
 interface MovieAction {
   type: string;
   id: string;

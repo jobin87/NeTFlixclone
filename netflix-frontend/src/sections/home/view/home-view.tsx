@@ -1,98 +1,39 @@
-import { useState, SetStateAction, useContext } from "react";
-import Layout from "../../../layouts";
-import {
-  Box,
-  Paper,
-  InputBase,
-  InputAdornment,
-  Typography,
-} from "@mui/material";
-import SearchIcon from "src/assets/icons/icon-search.svg";
-import MovieTrendList from "src/components/movie-list/movieTrendList";
-import MovieList from "src/components/movie-list";
-import { MovieDataType } from "src/assets/data";
-import { MovieContext } from "src/context/movie-context";
+import React from 'react';
+import { Box, Button, Typography } from '@mui/material';
+import { DashboardLayout } from 'src/layouts/dashboardlayout';
 
-const HomeView = () => {
-  const [search, setSearch] = useState("");
-  const [searchList, setSearchList] = useState<MovieDataType[]>([]);
-  const { state } = useContext(MovieContext);
-  const { movies } = state;
-  const trendingList = movies.filter((item) => item.isTrending === true);
-  const showrecommend = movies.filter((item) => item.isTrending)
-
-  const handleSearch = (e: { target: { value: SetStateAction<string> } }) => {
-    setSearch(e.target.value);
-    const newList = movies.filter((movie) =>
-      movie.title.toLowerCase().includes(search.toLowerCase())
-    );
-    setSearchList(newList);
-  };
+const HomePage = () => {
   return (
-    <Layout>
-      <Box sx={{
-      }}>
-        <Paper
-          component="form"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            borderRadius: "default",
-            p: 1,
-            backgroundColor: "#10141f",
-            border: "none",
-          }}
-        >
-          <InputBase
-            placeholder="Search for movies or TV series"
-            sx={{
-              ml: 1,
-              flex: 1,
-              color: "white",
-              border: "none",
-            }}
-            value={search}
-            onChange={handleSearch}
-            startAdornment={
-              <InputAdornment position="start">
-                <img
-                  src={SearchIcon}
-                  alt="search icon"
-                  width={20}
-                  height={20}
-                />
-              </InputAdornment>
-            }
-          />
-        </Paper>
+    <DashboardLayout>
+      {/* Featured Content */}
+      <Box sx={{ marginBottom: 4 }}>
+        <Typography variant="h4">Featured Show</Typography>
+        <Button variant="contained" color="primary" sx={{ marginTop: 2 }}>
+          Play
+        </Button>
       </Box>
-      <Box py={2} px={4}>
-        {search === "" ? (
-          <Box width="100%">
-            <Box width="100%">
-              <Typography variant="h5" component="h1" my={6} fontWeight={400}>
-                Trending
-              </Typography>
-              <MovieTrendList trendingList={trendingList} />
-            </Box>
-            <Box width="100%" >
-              <Typography variant="h5" component="h1" my={6} fontWeight={400}>
-                Recommended For You
-              </Typography>
-              <MovieList recommendList={showrecommend} />
-            </Box>
+
+      {/* Rows of Movies */}
+      {[...Array(5)].map((_, rowIdx) => (
+        <Box key={rowIdx} sx={{ marginBottom: 4 }}>
+          <Typography variant="h6" sx={{ marginBottom: 2 }}>Category {rowIdx + 1}</Typography>
+          <Box sx={{ display: 'flex', gap: 2, overflowX: 'scroll' }}>
+            {[...Array(10)].map((_, movieIdx) => (
+              <Box
+                key={movieIdx}
+                sx={{
+                  width: 150,
+                  height: 200,
+                  backgroundColor: '#333',
+                  borderRadius: 1,
+                }}
+              />
+            ))}
           </Box>
-        ) : (
-          <Box width="100%" >
-            <Typography>
-              Found {searchList.length} results for "{search}"{""}
-            </Typography>
-            <MovieList recommendList={searchList} />
-          </Box>
-        )}
-      </Box>
-    </Layout>
+        </Box>
+      ))}
+    </DashboardLayout>
   );
 };
 
-export default HomeView;
+export default HomePage;
