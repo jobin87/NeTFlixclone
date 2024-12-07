@@ -3,7 +3,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-const PORT = 8081;
+const PORT = 8086;
 
 export default defineConfig({
   plugins: [

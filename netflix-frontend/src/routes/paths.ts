@@ -20,6 +20,7 @@ const ROOTS = {
       root:ROOTS.AUTH,
       home: `${ROOTS.DASHBOARD}/home`,
       movies: `${ROOTS.DASHBOARD}/movies`,
+      anime: `${ROOTS.DASHBOARD}/anime`
      
 
     }

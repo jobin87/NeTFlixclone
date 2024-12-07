@@ -1,11 +1,11 @@
-import { MovieView } from "src/sections/movies/view";
 
+import {AnimeView} from 'src/sections/anime/view/anime-view';
 
 // ---------------------------------------------------------------------
 export default function Page() {
   return (
     <>
-      <MovieView/>
+      <AnimeView/>
     </>
   );
 }
