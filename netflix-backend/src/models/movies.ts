@@ -19,12 +19,14 @@ export interface IMovie extends Document {
 // Define the schema using the interface
 const movieSchema: Schema = new Schema({
   title: { type: String, required: true },
+  Released:{ type: String, required: true},
   year: { type: Number, required: true },
   rated: { type: String, required: false },
-  runtime: { type: Number, required: false },
-  genres: { type: [String], required: false },
+  Runtime: { type: Number, required: false },
+  Genre: { type: [String], required: false },
   director: { type: String, required: false },
-  plot: { type: String, required: false },
+  Language: { type: String, required: false },
+  Plot: { type: String, required: false },
   poster: { type: String, required: false },
   metascore: { type: Number, required: false },
   imdbRating: { type: Number, required: false },

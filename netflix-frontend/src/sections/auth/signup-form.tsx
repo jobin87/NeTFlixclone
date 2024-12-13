@@ -6,7 +6,7 @@ import leftimage from "src/assets/hero.png"
 import { ENDPOINT_USER_LOGIN, makeNetworkCall } from 'src/network';
 import { paths } from 'src/routes/paths';
 
-export const SignupPageView = () => {
+export const Signupform = () => {
   const navigate = useNavigate()
   const [username,setusername] = useState("")
    const [email, setEmail] = useState("");

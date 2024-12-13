@@ -4,6 +4,7 @@ import authRoutes from './routes/authRoutes';
 import cors from 'cors';
 import connectDB from './config/db';
 import { setupSwagger } from './swagger/swaggerdoc';
+import movieroutes from './routes/movieRouter';
 
 dotenv.config(); // Load environment variables
 connectDB(); // Connect to MongoDB
@@ -16,7 +17,8 @@ app.use(express.json());
 setupSwagger(app)
 
 // Routes
-app.use('/api/movies', authRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1',movieroutes);
 
 // Start the server
 app.listen(PORT, () => {
