@@ -1,18 +1,24 @@
-export type MovieParams= {
-        title: string
-        Released:string,
-        year:  Number,
-        rated:  string,
-        Runtime:  Number
-        Genre:  [string]
-        director:  string
-        Language:  string
-        Plot:  string
-        poster:  string
-        metascore:  Number
-        imdbRating:  Number
-        imdbVotes:  string
-        imdbID:  string
-        images: [string]
-
-}
+export interface Movie {
+        Title: string;
+        Year: string;
+        Rated: string;
+        Released: string;
+        Runtime: string;
+        Genre: string;
+        Director: string;
+        Writer: string;
+        Actors: string;
+        Plot: string;
+        Language: string;
+        Country: string;
+        Awards: string;
+        Poster: string;
+        Metascore: string;
+        imdbRating: string;
+        imdbVotes: string;
+        imdbID: string;
+        Type: string;
+        Response: string;
+        Images: string[]; // Array of strings for image URLs
+      }
+      

@@ -1,12 +1,12 @@
 // src/views/MovieView.tsx
-import { Box} from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/store';
 import { getmoviedata } from 'src/store/movie/movieThunk';
+import { Movie } from 'src/sections/content/movie';
 import { Series } from 'src/sections/content/series';
-import { Anime } from '../Anime';
 
-export const AnimeView = () => {
+export const MovieView = () => {
   const { movies, series } = useAppSelector((state) => state.movie.data);
   const dispatch = useAppDispatch();
 
@@ -16,7 +16,8 @@ export const AnimeView = () => {
 
   return (
     <Box>
-      <Anime movies={movies} />
+      <Movie movies={movies} />
+      <Series series={series} />
     </Box>
   );
 };

@@ -1,9 +1,20 @@
+import { Movie } from "./movie/types";
+
 // Loading is true by default. Use case: When needed to call an api on page load.
 export const basicInitialState: basicInitialStateProps = {
   data: null,
   loading: false,
   error: {},
 };
+
+export const MovieState:MovieStateProps={
+  data:{
+    movies:[],
+    series:[]
+  },
+  loading: false, 
+  error: null, 
+}
 
 // Loading is false by default. Use case: When needed to call an api on button click.
 export const networkCallInitialState: basicInitialStateProps = {
@@ -17,4 +28,16 @@ export interface basicInitialStateProps {
   loading: boolean;
   error: null | object;
 }
+
+export interface MovieStateProps {
+  data:{
+    movies: Movie[],
+    series: Movie[]
+  },
+  loading: boolean;
+  error:null |object
+}
+
+
+
 

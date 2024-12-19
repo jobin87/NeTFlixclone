@@ -4,7 +4,7 @@ import authRoutes from './routes/authRoutes';
 import cors from 'cors';
 import connectDB from './config/db';
 import { setupSwagger } from './swagger/swaggerdoc';
-import movieroutes from './routes/movieRouter';
+import movieroutes from './routes/contentRouter';
 
 dotenv.config(); // Load environment variables
 connectDB(); // Connect to MongoDB

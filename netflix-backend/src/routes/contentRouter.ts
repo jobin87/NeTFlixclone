@@ -1,31 +1,19 @@
-import express from 'express';
-import { login, signup } from '../controllers/authControllers';
-
-const authRoutes = express.Router();
-
+import express from "express";
+import { getContentData } from "../controllers/content Controller";
 /**
  * @swagger
- * /api/v1/auth/login:
- *   post:
- *     tags:
- *       - Authentication
- *     description: Login a user
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *                 example: jobin
- *               email:
- *                 type: string
- *                 example: aut.jobin@gmail.com
- *               password:
- *                 type: string
- *                 example: password
+ * /api/v1/movies:
+ *   get:
+ *     summary: Retrieve a list of movies or series with a movie label containing an ID and other components.
+ *     tags: [Content]
+ *     parameters:
+ *       - in: query
+ *         name: type
+ *         required: true
+ *         schema:
+ *           type: string
+ *           example: title
+ *         description: The type of content to fetch (either 'movie' or 'series').
  *     responses:
  *       200:
  *         description: Login successful
@@ -34,9 +22,6 @@ const authRoutes = express.Router();
  *             schema:
  *               type: object
  *               properties:
- *                 token:
- *                   type: string
- *                   example: 54p445irir
  *                 movie:
  *                   type: array
  *                   items:
@@ -111,8 +96,8 @@ const authRoutes = express.Router();
  *       500:
  *         description: Internal server error
  */
-authRoutes.post('/login', login);
+const movieRoutes = express.Router();
 
-authRoutes.post('/signup', signup);
+movieRoutes.get("/content", getContentData);
 
-export default authRoutes;
+export default movieRoutes;

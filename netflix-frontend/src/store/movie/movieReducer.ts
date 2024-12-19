@@ -1,50 +1,45 @@
-import { createSlice } from '@reduxjs/toolkit';
-
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getmoviedata } from './movieThunk';
-import { basicInitialState } from '../types';
+import {  MovieStateProps,} from '../types';
 
-const initialState = {
-  
-  movieLodded: basicInitialState,
-  auth: basicInitialState,
-  data:basicInitialState
 
- 
+
+const initialState: MovieStateProps = {
+  data:{
+    movies:[],
+    series:[]
+  },
+  loading: false,
+  error:null
 };
 
-export const movieReducer = createSlice({
+const movieReducer = createSlice({
   name: 'movie',
   initialState,
   reducers: {
-   
-    setMovieLodded: (state, action) => {
-      state.movieLodded= action.payload;
-    }
-  
+    setmoviesfetched: (state,action)=>{
+      state.data= action.payload
+    },
    
   },
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder
-      // novie data fetching
-      .addCase(getmoviedata.fulfilled, (state, action) => {
-        state.auth.loading = false;
-        state.auth.data = action.payload;
-
+      // .addCase(getmoviedata.pending, (state) => {
+      //   state.loading = true;
+      //   state.error= null;
+      // })
+      .addCase(getmoviedata.fulfilled, (state, action: PayloadAction<MovieStateProps['data']>) => {
+        state.loading = false;
+        state.data = action.payload;
       })
-      .addCase(getmoviedata.pending, (state) => {
-        state.auth.loading = true;
-      })
-      .addCase(getmoviedata.rejected, (state, action) => {
-        state.auth.error = action.error;
-        state.auth.loading = false;
-      })
+      // .addCase(getmoviedata.rejected, (state, action) => {
+      //   state.loading = false;
+      //   state.error = action.payload as any; // Assuming payload contains the error message
+      // });
   },
 });
+export const{
+  setmoviesfetched
 
-export const {
- 
-  setMovieLodded,
-
-} = movieReducer.actions;
-
+}= movieReducer.actions
 export default movieReducer.reducer;

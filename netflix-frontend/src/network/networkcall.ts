@@ -27,7 +27,7 @@ export const makeNetworkCall = async (config: INetworkCallConfig) => {
   try {
     const { app } = defaultStore.getState();
     const { method = API_METHODS.GET, extraHeaders = {}, extraHeadersOnly = false } = config;
-    const authKey = app.auth?.data?.accessToken;
+    const authKey = app.auth?.data?.token;
 
     const commonHeaders = {
       ...(authKey !== undefined && { Authorization: `Bearer ${authKey}` }),
@@ -56,20 +56,25 @@ export const makeNetworkCall = async (config: INetworkCallConfig) => {
       store.dispatch(requestSignOut());
     }
     if (call.status !== 200 && call.status !== 201) {
-      console.log(call?.data?.data?.message || call?.data?.message || 'Something went wrong');
+      toast?.error(call?.data?.data?.message || call?.data?.message || 'Something went wrong');
     }
 
     if (call.data.statusCode === 406) {
-      console.log(call?.data?.data?.message || call?.data?.message || 'Something went wrong');
+      toast?.error(call?.data?.data?.message || call?.data?.message || 'Something went wrong');
     }
 
     return call;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      toast.error(error.response?.data?.message || 'Something went wrong');
+      toast?.error(
+        error?.response?.data?.message || 
+        error?.message || 
+        'Something went wrong'
+      );
     } else {
-      console.log('An unexpected error occurred.');
+      // Handle non-Axios errors (fallback)
+      toast?.error('An unexpected error occurred');
     }
-    throw error; 
+    return null;
   }
 };

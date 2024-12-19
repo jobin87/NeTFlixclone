@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { basicInitialState, networkCallInitialState } from '../types';
+import { basicInitialState, MovieState, networkCallInitialState } from '../types';
 import { requestSignInWithPassword } from './appThunk';
+
 
 const initialState = {
   auth: basicInitialState,
@@ -10,6 +11,7 @@ const initialState = {
   forgetpassword: networkCallInitialState,
   resetpassword: networkCallInitialState,
   userDocuments: [],
+  movies: {...MovieState},
 
   // ---------------------------------------
   onboarding: {
@@ -25,7 +27,7 @@ export const appReducer = createSlice({
   initialState,
   reducers: {
     setLoading: (state, action) => {
-      state.auth.loading = action.payload;
+      state.auth.data = action.payload
     },
     setLogged: (state, action) => {
       state.userLogged = action.payload;
@@ -47,23 +49,14 @@ export const appReducer = createSlice({
     setResetPassword: (state, action) => {
       state.resetpassword = action.payload;
     },
-    setOnboardingSteps: (state, action) => {
-      state.onboarding.steps = action.payload;
-    },
   },
   extraReducers(builder) {
     builder
       // Sign In
       .addCase(requestSignInWithPassword.fulfilled, (state, action) => {
-        state.auth.loading = false;
         state.auth.data = action.payload;
+        state.auth.loading = false;
 
-        const { userLogged, accessToken } = action.payload;
-
-        if (userLogged) {
-          state.accessToken = accessToken;
-          state.userLogged = userLogged;
-        }
       })
       .addCase(requestSignInWithPassword.pending, (state) => {
         state.auth.loading = true;
@@ -83,7 +76,6 @@ export const {
   setForgetPassword,
   setResetPassword,
   setUserLoggedOut,
-  setOnboardingSteps,
 } = appReducer.actions;
 
 export default appReducer.reducer;

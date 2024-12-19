@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import User from '../models/user';
+import fs from "fs";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import path from 'path';
 const SECRET_KEY= "112eryt33"
 
 
@@ -52,6 +54,11 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       password: hashedPassword,
 
     });
+    const userResponse = {
+      userId: newUser._id, // Map _id to userId
+      email: newUser.email,
+      name: newUser.username,
+    };
 
     await newUser.save();
 
@@ -59,7 +66,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
     const token = jwt.sign({ id: newUser._id, email: newUser.email }, process.env.JWT_SECRET || SECRET_KEY, { expiresIn: '1h' });
 
     // Respond with the success message and token
-    res.status(200).json({ success: true, message: 'Signup successful', token });
+    res.status(200).json({ success: true, message: 'Signup successful', token , userResponse });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Internal Server Error', error });
   }
@@ -86,6 +93,15 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     // Generate a JWT token
     const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET || SECRET_KEY, { expiresIn: '1h' });
 
+    // Fetch movies from JSON file
+    const filepath = path.join(__dirname, "../../contentjson/content.json");
+    const fileData = fs.readFileSync(filepath, "utf-8");
+    const movieData = JSON.parse(fileData);
+
+    // Filter movies and series
+    const movies = movieData.filter((item: any) => item.Type === "movie");
+    const series = movieData.filter((item: any) => item.Type === "series");
+
     res.cookie('authToken', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -93,7 +109,13 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     });
 
     // Respond with the success message and token
-    res.status(200).json({ success: true, message: 'Login successful', token });
+    res.status(200).json({
+      success: true,
+      token,
+      user: { id: user._id, email: user.email },
+      movies,
+      series,
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Internal Server Error', error });
   }
