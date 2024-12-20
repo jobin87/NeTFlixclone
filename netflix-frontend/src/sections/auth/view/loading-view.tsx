@@ -3,22 +3,15 @@ import movieBg from "src/assets/hero.png";
 import strangerthings1 from "src/assets/stranger-things-lg.png";
 import netflicon from "src/assets/netflixlogo.png";
 import tv from "src/assets/tv.png";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { paths } from "src/routes/paths";
 import "src/globalcss.css"
 
 const LoadingView = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+ 
   const navigate = useNavigate();
 
-  const submitHandle = (e: any) => {
-    e.preventDefault();
-    console.log(`Email: ${email} and Password: ${password}`);
-    setEmail("");
-    setPassword("");
-  };
+
 
   return (
     <Box

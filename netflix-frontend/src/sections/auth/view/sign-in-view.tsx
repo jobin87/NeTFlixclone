@@ -3,7 +3,6 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import leftimage from "src/assets/hero.png";
-import xsbackground from "src/assets/hero.png";
 import { ENDPOINT_USER_LOGIN, makeNetworkCall } from "src/network";
 import { paths } from "src/routes/paths";
 
@@ -59,7 +58,10 @@ export const SignInView = () => {
       <Box
         sx={{
           width: "100%",
-          maxWidth: 300,
+          maxWidth:{
+            xs: 300,
+            lg: 400,
+          },
           p: 4,
           bgcolor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white background
           borderRadius: 2,
