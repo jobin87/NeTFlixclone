@@ -16,6 +16,7 @@
 
   },
   "include": [
-    "src/**/*.ts" // Include all TypeScript files in the src folder
+    "src/**/*.ts" ,
+    "src/types/express.d.ts"
   ]
 }

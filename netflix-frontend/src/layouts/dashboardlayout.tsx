@@ -1,83 +1,95 @@
-import { Box, Typography } from "@mui/material";
-import { ReactNode } from "react";
+
+import React, { Children, ReactNode } from "react";
+import {
+  Box,
+  Typography,
+  Avatar,
+  Divider,
+
+} from "@mui/material";
+
 import dasboardlayoutimg from "src/assets/netflixbghome.jpg";
+import netflixlogo from "src/assets/netflixlogo.png";
+
 
 interface DashboardLayoutProps {
-    children: ReactNode;
-  }
+  children?: ReactNode;
+}
 
-export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
+export const DashboardLayout: React.FC<DashboardLayoutProps>=({ children }) => {
+
+ 
   return (
     <Box
       sx={{
         display: "flex",
-        minWidth: "100vw",
+        flexDirection: "row",
+        width: "100vw",
         height: "100vh",
         backgroundImage: `url(${dasboardlayoutimg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         color: "white",
-        // Debugging styles to help check if the image is loaded
-        backgroundColor: "black",  // fallback color to check the layout if the image isn't loaded
+        overflow: "hidden",
       }}
     >
-      <Box 
-      sx={{
-        display:"flex",
-        justifyContent:"space-between",
-      }}
-      >
-      {/* leftSidebar */}
+      {/* Left Sidebar */}
       <Box
         sx={{
-          backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
-          width: "200px",
+          display: { xs: "none", lg: "block" },
+          backgroundColor: "rgba(0, 0, 0, 0.7)",
+          width: { lg: "200px" },
           minHeight: "100vh",
-          padding: "20px", 
+          padding: "20px",
+          position: "fixed",
+          top: 0,
+          left: 0,
         }}
       >
-        <Typography variant="h6" color="white" gutterBottom>
-          Search
-        </Typography>
-        <Typography variant="h6" color="white" gutterBottom>
-          Home
-        </Typography>
-        <Typography variant="h6" color="white" gutterBottom>
-          Trending
-        </Typography>
-        <Typography variant="h6" color="white" gutterBottom>
-          Your Videos
-        </Typography>
-      </Box>
+        <Box
+          sx={{
+            height: "40px",
+            backgroundImage: `url(${netflixlogo})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        ></Box>
+        <Box sx={{ ml: 4, mt: 4, display: "flex", flexDirection: "column" }}>
+          {["Home", "Trending", "Playlist", "Following"].map((item) => (
+            <Typography key={item} variant="h6" sx={{ mt: 2 }}>
+              {item}
+            </Typography>
+          ))}
+        </Box>
 
-      {/* rightsidebar */}
-      <Box 
-      sx={{
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
-        width: "20px",
-        minHeight: "100vh",
-        padding: "20px", 
-      }}>
+        <Divider sx={{ my: 3, borderColor: "rgba(255, 255, 255, 0.2)" }} />
+
+        <Typography variant="h6">Accounts</Typography>
+        {["Alex Smith", "Angelina Lie"].map((name) => (
+          <Box
+            key={name}
+            sx={{ display: "flex", alignItems: "center", mt: 2, gap: 2 }}
+          >
+            <Avatar>{name[0]}</Avatar>
+            <Typography>{name}</Typography>
+          </Box>
+        ))}
+
         
-
-
       </Box>
-      </Box>
-      
 
-      {/* <Box
+      {/* Main Content */}
+      <Box
         sx={{
           flexGrow: 1,
+          overflowY: "auto",
           padding: "20px",
-          backgroundColor: "#f4f4f4", 
+          marginLeft: { lg: "200px" },
         }}
       >
-        <Typography variant="h4" gutterBottom>
-          Dashboard Content
-        </Typography>
-      {children}
-      </Box>  */}
-      
+         {children}
+      </Box>
     </Box>
   );
 };

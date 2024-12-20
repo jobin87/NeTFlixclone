@@ -13,10 +13,9 @@ import swaggerJsDoc from 'swagger-jsdoc';
     },
     servers: [
       {
-        url: 'http://localhost:5003/',
+        url: 'http://localhost:5003',
       },
     ],
-    basePath: '/api',
   },
   apis: ['./src/routes/*.ts'], // Point to the TypeScript route files
   
@@ -31,6 +30,6 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
  */
 export const setupSwagger = (app: Application) => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-  console.log('Swagger documentation is available at http://localhost:5003/api-docs/movies');
+  console.log('Swagger documentation is available at http://localhost:5003/api-docs');
 };
 

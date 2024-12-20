@@ -11,15 +11,15 @@ const ROOTS = {
   
     // AUTH
     auth: {
-      signIn: `${ROOTS.AUTH}/sign-in`,
-      signUp: `${ROOTS.AUTH}/sign-up`
+      signIn: `${ROOTS.AUTH}/loading-page`,
+      signUp: `${ROOTS.AUTH}/sign-in`
       
     },
 
     dashboard:{
-      root:ROOTS.AUTH,
+      root:ROOTS.DASHBOARD,
       home: `${ROOTS.DASHBOARD}/home`,
-      movies: `${ROOTS.DASHBOARD}/movies`,
+      anime: `${ROOTS.DASHBOARD}/anime`
      
 
     }

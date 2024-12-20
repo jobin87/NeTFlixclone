@@ -1,5 +1,5 @@
 
-import SignInView from 'src/sections/auth/view/sign-in-view';
+import SignInView from 'src/sections/auth/view/loading-view';
 
 // ---------------------------------------------------------------------
 export default function Page() {
