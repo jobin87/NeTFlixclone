@@ -96,7 +96,10 @@ const LoadingView = () => {
 
           {/* Hero Text */}
           <Box sx={{
-            mb:30
+            mb:{
+              xs:50,
+              lg:30
+            }
 
           }}>
 
@@ -104,14 +107,14 @@ const LoadingView = () => {
             sx={{
               height:"40%",
               textAlign: "center",
-              mb:4
+              mb:1
             }}
             >
             <Typography
               variant="h4"
               component="h1"
               fontWeight="bold"
-              sx={{ fontSize: { xs: "1.5rem", sm: "2.5rem" } }}
+              sx={{ fontSize: { xs: "1.1rem", sm: "2.5rem" } }}
               >
               Unlimited movies, TV shows, and more.
             </Typography>
@@ -216,7 +219,7 @@ const LoadingView = () => {
           <Typography
             variant="h5"
             fontWeight="bold"
-            sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" }, mb: 2 }}
+            sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" }}}
           >
             Download your shows to watch offline
           </Typography>
