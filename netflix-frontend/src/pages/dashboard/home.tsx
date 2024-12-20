@@ -1,11 +1,11 @@
-import HomeView from "src/sections/home/home-view";
+import { ContentView } from "src/sections/content/view";
 
 
 // ---------------------------------------------------------------------
 export default function Page() {
   return (
     <>
-      <HomeView/>
+      <ContentView/>
     </>
   );
 }

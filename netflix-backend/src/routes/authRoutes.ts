@@ -1,5 +1,5 @@
 import express from 'express';
-import { login, signup } from '../controllers/authControllers';
+import { login, logout, signup } from '../controllers/authControllers';
 
 const authRoutes = express.Router();
 
@@ -36,7 +36,10 @@ const authRoutes = express.Router();
  *               properties:
  *                 token:
  *                   type: string
- *                   example: 54p445irir
+ *                   example: 54p445irir,
+ *                 loggedOut:
+ *                   type: boolean
+ *                   example: true
  *                 movie:
  *                   type: array
  *                   items:
@@ -114,5 +117,7 @@ const authRoutes = express.Router();
 authRoutes.post('/login', login);
 
 authRoutes.post('/signup', signup);
+
+authRoutes.post('/logout',logout)
 
 export default authRoutes;

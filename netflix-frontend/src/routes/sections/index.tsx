@@ -4,6 +4,7 @@ import { CONFIG } from 'src/config-global';
 
 import { authroutes } from './auth';
 import { dashboardroutes } from './dashboard';
+import { DashboardLayout } from 'src/layouts/dashboardlayout';
 
 // ----------------------------------------------------------------------
 
@@ -12,7 +13,7 @@ export function Router() {
     {
       path: '/',
       element: (
-            <Navigate to={CONFIG.auth.redirectPath} replace />
+        <Navigate to={CONFIG.auth.redirectPath} replace />
       ),
     },
 

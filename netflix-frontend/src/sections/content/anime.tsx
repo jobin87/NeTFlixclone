@@ -1,49 +1,39 @@
-import { Box, Button, Card, CardContent, CardMedia, Typography} from '@mui/material';
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from 'src/store';
-import { getmoviedata } from 'src/store/movie/movieThunk';
+import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
 
 interface MovieProps {
-  movies: Array<any>; // Define the proper type for movie objects if possible
+  anime: Array<any>; // Define the proper type for movie objects if possible
 }
 
-export const Movie: React.FC<MovieProps> =() => {
-  const {movies} = useAppSelector((state) => state.movie.data);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getmoviedata()); // Fetch the movie data when the component mounts
-  }, [dispatch]);
+export const Anime = ({ anime }: MovieProps) => {
   return (
-    <Box >
+    <Box>
       {/* Featured Section */}
       <Box
         sx={{
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
-          gap: 4,
           mb: 4,
           backgroundColor: 'rgba(0, 0, 0, 0.6)',
           borderRadius: '12px',
           p: 3,
         }}
       >
-        {movies.length > 0 && (
-          <Box sx={{ flex: { xs: 1, sm: 0.5 } }}>
+        {anime.length > 0 && (
+          <Box sx={{ flex: { xs: 1, sm: 0.5 ,mt:8} }}>
             <img
-              src={movies[0].Poster || 'https://via.placeholder.com/300x450'} // Fallback image if Poster is missing
-              alt={movies[0].Title || 'Featured Movie'} // Use movie Title or a generic fallback
+              src={anime[0].Poster || 'https://via.placeholder.com/300x450'} // Fallback image if Poster is missing
+              alt={anime[0].Title || 'Featured Movie'} // Use movie Title or a generic fallback
               style={{ width: '100%', borderRadius: '12px' }}
             />
           </Box>
         )}
-        {movies.length > 0 && (
+        {anime.length > 0 && (
           <Box
             sx={{
               flex: { xs: 1, sm: 3 },
               height: {
                 xs: '6rem', // Adjust height for xs devices
-                sm: '8rem', // Adjust for small devices if needed
+                sm: '10rem', // Adjust for small devices if needed
               },
               padding: { xs: '1rem', sm: '2rem' },
             }}
@@ -60,7 +50,7 @@ export const Movie: React.FC<MovieProps> =() => {
                 },
               }}
             >
-              {movies[0].Title || 'No title available'}
+              {anime[0].Title || 'No title available'}
             </Typography>
             <Typography
               variant="body2" // Use smaller text for body
@@ -72,13 +62,12 @@ export const Movie: React.FC<MovieProps> =() => {
                 },
               }}
             >
-              {movies[0].Plot || 'No plot available'}
+              {anime[0].Plot || 'No plot available'}
             </Typography>
             <Box
               sx={{
                 display: 'flex',
                 gap: 1, // Reduce gap for smaller screens
-                mt: 2,
                 flexDirection: { xs: 'row', sm: 'row' },
                 alignItems: 'center', // Center align for vertical layout
               }}
@@ -121,7 +110,7 @@ export const Movie: React.FC<MovieProps> =() => {
       {/* Popular Movies - Horizontal Scroll */}
       <Box sx={{ mb: 4 }}>
         <Typography variant="h5" gutterBottom>
-          Movies
+          Top 10 Anime
         </Typography>
         <Box
           sx={{
@@ -133,8 +122,8 @@ export const Movie: React.FC<MovieProps> =() => {
             },
           }}
         >
-          {movies.length > 0 ? (
-            movies.map((movie, index) => (
+          {anime.length > 0 ? (
+            anime.map((animeitem, index) => (
               <Box
                 key={index}
                 sx={{
@@ -146,8 +135,8 @@ export const Movie: React.FC<MovieProps> =() => {
                 <Card sx={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', color: 'white' }}>
                   <CardMedia
                     component="img"
-                    image={movie.Poster || 'https://via.placeholder.com/200x300'}
-                    alt={movie.Title}
+                    image={animeitem.Poster || 'https://via.placeholder.com/200x300'}
+                    alt={animeitem.Title}
                     sx={{
                       height: 180,
                       objectFit: 'cover', // Make sure image covers the space
@@ -155,9 +144,9 @@ export const Movie: React.FC<MovieProps> =() => {
                   />
                   <CardContent>
                     <Typography variant="h6" gutterBottom>
-                      {movie.Title || 'No title available'}
+                      {animeitem.Title || 'No title available'}
                     </Typography>
-                    <Typography variant="body2">{movie.Genre || 'Genre'}</Typography>
+                    <Typography variant="body2">{animeitem.Genre || 'Genre'}</Typography>
                   </CardContent>
                 </Card>
               </Box>

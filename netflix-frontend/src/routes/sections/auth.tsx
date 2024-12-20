@@ -1,8 +1,8 @@
 // import Login from "./pages/login";
 
-import { SignupPageView } from "src/sections/auth/view/sign-up-view";
-import SigninPage from "../../pages/auth/sign-in";
+import { SignInView } from "src/sections/auth/view";
 import { Outlet } from "react-router-dom";
+import LoadingView from "src/sections/auth/view/loading-view";
 
 export const authroutes = [
   {
@@ -12,15 +12,15 @@ export const authroutes = [
     ),
     children:[
       {
-        path:"sign-in",
+        path:"loading-page",
         element:(
-          <SigninPage/>
+          <LoadingView/>
         )
       },
       {
-        path:"sign-up",
+        path:"sign-in",
         element:(
-          <SignupPageView/>
+          <SignInView/>
         )
       }
     ]

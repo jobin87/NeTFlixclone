@@ -101,6 +101,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     // Filter movies and series
     const movies = movieData.filter((item: any) => item.Type === "movie");
     const series = movieData.filter((item: any) => item.Type === "series");
+    const anime = movieData.filter((item: any) => item.Type === "anime");
+
 
     res.cookie('authToken', token, {
       httpOnly: true,
@@ -115,6 +117,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       user: { id: user._id, email: user.email },
       movies,
       series,
+      anime,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Internal Server Error', error });
@@ -124,7 +127,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 export const logout = async (req: Request, res: Response): Promise<void> => {
   try {
     res.clearCookie('authToken'); // Clear the cookie on logout
-    res.status(200).json({ success: true, message: 'Logout successful' });
+    res.status(200).json({ LoggedOut: true, message: 'Logout successful' });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server error', error });
   }

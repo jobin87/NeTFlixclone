@@ -7,7 +7,8 @@ import {  MovieStateProps,} from '../types';
 const initialState: MovieStateProps = {
   data:{
     movies:[],
-    series:[]
+    series:[],
+    anime:[]
   },
   loading: false,
   error:null

@@ -43,9 +43,11 @@ export const getContentData = (req: Request, res: Response) => {
       const movies = moviedata.filter(item => item.Type === "movie");
 
       const series = moviedata.filter(item=> item.Type ==="series")
+      const anime = moviedata.filter(item=> item.Type ==="anime")
 
 
-      res.json({movies, series});
+
+      res.json({movies, series, anime});
 
     } catch (err) {
       res.status(400).json({ message: "Parse error", error: err });

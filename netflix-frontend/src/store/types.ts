@@ -10,7 +10,8 @@ export const basicInitialState: basicInitialStateProps = {
 export const MovieState:MovieStateProps={
   data:{
     movies:[],
-    series:[]
+    series:[],
+    anime:[]
   },
   loading: false, 
   error: null, 
@@ -32,7 +33,8 @@ export interface basicInitialStateProps {
 export interface MovieStateProps {
   data:{
     movies: Movie[],
-    series: Movie[]
+    series: Movie[],
+    anime: Movie[]
   },
   loading: boolean;
   error:null |object
