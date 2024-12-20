@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import User from '../models/user';
 import fs from "fs";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import path from 'path';
+import User from '../models/user';
 const SECRET_KEY= "112eryt33"
 
 
