@@ -4,7 +4,6 @@ import { CONFIG } from 'src/config-global';
 
 import { authroutes } from './auth';
 import { dashboardroutes } from './dashboard';
-import { DashboardLayout } from 'src/layouts/dashboardlayout';
 
 // ----------------------------------------------------------------------
 
