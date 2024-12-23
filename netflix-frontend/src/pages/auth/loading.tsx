@@ -1,11 +1,11 @@
 
-import { SignupPageView } from 'src/sections/auth/view/sign-in-view';
+import LoadingView from 'src/sections/auth/view/loading-view';
 
 // ---------------------------------------------------------------------
 export default function Page() {
   return (
     <>
-      <SignupPageView/>
+      <LoadingView/>
     </>
   );
 }

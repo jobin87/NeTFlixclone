@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Tabs, Tab, Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem, IconButton } from "@mui/material";
+import { Tabs, Tab, Box,ListItemIcon, Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -9,7 +9,7 @@ import { Series } from "src/sections/content/series";
 import { DashboardLayout } from "src/layouts/dashboardlayout";
 import { Anime } from "../anime";
 import { setLoading } from "src/store/app/appReducer";
-import { API_METHODS, ENDPOINT_USER_LOGIN, ENDPOINT_USER_LOGOUT, makeNetworkCall } from "src/network";
+import { API_METHODS, ENDPOINT_USER_LOGOUT, makeNetworkCall } from "src/network";
 import { requestSignOut } from "src/store/app/appThunk";
 import { useNavigate } from "react-router-dom";
 import { paths } from "src/routes/paths";
@@ -36,16 +36,12 @@ export const ContentView = () => {
   const dispatch= useAppDispatch()
   const navigate = useNavigate()
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
   };
 
   // Drawer state
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const toggleDrawer = (open: boolean) => () => {
-    setDrawerOpen(open);
-  };
+ 
 
   const handleLogout = async () => {
         try {
