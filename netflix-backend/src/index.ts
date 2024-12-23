@@ -11,14 +11,8 @@ connectDB(); // Connect to MongoDB
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-const corsOptions = {
-  origin: 'https://netflix-frontend-hjwrc4bph-codewith-jobins-projects.vercel.app/auth/sign-in',  // Allow all domains (for development)
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-};
-
 // Middleware
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 setupSwagger(app)
 
