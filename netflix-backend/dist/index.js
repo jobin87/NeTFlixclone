@@ -14,13 +14,8 @@ dotenv_1.default.config(); // Load environment variables
 (0, db_1.default)(); // Connect to MongoDB
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5001;
-const corsOptions = {
-    origin: 'https://netflix-frontend-clj495ku5-codewith-jobins-projects.vercel.app', // Allow all domains (for development)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-};
 // Middleware
-app.use((0, cors_1.default)(corsOptions));
+app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 (0, swaggerdoc_1.setupSwagger)(app);
 // Routes
