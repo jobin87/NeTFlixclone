@@ -21,7 +21,7 @@ export type ConfigValue = {
 export const CONFIG: ConfigValue = {
   appName: 'Netflix',
   appVersion: packageJson.version,
-  baseUrl: import.meta.env.VITE_AUTH_BASE_URL ?? '',
+  baseUrl: import.meta.env.VITE_AUTH_BASE_URL ?? "https://netflixclone-1-oerp.onrender.com",
   assetsDir: import.meta.env.VITE_AUTH_ASSETS_DIR ?? '',
   auth: {
     skip: false,

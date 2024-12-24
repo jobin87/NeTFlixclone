@@ -1,7 +1,6 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-import { CONFIG } from 'src/config-global';
 import { default as defaultStore, default as store } from 'src/store';
 import { requestSignOut } from 'src/store/app/appThunk';
 
@@ -13,7 +12,7 @@ interface INetworkCallConfig {
   extraHeadersOnly?: boolean;
 }
 
-export const BASE_URL = CONFIG.baseUrl;
+export const BASE_URL = import.meta.env.VITE_AUTH_BASE_URL;
 
 export const API_METHODS = {
   POST: 'POST',
