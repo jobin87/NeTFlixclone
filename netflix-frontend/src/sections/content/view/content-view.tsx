@@ -120,7 +120,6 @@ export const ContentView = () => {
             <Tab label="Movies" />
             <Tab label="Series" />
             <Tab label="Anime" />
-            <Tab label="TV Shows" />
           </Tabs>
         </Box>
       </Box>
