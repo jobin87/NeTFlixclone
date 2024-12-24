@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5001;
 
 // Middleware
 const corsOptions = {
-  origin: 'https://netflix-frontend-iyidzk9ma-codewith-jobins-projects.vercel.app', // Your frontend domain
+  origin: 'https://netflixclone-1-oerp.onrender.com', // Your frontend domain
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
