@@ -1,125 +1,59 @@
 import React, { useState } from "react";
-import { Tabs, Tab, Box,ListItemIcon, Menu, MenuItem, IconButton } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import SettingsIcon from "@mui/icons-material/Settings";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { useAppDispatch, useAppSelector } from "src/store";
-import { Movie } from "src/sections/content/movie";
-import { Series } from "src/sections/content/series";
+import { Tabs, Tab, Box} from "@mui/material";
 import { DashboardLayout } from "src/layouts/dashboardlayout";
 import { Anime } from "../anime";
-import { setLoading } from "src/store/app/appReducer";
-import { API_METHODS, ENDPOINT_USER_LOGOUT, makeNetworkCall } from "src/network";
-import { requestSignOut } from "src/store/app/appThunk";
-import { useNavigate } from "react-router-dom";
-import { paths } from "src/routes/paths";
+import { Movie } from "../movie";
+import { Series } from "../series";
 
+// TabPanel component for each tab's content
 function TabPanel(props: { children?: React.ReactNode; value: number; index: number }) {
   const { children, value, index, ...other } = props;
-
   return (
-    <div
+    <Box
       role="tabpanel"
       hidden={value !== index}
       id={`tabpanel-${index}`}
       aria-labelledby={`tab-${index}`}
       {...other}
+      sx={{ padding: 2 }} // Add padding to tab panel content for better spacing
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
+      {value === index && <Box>{children}</Box>}
+    </Box>
   );
 }
 
 export const ContentView = () => {
-  const { movies, series, anime } = useAppSelector((state) => state.movie.data);
-  const [selectedTab, setSelectedTab] = useState(0);
-  const dispatch= useAppDispatch()
-  const navigate = useNavigate()
+  const [selectedTab, setSelectedTab] = useState(0); // State to track selected tab
 
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
-    setSelectedTab(newValue);
+    setSelectedTab(newValue); // Update selected tab on tab change
   };
 
-  // Drawer state
- 
-
-  const handleLogout = async () => {
-        try {
-          dispatch(setLoading(true));
-          const response = await makeNetworkCall({
-            method: API_METHODS.POST,
-            url: ENDPOINT_USER_LOGOUT,
-          });
-          if (response?.data?.LoggedOut) {
-            console.log("yes")
-            dispatch(requestSignOut())
-            console.log("Navigating to sign-in page...");
-            navigate(paths.auth.signIn);
-            console.log("Navigation executed.");
-
-            
-          }
-        } catch (error) {
-          console.error("Logout failed:", error);
-        } finally {
-          dispatch(setLoading(false));
-        }
-      };
-
-  // Menu state
-  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
-
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMenuAnchor(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setMenuAnchor(null);
-  };
+  // Example data for Movies, Series, and Anime
+  const movies = ["Movie 1", "Movie 2", "Movie 3"];
+  const series = ["Series 1", "Series 2", "Series 3"];
+  const anime = ["Anime 1", "Anime 2", "Anime 3"];
 
   return (
     <DashboardLayout>
-      <Box sx={{ display:"flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-        <Box sx={{
-          display:{
-            xs:"block",
-            lg:"none"
-          }
-        }}>
-          {/* Kebab Menu */}
-        <IconButton onClick={handleMenuOpen}>
-          <MoreVertIcon />
-        </IconButton>
-        <Menu
-          anchorEl={menuAnchor}
-          open={Boolean(menuAnchor)}
-          onClose={handleMenuClose}
-        >
-          <MenuItem >
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            Account Settings
-          </MenuItem>
-          <MenuItem onClick={handleLogout}>
-            <ListItemIcon>
-              <ExitToAppIcon />
-            </ListItemIcon>
-            Logout
-          </MenuItem>
-        </Menu>
-        </Box>
-        {/* Tabs */}
-        <Box>
+      {/* Tab Navigation */}
+      <Box sx={{ display: "flex", flexDirection: "column", marginTop: 2 }}>
+      <Box>
           <Tabs
             value={selectedTab}
             onChange={handleTabChange}
             aria-label="content tabs"
-            sx={{ borderBottom: 1, borderColor: "divider" }}
+            sx={{ borderBottom: 1, borderColor: "divider", ml:{
+              xs: 3,
+              lg: 3
+            } }}
           >
             <Tab label="Movies" />
             <Tab label="Series" />
             <Tab label="Anime" />
+            <Tab label="Tv-Shows" />
+
+
           </Tabs>
         </Box>
       </Box>

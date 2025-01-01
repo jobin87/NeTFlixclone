@@ -1,160 +1,120 @@
-import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Card, CardMedia, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from 'src/store';
+import { getmoviedata } from 'src/store/movie/movieThunk';
 
 interface MovieProps {
   anime: Array<any>; // Define the proper type for movie objects if possible
 }
 
-export const Anime = ({ anime }: MovieProps) => {
+export const Anime: React.FC<MovieProps> = () => {
+  const { anime } = useAppSelector((state) => state.movie.data);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getmoviedata()); // Fetch the movie data when the component mounts
+  }, [dispatch]);
+
   return (
     <Box>
-      {/* Featured Section */}
+      {/* First Box: Highlighted Movie */}
       <Box
         sx={{
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
+          gap: 4,
           mb: 4,
           backgroundColor: 'rgba(0, 0, 0, 0.6)',
           borderRadius: '12px',
-          p: 3,
+          height: {
+            xs: '33vh',
+            lg: '33vh',
+          },
+          mt: {
+            xs: 3,
+            lg: 0,
+          },
         }}
       >
-        {anime.length > 0 && (
-          <Box sx={{ flex: { xs: 1, sm: 0.5 ,mt:8} }}>
-            <img
-              src={anime[0].Poster || 'https://via.placeholder.com/300x450'} // Fallback image if Poster is missing
-              alt={anime[0].Title || 'Featured Movie'} // Use movie Title or a generic fallback
-              style={{ width: '100%', borderRadius: '12px' }}
+        {anime?.length > 0 && (
+          <Card key={anime[0].imdbID} sx={{ minWidth: '120px' }}>
+            <CardMedia
+              component="img"
+              sx={{
+                height: {
+                  xs: '34vh',
+                  lg: '34vh',
+                },
+              }}
+              image={anime[0].Poster}
+              alt={anime[0].Title || 'Movie Poster'}
             />
-          </Box>
-        )}
-        {anime.length > 0 && (
-          <Box
-            sx={{
-              flex: { xs: 1, sm: 3 },
-              height: {
-                xs: '6rem', // Adjust height for xs devices
-                sm: '10rem', // Adjust for small devices if needed
-              },
-              padding: { xs: '1rem', sm: '2rem' },
-            }}
-          >
-            <Typography
-              variant="h5" // Use a smaller variant for xs devices
-              fontWeight="bold"
-              gutterBottom
-              sx={{
-                fontSize: {
-                  xs: '1.2rem', // Adjust font size for title
-                  sm: '1.5rem',
-                  md: '2rem',
-                },
-              }}
-            >
-              {anime[0].Title || 'No title available'}
-            </Typography>
-            <Typography
-              variant="body2" // Use smaller text for body
-              gutterBottom
-              sx={{
-                fontSize: {
-                  xs: '0.875rem', // Smaller font size for xs devices
-                  sm: '1rem',
-                },
-              }}
-            >
-              {anime[0].Plot || 'No plot available'}
-            </Typography>
-            <Box
-              sx={{
-                display: 'flex',
-                gap: 1, // Reduce gap for smaller screens
-                flexDirection: { xs: 'row', sm: 'row' },
-                alignItems: 'center', // Center align for vertical layout
-              }}
-            >
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  fontSize: {
-                    xs: '0.75rem', // Adjust button font size
-                    sm: '0.875rem',
-                  },
-                  padding: {
-                    xs: '0.5rem 1rem', // Adjust padding for smaller buttons
-                  },
-                }}
-              >
-                Watch Now
-              </Button>
-              <Button
-                variant="outlined"
-                color="secondary"
-                sx={{
-                  fontSize: {
-                    xs: '0.75rem', // Adjust button font size
-                    sm: '0.875rem',
-                  },
-                  padding: {
-                    xs: '0.5rem 1rem', // Adjust padding for smaller buttons
-                  },
-                }}
-              >
-                Follow
-              </Button>
-            </Box>
-          </Box>
+          </Card>
         )}
       </Box>
 
-      {/* Popular Movies - Horizontal Scroll */}
-      <Box sx={{ mb: 4 }}>
+      {/* Section Title */}
+      <Box sx={{ mt: {
+        xs:8,
+        lg:3
+      }, ml: 2 }}>
         <Typography variant="h5" gutterBottom>
-          Top 10 Anime
+          anime
         </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            overflowX: 'auto',
-            whiteSpace: 'nowrap',
-            '&::-webkit-scrollbar': {
-              display: 'none',
-            },
-          }}
-        >
-          {anime.length > 0 ? (
-            anime.map((animeitem, index) => (
-              <Box
-                key={index}
+      </Box>
+
+      {/* Second Box: Scrollable Movies */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'row', sm: 'row' },
+          gap: 4,
+          mb: 4,
+          borderRadius: '12px',
+          height: {
+            xs: '33vh',
+            lg: '33vh',
+          },
+          mt: {
+            xs: 3,
+            lg: 0,
+          },
+          overflowX:"auto",
+          '::-webkit-scrollbar':{
+            display:"none"
+          }
+        }}
+      >
+        {anime?.length > 0 &&
+          anime.map((movie, index) => (
+            <Card
+              key={movie.imdbID || index}
+              sx={{
+                flex: ' auto', // Ensures each card is shown one at a time
+                minWidth: {
+                  xs:'370px',
+                  lg:'300px'
+                }, // Adjust card width for visibility
+                bgcolor:"black",
+                ml:{
+                  xs:0
+                },
+              }}
+            >
+              <CardMedia
+                component="img"
+                image={movie.Poster}
+                alt={movie.Title || 'Movie Poster'}
                 sx={{
-                  minWidth: '200px',
-                  marginRight: 2,
-                  flexShrink: 0, // Prevent shrinking of cards
+                  height: {
+                    xs:'300px',
+                    lg:'200px'
+                  }, // Consistent height for movie posters
+                  objectFit:'contain'
                 }}
-              >
-                <Card sx={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', color: 'white' }}>
-                  <CardMedia
-                    component="img"
-                    image={animeitem.Poster || 'https://via.placeholder.com/200x300'}
-                    alt={animeitem.Title}
-                    sx={{
-                      height: 180,
-                      objectFit: 'cover', // Make sure image covers the space
-                    }}
-                  />
-                  <CardContent>
-                    <Typography variant="h6" gutterBottom>
-                      {animeitem.Title || 'No title available'}
-                    </Typography>
-                    <Typography variant="body2">{animeitem.Genre || 'Genre'}</Typography>
-                  </CardContent>
-                </Card>
-              </Box>
-            ))
-          ) : (
-            <Typography>No movies available to display.</Typography>
-          )}
-        </Box>
+              />
+            </Card>
+          ))}
       </Box>
     </Box>
   );
