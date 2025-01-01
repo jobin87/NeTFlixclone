@@ -90,7 +90,7 @@ const LoadingView = () => {
           {/* Hero Text */}
           <Box sx={{
             mb:{
-              xs:50,
+              xs:60,
               lg:30
             }
 
@@ -118,6 +118,10 @@ const LoadingView = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
+              m:{
+                xs:1.4,
+                lg:0
+              }
             }}
             >
             <TextField
@@ -127,12 +131,17 @@ const LoadingView = () => {
                   xs: "80%",
                   lg: "60%",
                 },
+                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+                fontSize: "large",
               }}
               type="email"
               variant="outlined"
               fullWidth
               required
               placeholder="Email address"
+              
               />
             <Button
               sx={{

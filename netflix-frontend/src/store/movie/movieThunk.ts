@@ -16,6 +16,7 @@ export const getmoviedata = createAsyncThunk(
       method: API_METHODS.GET,
       url: ENDPOINT_MOVIES,
     });
+      console.log(response)
       return response?.data
     
   }
