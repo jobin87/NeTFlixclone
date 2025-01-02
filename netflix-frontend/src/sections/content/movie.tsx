@@ -35,7 +35,8 @@ export const Movie: React.FC<MovieProps> = () => {
             lg: 0,
           },
           width:{
-            xs:"380px"
+            xs:"90vw",
+            lg:"80vw"
           }
         }}
       >
@@ -82,13 +83,14 @@ export const Movie: React.FC<MovieProps> = () => {
             xs: 2,
             lg: 0,
           },
-          left:0,
+          left:8,
           overflowX:"auto",
           '::-webkit-scrollbar':{
             display:"none"
           },
           width:{
-            xs:"380px"
+            xs:"390px",
+            lg:"1000px"
           }
         }}
       >
