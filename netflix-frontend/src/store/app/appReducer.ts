@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { basicInitialState, MovieState, networkCallInitialState } from '../types';
-import { requestSignInWithPassword } from './appThunk';
+import {  checkEmailExist, requestSignInWithPassword, requestSignUp } from './appThunk';
 
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
   resetpassword: networkCallInitialState,
   userDocuments: [],
   movies: {...MovieState},
+
 
   // ---------------------------------------
   onboarding: {
@@ -29,6 +30,9 @@ export const appReducer = createSlice({
     setLoading: (state, action) => {
       state.auth.data = action.payload
     },
+    setUsersignup: (state, action) => {
+      state.auth.data = action.payload;
+    } ,
     setLogged: (state, action) => {
       state.userLogged = action.payload;
     },
@@ -62,6 +66,30 @@ export const appReducer = createSlice({
         state.auth.loading = true;
       })
       .addCase(requestSignInWithPassword.rejected, (state, action) => {
+        state.auth.error = action.error;
+        state.auth.loading = false;
+      })
+      .addCase(requestSignUp.fulfilled, (state, action) => {
+        state.auth.data = action.payload;
+        state.auth.loading = false;
+
+      })
+      .addCase(requestSignUp.pending, (state) => {
+        state.auth.loading = true;
+      })
+      .addCase(requestSignUp.rejected, (state, action) => {
+        state.auth.error = action.error;
+        state.auth.loading = false;
+      })
+      .addCase(checkEmailExist.fulfilled, (state, action) => {
+        state.auth.data = action.payload;
+        state.auth.loading = false;
+
+      })
+      .addCase(checkEmailExist.pending, (state) => {
+        state.auth.loading = true;
+      })
+      .addCase(checkEmailExist.rejected, (state, action) => {
         state.auth.error = action.error;
         state.auth.loading = false;
       })

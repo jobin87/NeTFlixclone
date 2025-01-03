@@ -25,7 +25,7 @@ export const CONFIG: ConfigValue = {
   assetsDir: import.meta.env.VITE_AUTH_ASSETS_DIR ?? '',
   auth: {
     skip: false,
-    redirectPath: paths.auth.signIn,
+    redirectPath: paths.auth.loadingPage,
   },
   mapboxApiKey: import.meta.env.VITE_MAPBOX_API_KEY ?? '',
 };

@@ -11,8 +11,9 @@ const ROOTS = {
   
     // AUTH
     auth: {
-      signIn: `${ROOTS.AUTH}/loading-page`,
-      signUp: `${ROOTS.AUTH}/sign-in`
+      loadingPage: `${ROOTS.AUTH}/loading-page`,
+      signIn: `${ROOTS.AUTH}/sign-in`,
+      signUp:`${ROOTS.AUTH}/sign-up`
       
     },
 

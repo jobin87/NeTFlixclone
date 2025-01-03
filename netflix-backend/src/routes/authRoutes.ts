@@ -1,5 +1,5 @@
 import express from 'express';
-import { login, logout, signup } from '../controllers/authControllers';
+import { checkEmailExist, login, logout, signup } from '../controllers/authControllers';
 
 const authRoutes = express.Router();
 
@@ -115,9 +115,8 @@ const authRoutes = express.Router();
  *         description: Internal server error
  */
 authRoutes.post('/login', login);
-
 authRoutes.post('/signup', signup);
-
+authRoutes.post('/checkemail', checkEmailExist);
 authRoutes.post('/logout',logout)
 
 export default authRoutes;

@@ -1,6 +1,6 @@
 // import Login from "./pages/login";
 
-import { SignInView } from "src/sections/auth/view";
+import { SignInView, SignUpView } from "src/sections/auth/view";
 import { Outlet } from "react-router-dom";
 import LoadingView from "src/sections/auth/view/loading-view";
 
@@ -21,6 +21,12 @@ export const authroutes = [
         path:"sign-in",
         element:(
           <SignInView/>
+        )
+      },
+      {
+        path:"sign-up",
+        element:(
+          <SignUpView/>
         )
       }
     ]

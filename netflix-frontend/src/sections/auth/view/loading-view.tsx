@@ -1,17 +1,19 @@
+import  {  useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import movieBg from "src/assets/hero.png";
-import strangerthings1 from "src/assets/stranger-things-lg.png";
 import netflicon from "src/assets/netflixlogo.png";
-import tv from "src/assets/tv.png";
 import { useNavigate } from "react-router-dom";
 import { paths } from "src/routes/paths";
-import "src/globalcss.css"
+import "src/globalcss.css";
+import { useAppDispatch } from "src/store";
+import tv from "src/assets/tv.png";
+import strangerthings1 from "src/assets/stranger-things-lg.png";
 
 const LoadingView = () => {
- 
+  const [email, setEmail] = useState("");
+  const [error, seterror] = useState("");
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-
 
   return (
     <Box
@@ -42,14 +44,14 @@ const LoadingView = () => {
             width: "100%",
             height: "100%",
             backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent black overlay
-            zIndex: 1, // Places the overlay behind the content
+            zIndex: 1,
           }}
         />
 
         {/* Content */}
         <Box
           sx={{
-            position: "relative", // Ensures content is above the overlay
+            position: "relative",
             zIndex: 2,
             display: "flex",
             flexDirection: "column",
@@ -81,83 +83,75 @@ const LoadingView = () => {
               sx={{
                 fontSize: { xs: "0.8rem", sm: "1rem" },
               }}
-              onClick={() => navigate(paths.auth.signUp)}
+              onClick={() => navigate(paths.auth.signIn)}
             >
               Sign In
             </Button>
           </Box>
 
           {/* Hero Text */}
-          <Box sx={{
-            mb:{
-              xs:60,
-              lg:30
-            }
-
-          }}>
-
           <Box
             sx={{
-              height:"40%",
-              textAlign: "center",
-              mb:1
+              mb: { xs: 60, lg: 30 },
             }}
-            >
-            <Typography
-              variant="h4"
-              component="h1"
-              fontWeight="bold"
-              sx={{ fontSize: { xs: "1.1rem", sm: "2.5rem" } }}
-              >
-              Unlimited movies, TV shows, and more.
-            </Typography>
-          </Box>
-
-          {/* Email Input and Button */}
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              m:{
-                xs:1.4,
-                lg:0
-              }
-            }}
-            >
-            <TextField
+          >
+            <Box
               sx={{
-                bgcolor: "white",
-                width: {
-                  xs: "80%",
-                  lg: "60%",
-                },
-                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white",
-                },
-                fontSize: "large",
+                height: "40%",
+                textAlign: "center",
+                mb: 1,
               }}
-              type="email"
-              variant="outlined"
-              fullWidth
-              required
-              placeholder="Email address"
-              
+            >
+              <Typography
+                variant="h4"
+                component="h1"
+                fontWeight="bold"
+                sx={{ fontSize: { xs: "1.1rem", sm: "2.5rem" } }}
+              >
+                Unlimited movies, TV shows, and more.
+              </Typography>
+            </Box>
+
+            {/* Email Input and Button */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                m: { xs: 1.4, lg: 0 },
+              }}
+            >
+              <TextField
+                sx={{
+                  bgcolor: "white",
+                  width: {
+                    xs: "80%",
+                    lg: "60%",
+                  },
+                }}
+                type="email"
+                variant="outlined"
+                fullWidth
+                required
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
-            <Button
-              sx={{
-                bgcolor: "red",
-                color: "white",
-                ml: "1rem",
-              }}
+              <Button
+                sx={{
+                  bgcolor: "red",
+                  color: "white",
+                  ml: "1rem",
+                }}
               >
-              Get Started
-            </Button>
+                Get Started
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
-    </Box>
 
-      {/* TV Section */}
+      {/* Other Sections */}
+      {/* Add your other sections here, like the TV and Download sections */}
       <Box
         sx={{
           display: "flex",

@@ -72,6 +72,38 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+export const checkEmailExist = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email } = req.body;
+
+    // Check if email fields are provided
+    if (!email) {
+      res.status(400).json({ success: false, message: 'Email field is empty' });
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      res.status(400).json({ success: false, message: 'Invalid email format' });
+      return;
+    }
+
+    // Check if the email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      res.status(400).json({ success: false, message: 'User exists with this email' });
+      return;
+    }
+
+    // If email is available, send success response
+    res.status(200).json({ success: true, message: 'Email is available' });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Internal Server Error', error });
+  }
+};
+
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
