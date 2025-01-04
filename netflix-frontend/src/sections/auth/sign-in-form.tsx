@@ -1,17 +1,16 @@
-import { Box, TextField, Button, Typography } from '@mui/material';
-import { useState } from 'react';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
-import leftimage from "src/assets/hero.png"
-import { ENDPOINT_USER_LOGIN, makeNetworkCall } from 'src/network';
-import { paths } from 'src/routes/paths';
+import { Box, TextField, Button, Typography } from "@mui/material";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import leftimage from "src/assets/hero.png";
+import { ENDPOINT_USER_LOGIN, makeNetworkCall } from "src/network";
+import { paths } from "src/routes/paths";
 
 export const SignInForm = () => {
-  const navigate = useNavigate()
-  const [username,setusername] = useState("")
-   const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [loading,setLoading]= useState(false)
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +19,7 @@ export const SignInForm = () => {
       toast.error("Please fill in all fields");
       return;
     }
+
     setLoading(true);
 
     try {
@@ -28,11 +28,18 @@ export const SignInForm = () => {
         url: ENDPOINT_USER_LOGIN,
         data: { email, password },
       });
-      if (response?.data?.success && response?.data?.token) {
-        localStorage.setItem("token", response.data.token);
 
-        toast.success("Sign-in successful");
+      if (response?.data?.success && response?.data?.token) {
+        const userData = response.data.users; // Assuming `users` object contains the username
+        if (userData?.username) {
+          toast.success(`Welcome, ${userData.username}!`);
+          localStorage.setItem("username", userData.username); // Store username if needed
+        }
+
+        localStorage.setItem("token", response.data.token);
         navigate(paths.dashboard.home);
+      } else {
+        toast.error(response?.data?.message || "Login failed");
       }
     } catch (err) {
       toast.error("Sign-in failed. Please try again.");
@@ -40,52 +47,45 @@ export const SignInForm = () => {
       setLoading(false);
     }
   };
+
   return (
     <Box
       sx={{
-        display: 'flex',
-        height: '100vh',
+        display: "flex",
+        height: "100vh",
       }}
     >
       {/* Left Side (Image) */}
       <Box
         sx={{
           flex: 1,
-          backgroundImage: `url(${leftimage})`, // Replace with your image URL
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage: `url(${leftimage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       ></Box>
 
-      {/* Right Side (Signup Form) */}
+      {/* Right Side (Sign-In Form) */}
       <Box
         sx={{
           flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
           px: 4,
         }}
       >
         <Typography variant="h4" gutterBottom>
-          sign in to account
+          Sign in to your account
         </Typography>
         <form
           style={{
-            width: '100%',
-            maxWidth: '400px',
+            width: "100%",
+            maxWidth: "400px",
           }}
           onSubmit={handleSubmit}
         >
-          <TextField
-            fullWidth
-            label="Full Name"
-            variant="outlined"
-            margin="normal"
-            value={username}
-            onChange={(e)=>setusername(e.target.value)}
-          />
           <TextField
             fullWidth
             label="Email"
@@ -93,7 +93,7 @@ export const SignInForm = () => {
             variant="outlined"
             margin="normal"
             value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             fullWidth
@@ -102,15 +102,15 @@ export const SignInForm = () => {
             variant="outlined"
             margin="normal"
             value={password}
-            onChange={(e)=> setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
-         <Button
+          <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             sx={{ mt: 2 }}
-            disabled={loading} // Disable button when loading
+            disabled={loading}
           >
             {loading ? "Signing In..." : "Sign In"}
           </Button>
@@ -119,4 +119,3 @@ export const SignInForm = () => {
     </Box>
   );
 };
-

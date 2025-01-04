@@ -37,13 +37,6 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // Check if the username already exists
-    const existingUsername = await User.findOne({ username });
-    if (existingUsername) {
-      res.status(400).json({ success: false, message: 'Username already taken' });
-      return;
-    }
-
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -92,12 +85,12 @@ export const checkEmailExist = async (req: Request, res: Response): Promise<void
     // Check if the email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      res.status(400).json({ success: false, message: 'User exists with this email' });
+      res.status(400).json({ success: false, message: 'User exists with this email so login with that' });
       return;
     }
 
     // If email is available, send success response
-    res.status(200).json({ success: true, message: 'Email is available' });
+    res.status(200).json({ success: true, message: 'Email is available move to sign in' });
 
   } catch (error) {
     res.status(500).json({ success: false, message: 'Internal Server Error', error });
@@ -106,7 +99,7 @@ export const checkEmailExist = async (req: Request, res: Response): Promise<void
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { email, password } = req.body;
+    const {username, email, password } = req.body;
 
     // Find the user by email
     const user = await User.findOne({ email });
@@ -146,7 +139,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json({
       success: true,
       token,
-      user: { id: user._id, email: user.email },
+      user: { id: user._id, email: user.email , username: user.username },
       movies,
       series,
       anime,

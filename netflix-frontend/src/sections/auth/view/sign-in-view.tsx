@@ -5,13 +5,19 @@ import { Link, useNavigate } from "react-router-dom";
 import leftimage from "src/assets/hero.png";
 import { ENDPOINT_USER_LOGIN, makeNetworkCall } from "src/network";
 import { paths } from "src/routes/paths";
+import { useAppDispatch, useAppSelector } from "src/store";
+import { setLogged } from "src/store/app/appReducer";
+import { requestSignInWithPassword } from "src/store/app/appThunk";
+import { SignInParams, SignInResponse } from "src/store/app/types";
 
 export const SignInView = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [token, settoken] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const dispatch = useAppDispatch()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,17 +29,19 @@ export const SignInView = () => {
     setLoading(true);
 
     try {
-      const response = await makeNetworkCall({
-        method: "POST",
-        url: ENDPOINT_USER_LOGIN,
-        data: { email, password },
-      });
-      if (response?.data?.success && response?.data?.token) {
-        localStorage.setItem("token", response.data.token);
-
-        toast.success("Sign-in successful");
-        navigate(paths.dashboard.home);
-      }
+      const credentials = {
+        username, // Add a username if required or remove if not needed
+        email,
+        password,
+        token,
+      };
+     const response = await dispatch(requestSignInWithPassword(credentials))
+     if(response.payload?.success){
+      const username = response.payload.user.username
+      console.log(username)
+      setLogged(true)
+      navigate(paths.dashboard.home)
+     }
     } catch (err) {
       toast.error("Sign-in failed. Please try again.");
     } finally {

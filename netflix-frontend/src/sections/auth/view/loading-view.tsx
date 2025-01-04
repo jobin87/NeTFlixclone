@@ -8,12 +8,22 @@ import "src/globalcss.css";
 import { useAppDispatch } from "src/store";
 import tv from "src/assets/tv.png";
 import strangerthings1 from "src/assets/stranger-things-lg.png";
-
+import { checkEmailExist } from "src/store/app/appThunk";
+import toast from "react-hot-toast";
 const LoadingView = () => {
   const [email, setEmail] = useState("");
-  const [error, seterror] = useState("");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const handleCheckEmail = async()=>{
+    const response = await dispatch(checkEmailExist(email))
+    if(response.payload.success===true){
+      navigate(paths.auth.signUp)
+    }
+    else{
+      toast.error("user exist with email")
+    }
+  }
 
   return (
     <Box
@@ -137,6 +147,7 @@ const LoadingView = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <Button
+              onClick={handleCheckEmail}
                 sx={{
                   bgcolor: "red",
                   color: "white",

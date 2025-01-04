@@ -4,6 +4,7 @@ import {
 } from 'src/network';
 import type {
   SignInParams,
+  SignInResponse,
   SignUpParams,
 } from './types';
 import { makeNetworkCall } from 'src/network/networkcall';
@@ -20,7 +21,7 @@ export const requestSignInWithPassword = createAsyncThunk(
       url: ENDPOINT_USER_LOGIN,
       data: params,
     });
-    return response?.data?.data;
+    return response?.data;
   }
 );
 
@@ -58,6 +59,6 @@ export const checkEmailExist = createAsyncThunk(
       data:{email},
     });
     console.log(response);
-    return response?.data?.data;
+    return response?.data;
   }
 );

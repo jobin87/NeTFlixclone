@@ -23,7 +23,6 @@ export const SignUpView = () => {
       toast.error("Please fill in all fields");
       return;
     }
-
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
