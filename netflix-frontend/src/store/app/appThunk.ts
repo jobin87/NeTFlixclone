@@ -4,7 +4,6 @@ import {
 } from 'src/network';
 import type {
   SignInParams,
-  SignInResponse,
   SignUpParams,
 } from './types';
 import { makeNetworkCall } from 'src/network/networkcall';

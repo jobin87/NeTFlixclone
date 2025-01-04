@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Divider,
   Drawer,
@@ -11,7 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import FileDownloadIcon from "@mui/icons-material/CloudDownload";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useMemo, useState } from "react";
+import {  useState } from "react";
 import { useAppSelector } from "src/store";
 import { useNavigate } from "react-router-dom";
 import { paths } from "src/routes/paths";
