@@ -51,6 +51,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       userId: newUser._id, // Map _id to userId
       email: newUser.email,
       name: newUser.username,
+  
     };
 
     await newUser.save();
