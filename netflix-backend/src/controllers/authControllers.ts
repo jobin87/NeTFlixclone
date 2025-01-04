@@ -100,10 +100,10 @@ export const checkEmailExist = async (req: Request, res: Response): Promise<void
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
-    const {username, email, password } = req.body;
+    const { email, password } = req.body;
 
     // Find the user by email
-    const user = await User.findOne({ email , username});
+    const user = await User.findOne({ email});
     if (!user) {
       res.status(400).json({ success: false, message: 'Invalid email or password' });
       return;
