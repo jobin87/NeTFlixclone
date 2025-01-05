@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteuser = exports.getAllUsers = exports.logout = exports.login = exports.signup = void 0;
+exports.deleteuser = exports.getAllUsers = exports.logout = exports.login = exports.checkEmailExist = exports.signup = void 0;
 const fs_1 = __importDefault(require("fs"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -44,12 +44,6 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.status(400).json({ success: false, message: 'User exists with this email' });
             return;
         }
-        // Check if the username already exists
-        const existingUsername = yield user_1.default.findOne({ username });
-        if (existingUsername) {
-            res.status(400).json({ success: false, message: 'Username already taken' });
-            return;
-        }
         // Hash the password
         const hashedPassword = yield bcrypt_1.default.hash(password, 10);
         // Create a new user and save it to the database
@@ -74,6 +68,34 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.signup = signup;
+const checkEmailExist = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { email } = req.body;
+        // Check if email fields are provided
+        if (!email) {
+            res.status(400).json({ success: false, message: 'Email field is empty' });
+            return;
+        }
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            res.status(400).json({ success: false, message: 'Invalid email format' });
+            return;
+        }
+        // Check if the email already exists
+        const existingUser = yield user_1.default.findOne({ email });
+        if (existingUser) {
+            res.status(400).json({ success: false, message: 'User exists with this email so login with that' });
+            return;
+        }
+        // If email is available, send success response
+        res.status(200).json({ success: true, message: 'Email is available move to sign in' });
+    }
+    catch (error) {
+        res.status(500).json({ success: false, message: 'Internal Server Error', error });
+    }
+});
+exports.checkEmailExist = checkEmailExist;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
@@ -108,7 +130,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(200).json({
             success: true,
             token,
-            user: { id: user._id, email: user.email },
+            user: { id: user._id, email: user.email, username: user.username },
             movies,
             series,
             anime,

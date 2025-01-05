@@ -119,5 +119,6 @@ const authRoutes = express_1.default.Router();
  */
 authRoutes.post('/login', authControllers_1.login);
 authRoutes.post('/signup', authControllers_1.signup);
+authRoutes.post('/checkemail', authControllers_1.checkEmailExist);
 authRoutes.post('/logout', authControllers_1.logout);
 exports.default = authRoutes;

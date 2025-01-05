@@ -15,6 +15,11 @@ dotenv_1.default.config(); // Load environment variables
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5001;
 // Middleware
+// const corsOptions = {
+//   origin: 'https://netflix-frontend-ivrfyc081-codewith-jobins-projects.vercel.app', // Your frontend domain
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// };
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 (0, swaggerdoc_1.setupSwagger)(app);
