@@ -12,7 +12,6 @@ export type SignInResponse = {
 export type SignInParams = {
     username: string;
     email: string;
-    token: string
     password: string
   };
   export type SignUpParams = {

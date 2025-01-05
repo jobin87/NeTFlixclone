@@ -3,18 +3,15 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import leftimage from "src/assets/hero.png";
-import { ENDPOINT_USER_LOGIN, makeNetworkCall } from "src/network";
 import { paths } from "src/routes/paths";
-import { useAppDispatch, useAppSelector } from "src/store";
+import { useAppDispatch} from "src/store";
 import { setLogged } from "src/store/app/appReducer";
 import { requestSignInWithPassword } from "src/store/app/appThunk";
-import { SignInParams, SignInResponse } from "src/store/app/types";
 
 export const SignInView = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [token, settoken] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch()
@@ -33,7 +30,6 @@ export const SignInView = () => {
         username, // Add a username if required or remove if not needed
         email,
         password,
-        token,
       };
      const response = await dispatch(requestSignInWithPassword(credentials))
      if(response.payload?.success){

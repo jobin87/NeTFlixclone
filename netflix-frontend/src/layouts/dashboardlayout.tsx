@@ -10,30 +10,6 @@ interface DashboardLayoutProps {
   children?: ReactNode;
 }
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  value: number;
-  index: number;
-}
-
-const TabPanel: React.FC<TabPanelProps> = ({
-  children,
-  value,
-  index,
-  ...other
-}) => {
-  return (
-    <Box
-      role="tabpanel"
-      hidden={value !== index}
-      id={`tabpanel-${index}`}
-      aria-labelledby={`tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box>{children}</Box>}
-    </Box>
-  );
-};
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
  

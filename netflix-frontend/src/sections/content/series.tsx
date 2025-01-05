@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, CardMedia, Typography} from '@mui/material';
+import { Box, Card, CardMedia, Typography} from '@mui/material';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/store';
 import { getmoviedata } from 'src/store/movie/movieThunk';
