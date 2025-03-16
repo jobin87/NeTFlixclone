@@ -54,7 +54,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         const userResponse = {
             userId: newUser._id, // Map _id to userId
-            email: newUser.email,
+            userEmail: newUser.email,
             name: newUser.username,
         };
         yield newUser.save();
