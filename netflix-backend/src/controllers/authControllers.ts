@@ -49,7 +49,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
     });
     const userResponse = {
       userId: newUser._id, // Map _id to userId
-      email: newUser.email,
+      userEmail: newUser.email,
       name: newUser.username,
   
     };
