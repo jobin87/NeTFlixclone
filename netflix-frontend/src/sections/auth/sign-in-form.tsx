@@ -1,10 +1,11 @@
-import { Box, TextField, Button, Typography } from "@mui/material";
+import { Box, TextField, Button, Typography, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import leftimage from "src/assets/hero.png";
-import { ENDPOINT_USER_LOGIN, makeNetworkCall } from "src/network";
-import { paths } from "src/routes/paths";
+import { ENDPOINT_USER_LOGIN } from "src/network/endpoints.ts";
+import { makeNetworkCall } from "src/network/networkcall.ts";
+import { paths } from "src/routes/paths.ts";
 
 export const SignInForm = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export const SignInForm = () => {
         }
 
         localStorage.setItem("token", response.data.token);
-        navigate(paths.dashboard.home);
+        navigate(paths.dashboard.moviedetails);
       } else {
         toast.error(response?.data?.message || "Login failed");
       }
@@ -79,13 +80,7 @@ export const SignInForm = () => {
         <Typography variant="h4" gutterBottom>
           Sign in to your account
         </Typography>
-        <form
-          style={{
-            width: "100%",
-            maxWidth: "400px",
-          }}
-          onSubmit={handleSubmit}
-        >
+        <form onSubmit={handleSubmit}>
           <TextField
             fullWidth
             label="Email"
@@ -112,7 +107,7 @@ export const SignInForm = () => {
             sx={{ mt: 2 }}
             disabled={loading}
           >
-            {loading ? "Signing In..." : "Sign In"}
+            {loading ? <CircularProgress size={24} color="inherit" /> : "Sign In"}
           </Button>
         </form>
       </Box>

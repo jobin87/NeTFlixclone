@@ -1,54 +1,23 @@
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  API_METHODS,
-  
-} from 'src/network';
-import { makeNetworkCall } from 'src/network/networkcall';
-import { ENDPOINT_MOVIES} from 'src/network/endpoints';
+import { API_METHODS, ENDPOINT_GET_MOVIES, makeNetworkCall } from 'src/network';
+import { Movie } from './types';
 
-// Sign in action
-export const getmoviedata = createAsyncThunk(
-  'movies/getmovies',
-  async () => {
-    try{
-    const response = await makeNetworkCall({
-      method: API_METHODS.GET,
-      url: ENDPOINT_MOVIES,
-    });
-      return response?.data
-    
-  }
-  catch (error: any) {
-    // Handle any errors that may occur
-    console.error('Error fetching movies:', error.response?.data || error.message);
-    throw new Error( 'Something went wrong!');
-  }
+// ✅ Define a proper response type
+export interface GetAllMoviesResponse {
+  movies: Movie[];
+  trendingmovies: Movie[];
 }
 
+export const getAllMovies = createAsyncThunk<GetAllMoviesResponse>(
+  'movie/getAllMovies',
+  async () => {
+    const response = await makeNetworkCall({
+      method: API_METHODS.GET,
+      url: ENDPOINT_GET_MOVIES,
+    });
+
+    console.log("response", response);
+
+    return response?.data; // ✅ This must match the GetAllMoviesResponse type
+  }
 );
-// export const getseriesdata = createAsyncThunk(
-//   'movies/getseries',
-//   async () => {
-//     try{
-//     const response = await makeNetworkCall({
-//       method: API_METHODS.GET,
-//       url: ENDPOINT_MOVIES,
-//     });
-//     console.log("response:",response)
-  
-//     return response?.data?.series
-    
-//   }
-//   catch (error: any) {
-//     // Handle any errors that may occur
-//     console.error('Error fetching movies:', error.response?.data || error.message);
-//     throw new Error( 'Something went wrong!');
-//   }
-// }
-
-// );
-// console.log(getmoviedata)
-
-
-

@@ -1,0 +1,362 @@
+[
+    {
+        "Title": "Stranger Things",
+        "Year": "2016",
+        "Rated": "TV-14",
+        "Released": "15 Jul 2016",
+        "Runtime": "60 min",
+        "Genre": "Drama, Fantasy, Horror",
+        "Director": "The Duffer Brothers",
+        "Writer": "The Duffer Brothers",
+        "Actors": "Winona Ryder, David Harbour, Finn Wolfhard",
+        "Plot": "A group of kids in the 80s uncover supernatural mysteries in their small town.",
+        "Language": "English",
+        "Country": "United States",
+        "Awards": "Nominated for 19 Primetime Emmys. 59 wins & 174 nominations total",
+        "Poster": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn2.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQjang2tSfHU_olHQ-m_gzuGMDV-h1wMsAsoagx_ho5GW2KksCy&psig=AOvVaw0T3dVF_Y1q9y2vZFgKoogu&ust=1734681739976000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCIiVmdyus4oDFQAAAAAdAAAAABAE",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "8.7/10"
+          },
+          {
+            "Source": "Rotten Tomatoes",
+            "Value": "93%"
+          },
+          {
+            "Source": "Metacritic",
+            "Value": "75/100"
+          }
+        ],
+        "Metascore": "75",
+        "imdbRating": "8.7",
+        "imdbVotes": "1,200,000",
+        "imdbID": "tt4574334",
+        "Type": "series",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "Netflix",
+        "Website": "https://www.netflix.com/title/80057281",
+        "Response": "True"
+      },
+      {
+        "Title": "The Crown",
+        "Year": "2016",
+        "Rated": "TV-MA",
+        "Released": "4 Nov 2016",
+        "Runtime": "58 min",
+        "Genre": "Biography, Drama, History",
+        "Director": "Stephen Daldry, Philip Martin",
+        "Writer": "Peter Morgan",
+        "Actors": "Claire Foy, Olivia Colman, Imelda Staunton",
+        "Plot": "The reign of Queen Elizabeth II, showcasing political and personal events during her reign.",
+        "Language": "English",
+        "Country": "United Kingdom, United States",
+        "Awards": "Won 7 Golden Globes. 150 wins & 211 nominations total",
+        "Poster": "https://upload.wikimedia.org/wikipedia/en/b/b1/The_Crown_season_5.jpg",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "8.7/10"
+          },
+          {
+            "Source": "Rotten Tomatoes",
+            "Value": "91%"
+          },
+          {
+            "Source": "Metacritic",
+            "Value": "89/100"
+          }
+        ],
+        "Metascore": "89",
+        "imdbRating": "8.7",
+        "imdbVotes": "220,000",
+        "imdbID": "tt4786824",
+        "Type": "series",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "Netflix",
+        "Website": "https://www.netflix.com/title/80025678",
+        "Response": "True"
+      },
+      {
+        "Title": "Money Heist",
+        "Year": "2017",
+        "Rated": "TV-MA",
+        "Released": "2 May 2017",
+        "Runtime": "70 min",
+        "Genre": "Action, Crime, Drama",
+        "Director": "Álex Pina",
+        "Writer": "Álex Pina",
+        "Actors": "Úrsula Corberó, Álvaro Morte, Pedro Alonso",
+        "Plot": "A criminal mastermind and his team of robbers plan the biggest heist in history.",
+        "Language": "Spanish",
+        "Country": "Spain",
+        "Awards": "Won 1 Emmy. 71 wins & 177 nominations total",
+        "Poster": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTl6sB37QlR5nczz7EdqIGnSJImVW559wDdC-nh8wRZAMe2IRdmfL-J6ZGJhDFR-x1sxjml",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "8.3/10"
+          },
+          {
+            "Source": "Rotten Tomatoes",
+            "Value": "91%"
+          },
+          {
+            "Source": "Metacritic",
+            "Value": "82/100"
+          }
+        ],
+        "Metascore": "82",
+        "imdbRating": "8.3",
+        "imdbVotes": "500,000",
+        "imdbID": "tt6468322",
+        "Type": "series",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "Netflix",
+        "Website": "https://www.netflix.com/title/80192098",
+        "Response": "True"
+      },
+      {
+        "Title": "Breaking Bad",
+        "Year": "2008",
+        "Rated": "TV-MA",
+        "Released": "20 Jan 2008",
+        "Runtime": "49 min",
+        "Genre": "Crime, Drama, Thriller",
+        "Director": "Vince Gilligan",
+        "Writer": "Vince Gilligan",
+        "Actors": "Bryan Cranston, Aaron Paul, Anna Gunn",
+        "Plot": "A high school chemistry teacher turned methamphetamine producer descends into the criminal underworld.",
+        "Language": "English",
+        "Country": "United States",
+        "Awards": "Won 16 Primetime Emmys. 222 wins & 377 nominations total",
+        "Poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOcWkpWG_NRrU2M8-WB8EbEcJk7smhdrY1eO0ttKXm0bo2ooOEWxk3zBSbsFrSgSJh2OEKOQ",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "9.5/10"
+          },
+          {
+            "Source": "Rotten Tomatoes",
+            "Value": "96%"
+          },
+          {
+            "Source": "Metacritic",
+            "Value": "87/100"
+          }
+        ],
+        "Metascore": "87",
+        "imdbRating": "9.5",
+        "imdbVotes": "1,100,000",
+        "imdbID": "tt0903747",
+        "Type": "series",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "AMC",
+        "Website": "https://www.amc.com/shows/breaking-bad",
+        "Response": "True"
+      },
+      {
+        "Title": "The Mandalorian",
+        "Year": "2019",
+        "Rated": "TV-14",
+        "Released": "12 Nov 2019",
+        "Runtime": "30 min",
+        "Genre": "Action, Adventure, Fantasy",
+        "Director": "Jon Favreau",
+        "Writer": "Jon Favreau",
+        "Actors": "Pedro Pascal, Gina Carano, Carl Weathers",
+        "Plot": "A bounty hunter in the outer reaches of the galaxy is hired to track down a mysterious alien child.",
+        "Language": "English",
+        "Country": "United States",
+        "Awards": "Won 7 Primetime Emmys. 44 wins & 118 nominations total",
+        "Poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPz4zyHFlnCZr0RuXDKfJOhPB83w0jh_RJ1utNuTGMd1-apSkHVSGEsfZ17_D31rtkhQpZ",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "8.8/10"
+          },
+          {
+            "Source": "Rotten Tomatoes",
+            "Value": "93%"
+          },
+          {
+            "Source": "Metacritic",
+            "Value": "70/100"
+          }
+        ],
+        "Metascore": "70",
+        "imdbRating": "8.8",
+        "imdbVotes": "300,000",
+        "imdbID": "tt8111088",
+        "Type": "series",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "Lucasfilm, Disney+",
+        "Website": "https://www.disneyplus.com/series/the-mandalorian/4e0mN7c78OZ7",
+        "Response": "True"
+      },
+      {
+        "Title": "The Witcher",
+        "Year": "2019",
+        "Rated": "TV-MA",
+        "Released": "20 Dec 2019",
+        "Runtime": "60 min",
+        "Genre": "Action, Adventure, Drama",
+        "Director": "Alik Sakharov",
+        "Writer": "Lauren Schmidt Hissrich",
+        "Actors": "Henry Cavill, Freya Allan, Anya Chalotra",
+        "Plot": "The Witcher, Geralt of Rivia, struggles to find his place in a world where people often prove more wicked than beasts.",
+        "Language": "English",
+        "Country": "United States, Hungary, Poland",
+        "Awards": "Won 2 Primetime Emmys. 19 wins & 42 nominations total",
+        "Poster": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn1.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcTNNGFmvY5-pDEUVEDTBrAORhP8GZ85OCNX69Q0ILjY8gRnc_Bq&psig=AOvVaw1JLMu7wNUclazSkXTI67SZ&ust=1734682261345000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJjpuMuws4oDFQAAAAAdAAAAABAE",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "8.0/10"
+          },
+          {
+            "Source": "Rotten Tomatoes",
+            "Value": "67%"
+          },
+          {
+            "Source": "Metacritic",
+            "Value": "59/100"
+          }
+        ],
+        "Metascore": "59",
+        "imdbRating": "8.0",
+        "imdbVotes": "350,000",
+        "imdbID": "tt4881806",
+        "Type": "series",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "Netflix",
+        "Website": "https://www.netflix.com/title/80189685",
+        "Response": "True"
+      },
+      {
+        "Title": "Black Mirror",
+        "Year": "2011",
+        "Rated": "TV-MA",
+        "Released": "4 Dec 2011",
+        "Runtime": "60 min",
+        "Genre": "Drama, Sci-Fi, Thriller",
+        "Director": "Charlie Brooker",
+        "Writer": "Charlie Brooker",
+        "Actors": "Daniel Lapaine, Rory Kinnear, Toby Kebbell",
+        "Plot": "An anthology series exploring a twisted, high-tech multiverse where humanity's greatest innovations and darkest instincts collide.",
+        "Language": "English",
+        "Country": "United Kingdom",
+        "Awards": "Won 6 Primetime Emmys. 88 wins & 121 nominations total",
+        "Poster": "https://honest-reviews.in/wp-content/uploads/2023/07/blackmirrorseason-1.jpeg?w=592",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "8.8/10"
+          },
+          {
+            "Source": "Rotten Tomatoes",
+            "Value": "84%"
+          },
+          {
+            "Source": "Metacritic",
+            "Value": "82/100"
+          }
+        ],
+        "Metascore": "82",
+        "imdbRating": "8.8",
+        "imdbVotes": "600,000",
+        "imdbID": "tt2085059",
+        "Type": "series",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "Channel 4, Netflix",
+        "Website": "https://www.netflix.com/title/70264888",
+        "Response": "True"
+      },
+      {
+        "Title": "Narcos",
+        "Year": "2015",
+        "Rated": "TV-MA",
+        "Released": "28 Aug 2015",
+        "Runtime": "49 min",
+        "Genre": "Biography, Crime, Drama",
+        "Director": "Andrés Baiz",
+        "Writer": "Chris Brancato, Carlo Bernard, Doug Miro",
+        "Actors": "Wagner Moura, Boyd Holbrook, Pedro Pascal",
+        "Plot": "The life of drug kingpin Pablo Escobar and the rise of the Medellín cartel in Colombia.",
+        "Language": "Spanish, English",
+        "Country": "United States, Colombia",
+        "Awards": "Won 1 Golden Globe. 12 wins & 44 nominations total",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BNzQwOTcwMzIwN15BMl5BanBnXkFtZTgwMjYxMTA0NjE@._V1_QL75_UX190_CR0,0,190,281_.jpg",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "8.8/10"
+          },
+          {
+            "Source": "Rotten Tomatoes",
+            "Value": "89%"
+          },
+          {
+            "Source": "Metacritic",
+            "Value": "75/100"
+          }
+        ],
+        "Metascore": "75",
+        "imdbRating": "8.8",
+        "imdbVotes": "800,000",
+        "imdbID": "tt2707408",
+        "Type": "series",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "Netflix",
+        "Website": "https://www.netflix.com/title/80025172",
+        "Response": "True"
+      },
+      {
+        "Title": "Attack on Titan",
+        "Year": "2013",
+        "Rated": "TV-MA",
+        "Released": "6 Apr 2013",
+        "Runtime": "24 min",
+        "Genre": "Animation, Action, Adventure",
+        "Director": "Tetsurō Araki",
+        "Writer": "Hajime Isayama (manga), Yasuko Kobayashi (screenplay)",
+        "Actors": "Yûki Kaji, Marina Inoue, Kisho Taniyama",
+        "Plot": "After his town is destroyed and his mother is killed, young Eren Yeager becomes determined to fight the Titans, humanity's greatest enemy.",
+        "Language": "Japanese",
+        "Country": "Japan",
+        "Awards": "Nominated for 1 Primetime Emmy. 12 wins & 23 nominations total",
+        "Poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTdbS4d00xSQcoBTtmz6hv-GqFErceBBUDAqWHzSwbGsBQifvN2ksSn3_Bu40b54UGU70&usqp=CAU",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "8.8/10"
+          },
+          {
+            "Source": "Rotten Tomatoes",
+            "Value": "92%"
+          },
+          {
+            "Source": "Metacritic",
+            "Value": "75/100"
+          }
+        ],
+        "Metascore": "75",
+        "imdbRating": "8.8",
+        "imdbVotes": "1,500,000",
+        "imdbID": "tt2560140",
+        "Type": "anime",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "WIT Studio",
+        "Website": "https://www.funimation.com/shows/attack-on-titan/",
+        "Response": "True"
+      }
+]

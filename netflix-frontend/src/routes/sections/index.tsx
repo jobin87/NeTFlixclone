@@ -1,9 +1,9 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
-import { CONFIG } from 'src/config-global';
 
 import { authroutes } from './auth';
 import { dashboardroutes } from './dashboard';
+import { CONFIG } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 

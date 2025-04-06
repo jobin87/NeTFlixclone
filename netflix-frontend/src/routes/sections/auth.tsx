@@ -1,7 +1,7 @@
 // import Login from "./pages/login";
 
-import { SignInView, SignUpView } from "src/sections/auth/view";
 import { Outlet } from "react-router-dom";
+import { SignInView, SignUpView } from "src/sections/auth/view";
 import LoadingView from "src/sections/auth/view/loading-view";
 
 export const authroutes = [

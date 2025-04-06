@@ -24,7 +24,7 @@ setupSwagger(app)
 
 // Routes
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1',movieroutes);
+app.use('/api/v1/dashboard',movieroutes);
 
 // Start the server
 app.listen(PORT, () => {

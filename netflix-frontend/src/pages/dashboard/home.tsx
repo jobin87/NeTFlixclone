@@ -1,11 +1,11 @@
-import { ContentView } from "src/sections/content/view";
+import { MovieView } from "src/sections/dashboard/movie/view";
 
 
 // ---------------------------------------------------------------------
 export default function Page() {
   return (
     <>
-      <ContentView/>
+      <MovieView/>
     </>
   );
 }

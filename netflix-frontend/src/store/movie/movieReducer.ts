@@ -1,46 +1,47 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getmoviedata } from './movieThunk';
-import {  MovieStateProps,} from '../types';
+import { createSlice } from '@reduxjs/toolkit';
+import { MovieState } from '../types';
+import { getAllMovies } from './movieThunk';
 
+const initialState = {
+  movies: MovieState,
 
-
-const initialState: MovieStateProps = {
-  data:{
-    movies:[],
-    series:[],
-    anime:[]
+  onboarding: {
+    steps: {
+      step: 6,
+      enabled: false,
+    },
   },
-  loading: false,
-  error:null
 };
 
-const movieReducer = createSlice({
+export const movieReducer = createSlice({
   name: 'movie',
   initialState,
   reducers: {
-    setmoviesfetched: (state,action)=>{
-      state.data= action.payload
+    setLoading: (state, action) => {
+      state.movies.loading = action.payload;
     },
-   
   },
-  extraReducers: (builder) => {
+  extraReducers(builder) {
     builder
-      // .addCase(getmoviedata.pending, (state) => {
-      //   state.loading = true;
-      //   state.error= null;
-      // })
-      .addCase(getmoviedata.fulfilled, (state, action: PayloadAction<MovieStateProps['data']>) => {
-        state.loading = false;
-        state.data = action.payload;
+      .addCase(getAllMovies.fulfilled, (state, action) => {
+        state.movies.loading = false;
+
+        // ✅ assign both movies and trendingmovies from payload
+        state.movies.data = {
+          movies: action.payload.movies,
+          trendingmovies: action.payload.trendingmovies,
+        };
       })
-      // .addCase(getmoviedata.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.payload as any; // Assuming payload contains the error message
-      // });
+      .addCase(getAllMovies.pending, (state) => {
+        state.movies.loading = true;
+      })
+      .addCase(getAllMovies.rejected, (state, action) => {
+        state.movies.error = action.error;
+        state.movies.loading = false;
+      });
   },
 });
-export const{
-  setmoviesfetched
 
-}= movieReducer.actions
+export const { setLoading } = movieReducer.actions;
+
 export default movieReducer.reducer;

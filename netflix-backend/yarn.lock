@@ -91,6 +91,11 @@
   dependencies:
     sparse-bitfield "^3.0.3"
 
+"@scarf/scarf@=1.4.0":
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/@scarf/scarf/-/scarf-1.4.0.tgz#3bbb984085dbd6d982494538b523be1ce6562972"
+  integrity sha512-xxeapPiUXdZAE3che6f3xogoJPeZgig6omHEy1rIY5WVsB3H2BHNnZH+gHG6x91SCWyQCzWGsuL2Hh3ClO5/qQ==
+
 "@socket.io/component-emitter@~3.1.0":
   version "3.1.2"
   resolved "https://registry.npmjs.org/@socket.io/component-emitter/-/component-emitter-3.1.2.tgz#821f8442f4175d8f0467b9daf26e3a18e2d02af2"
@@ -262,6 +267,14 @@
   version "6.0.4"
   resolved "https://registry.npmjs.org/@types/swagger-jsdoc/-/swagger-jsdoc-6.0.4.tgz#bb4f60f3a5f103818e022f2e29ff8935113fb83d"
   integrity sha512-W+Xw5epcOZrF/AooUM/PccNMSAFOKWZA5dasNyMujTwsBkU74njSJBpvCCJhHAJ95XRMzQrrW844Btu0uoetwQ==
+
+"@types/swagger-ui-express@^4.1.8":
+  version "4.1.8"
+  resolved "https://registry.npmjs.org/@types/swagger-ui-express/-/swagger-ui-express-4.1.8.tgz#3c0e0bf2543c7efb500eaa081bfde6d92f88096c"
+  integrity sha512-AhZV8/EIreHFmBV5wAs0gzJUNq9JbbSXgJLQubCC0jtIo6prnI9MIRRxnU4MZX9RB9yXxF1V4R7jtLl/Wcj31g==
+  dependencies:
+    "@types/express" "*"
+    "@types/serve-static" "*"
 
 "@types/uuid@^10.0.0":
   version "10.0.0"
@@ -1660,6 +1673,20 @@ swagger-parser@^10.0.3:
   integrity sha512-nF7oMeL4KypldrQhac8RyHerJeGPD1p2xDh900GPvc+Nk7nWP6jX2FcC7WmkinMoAmoO774+AFXcWsW8gMWEIg==
   dependencies:
     "@apidevtools/swagger-parser" "10.0.3"
+
+swagger-ui-dist@>=5.0.0:
+  version "5.20.2"
+  resolved "https://registry.npmjs.org/swagger-ui-dist/-/swagger-ui-dist-5.20.2.tgz#d90e5cf986ca9aa2d3b28221f6b684045b93669d"
+  integrity sha512-zP2biZvCt6R1IAz/iGcjeEViHez7UPHUFfMFyF6jcTKS1ZIP2cgr+KSZEMhBnpIcFfDrZxkD8v56taL5A8phuA==
+  dependencies:
+    "@scarf/scarf" "=1.4.0"
+
+swagger-ui-express@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/swagger-ui-express/-/swagger-ui-express-5.0.1.tgz#fb8c1b781d2793a6bd2f8a205a3f4bd6fa020dd8"
+  integrity sha512-SrNU3RiBGTLLmFU8GIJdOdanJTl4TOmT27tt3bWWHppqYmAZ6IDuEuBvMU6nZq0zLEe6b/1rACXCgLZqO6ZfrA==
+  dependencies:
+    swagger-ui-dist ">=5.0.0"
 
 tar@^6.1.11:
   version "6.2.1"

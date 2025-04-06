@@ -205,7 +205,7 @@ export const SignInView = () => {
         <Typography>
           First time here?{" "}
           <Link
-            to="/sign-up"
+            to="/auth/sign-up"
             color="primary"
           >
             Sign up

@@ -19,7 +19,7 @@ const ROOTS = {
 
     dashboard:{
       root:ROOTS.DASHBOARD,
-      home: `${ROOTS.DASHBOARD}/home`,
+      home: `${ROOTS.DASHBOARD}/movie`,
       anime: `${ROOTS.DASHBOARD}/anime`,
       moviedetails: `${ROOTS.DASHBOARD}/moviedetails/:id`
      

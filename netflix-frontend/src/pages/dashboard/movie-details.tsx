@@ -1,5 +1,5 @@
+import { MovieDetails } from "src/sections/dashboard/specific-movie";
 
-import { MovieDetails } from 'src/sections/content/specific-movie';
 
 // ---------------------------------------------------------------------
 export default function Page() {

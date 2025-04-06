@@ -6,17 +6,17 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist", // Output directory for compiled JS
-    "rootDir": "./src", // Where your TypeScript files are
+    "outDir": "./dist",
+    "rootDir": "./src",
     "resolveJsonModule": true,
     "baseUrl": "./",
-     "paths": {
+    "paths": {
       "src/*": ["src/*"]
-    }
-
+    },
+    "types": ["node"]  // <-- Add this line
   },
   "include": [
-    "src/**/*.ts" ,
+    "src/**/*.ts",
     "src/types/express.d.ts"
   ]
 }

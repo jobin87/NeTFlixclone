@@ -120,7 +120,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET || SECRET_KEY, { expiresIn: '1h' });
 
     // Fetch movies from JSON file
-    const filepath = path.join(__dirname, "../../contentjson/content.json");
+    const filepath = path.join(__dirname, "../../contentjson/movie.json");
     const fileData = fs.readFileSync(filepath, "utf-8");
     const movieData = JSON.parse(fileData);
 

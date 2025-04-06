@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "name": "Naruto",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/5a/8e/9a/5a8e9a75ad230d0aa0f15ccc61db6791.jpg",
+      "https://i.pinimg.com/736x/23/a8/68/23a868808b9a2ec1a89b1f7266340025.jpg"
+    ],
+    "Imbd": 8.5
+  },
+  {
+    "Id": 2,
+    "name": "Attack On Titan",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/45/51/4b/45514b30d800ca5f3c2b5f8e67bb2d78.jpg",
+      "https://i.pinimg.com/736x/fb/04/45/fb0445fcdaf2629aaad7bdad181226ac.jpg"
+    ],
+    "poster": "https://i.pinimg.com/736x/23/9c/ad/239cada9266b105b036a070631a1a0db.jpg",
+    "Imbd": 9.1
+  },
+  {
+    "Id": 3,
+    "name": "Vinland Saga",
+    "imageUrl": [
+      "https://i.pinimg.com/474x/50/e7/45/50e74551988a3cc356d782a9607bc8ee.jpg",
+      "https://i.pinimg.com/736x/71/b7/f1/71b7f125ab56ad3dcd8a36d09ef02feb.jpg"
+    ],
+    "poster": "https://i.pinimg.com/474x/18/06/1b/18061b791f066f176aef3b5655cb86a5.jpg",
+    "Imbd": 9.1
+
+  }
+]
