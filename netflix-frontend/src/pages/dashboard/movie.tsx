@@ -1,11 +1,11 @@
-import { MovieDetails } from "src/sections/dashboard/specific-movie";
+import { MovieView } from "src/sections/dashboard/movie/view";
 
 
 // ---------------------------------------------------------------------
 export default function Page() {
   return (
     <>
-      <MovieDetails/>
+      <MovieView/>
     </>
   );
 }

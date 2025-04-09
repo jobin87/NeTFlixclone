@@ -1,6 +1,7 @@
 import express from "express";
 // in routes/contentRouter.ts
 import { getAllMovies } from '../controllers/movie';
+import { getAllAnimes } from "../controllers/anime";
 /**
  * @swagger
  * /api/v1/movies:
@@ -100,4 +101,5 @@ import { getAllMovies } from '../controllers/movie';
 const movieRoutes = express.Router();
 
 movieRoutes.get("/getMovies", getAllMovies)
+movieRoutes.get("/getAnimes", getAllAnimes)
 export default movieRoutes;

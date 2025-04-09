@@ -1,6 +1,7 @@
 const ROOTS = {
     AUTH: '/auth',
-    DASHBOARD:'/dashboard'
+    DASHBOARD:'/dashboard',
+     DASHBOARDS:'/dashboard/subview'
    
   };
   
@@ -19,7 +20,10 @@ const ROOTS = {
 
     dashboard:{
       root:ROOTS.DASHBOARD,
-      home: `${ROOTS.DASHBOARD}/movie`,
+      home: `${ROOTS.DASHBOARD}/home`,
+      subView: `${ROOTS.DASHBOARDS}`,
+      search: `${ROOTS.DASHBOARD}/search`,
+      movie: `${ROOTS.DASHBOARD}/movie`,
       anime: `${ROOTS.DASHBOARD}/anime`,
       moviedetails: `${ROOTS.DASHBOARD}/moviedetails/:id`
      

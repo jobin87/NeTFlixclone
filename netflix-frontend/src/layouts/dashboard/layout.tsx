@@ -50,9 +50,9 @@ export function DashboardLayout({
   const [activeTab, setActiveTab] = useState(0);
 
   const tabPaths = [
-    "anim/",     // index 0: Home (default)
-    "/search",                // index 1
-   paths.dashboard.home,    // index 2
+    paths.dashboard.home,     // index 0: Home (default)
+    paths.dashboard.search,             // index 1
+    paths.dashboard.movie, // index 2
     paths.dashboard.anime,                    // index 3
     "/trending",              // index 4
     "/add",                   // index 5

@@ -15,6 +15,15 @@ export const MovieState: MovieStateProps = {
   error: null,
 };
 
+export const AnimeState: AnimeStateProps = {
+  data: {
+    anime: [],
+    trendinganimes: [],
+  },
+  loading: false,
+  error: null,
+};
+
 
 // Loading is false by default. Use case: When needed to call an api on button click.
 export const networkCallInitialState: basicInitialStateProps = {
@@ -35,10 +44,21 @@ export interface MovieStateProps {
   error: null | object;
 }
 
+export interface AnimeStateProps {
+  data: MovieRespons;
+  loading: boolean;
+  error: null | object;
+}
+
 
 export interface MovieResponse {
   movies: Movie[];
   trendingmovies: Movie[];
+}
+
+export interface MovieRespons {
+  anime: Movie[];
+  trendinganimes: Movie[];
 }
 
 

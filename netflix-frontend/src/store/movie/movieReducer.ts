@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { MovieState } from '../types';
-import { getAllMovies } from './movieThunk';
+import { AnimeState, MovieState } from '../types';
+import { getAllMovies, getAnimes } from './movieThunk';
 
 const initialState = {
   movies: MovieState,
+  animes:AnimeState,
 
   onboarding: {
     steps: {
@@ -38,6 +39,22 @@ export const movieReducer = createSlice({
       .addCase(getAllMovies.rejected, (state, action) => {
         state.movies.error = action.error;
         state.movies.loading = false;
+      })
+      .addCase(getAnimes.fulfilled, (state, action) => {
+        state.animes.loading = false;
+
+        // ✅ assign both animes and trendingmovies from payload
+        state.animes.data = {
+          anime: action.payload.anime,
+          trendinganimes: action.payload.trendinganime,
+        };
+      })
+      .addCase(getAnimes.pending, (state) => {
+        state.animes.loading = true;
+      })
+      .addCase(getAnimes.rejected, (state, action) => {
+        state.animes.error = action.error;
+        state.animes.loading = false;
       });
   },
 });

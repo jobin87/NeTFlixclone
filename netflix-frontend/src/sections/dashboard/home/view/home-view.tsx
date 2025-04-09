@@ -4,7 +4,7 @@ import { MediaSection } from "src/layouts/dashboard/struct-main";
 import { useAppDispatch, useAppSelector } from "src/store";
 import { getAllMovies } from "src/store/movie/movieThunk";
 
-export const MovieView = () => {
+export const HomeView = () => {
   const dispatch = useAppDispatch();
 
   // ✅ Correctly extract both movies and trendingmovies

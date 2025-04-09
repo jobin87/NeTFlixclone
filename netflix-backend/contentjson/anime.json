@@ -1,32 +1,255 @@
 [
   {
     "Id": 1,
-    "name": "Naruto",
+    "Title": "Attack On Titan",
+    "imageURL": "https://i.pinimg.com/736x/ea/ee/d3/eaeed38ac4cb593713154374be5b672e.jpg",
+    "Poster": "https://i.pinimg.com/736x/23/9c/ad/239cada9266b105b036a070631a1a0db.jpg",
+    "imdbRating": 9.1,
+    "Type": "anime"
+  },
+  {
+    "Id": 2,
+    "Title": "Naruto",
     "imageUrl": [
       "https://i.pinimg.com/736x/5a/8e/9a/5a8e9a75ad230d0aa0f15ccc61db6791.jpg",
       "https://i.pinimg.com/736x/23/a8/68/23a868808b9a2ec1a89b1f7266340025.jpg"
     ],
-    "Imbd": 8.5
-  },
-  {
-    "Id": 2,
-    "name": "Attack On Titan",
-    "imageUrl": [
-      "https://i.pinimg.com/736x/45/51/4b/45514b30d800ca5f3c2b5f8e67bb2d78.jpg",
-      "https://i.pinimg.com/736x/fb/04/45/fb0445fcdaf2629aaad7bdad181226ac.jpg"
-    ],
-    "poster": "https://i.pinimg.com/736x/23/9c/ad/239cada9266b105b036a070631a1a0db.jpg",
-    "Imbd": 9.1
+
+    "Poster": "https://i.pinimg.com/474x/46/69/6d/46696d93f64aea9f66d946b7df32013d.jpg",
+
+    "imdbRating": 8.5,
+    "Type": "anime"
   },
   {
     "Id": 3,
-    "name": "Vinland Saga",
+    "Title": "Vinland Saga",
     "imageUrl": [
       "https://i.pinimg.com/474x/50/e7/45/50e74551988a3cc356d782a9607bc8ee.jpg",
       "https://i.pinimg.com/736x/71/b7/f1/71b7f125ab56ad3dcd8a36d09ef02feb.jpg"
     ],
-    "poster": "https://i.pinimg.com/474x/18/06/1b/18061b791f066f176aef3b5655cb86a5.jpg",
-    "Imbd": 9.1
-
-  }
+    "Poster": "https://i.pinimg.com/474x/18/06/1b/18061b791f066f176aef3b5655cb86a5.jpg",
+    "imdbRating": 9.1,
+    "Type": "anime"
+  },
+  {
+    "Id": 4,
+    "Title": "Demon Slayer",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/77/f3/2d/77f32d9302f348b15f016761073ce1dc.jpg",
+      "https://i.pinimg.com/736x/25/25/98/252598233cb43bc4465f989ae594f593.jpg"
+    ],
+    "Poster": "https://i.pinimg.com/474x/3b/c7/27/3bc72700515a3252b559156c74a8e459.jpg",
+    "imdbRating": 8.7,
+    "Type": "anime"
+  },
+  {
+    "Id": 5,
+    "Title": "Jujutsu Kaisen",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/b7/ae/46/b7ae46072667fc818ed41a77c35d04f5.jpg",
+      "https://i.pinimg.com/736x/2e/39/88/2e39881f084f73e5cfdb3d9a79d51595.jpg"
+    ],
+    "Poster": "https://i.pinimg.com/474x/f1/0a/dd/f10addedf07972ec1e41a188b5677355.jpg",
+    "imdbRating": 8.6,
+    "Type": "anime"
+  },
+  {
+    "Id": 6,
+    "Title": "Death Note",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/7a/fd/7f/7afd7fcf99cfac1307ad5b31384f0737.jpg",
+      "https://i.pinimg.com/736x/3b/31/3d/3b313d0f5fdbcc2e256877f5d4e6f9a5.jpg"
+    ],
+    "Poster": "https://i.pinimg.com/474x/70/d1/27/70d1278bfb83b254efa140c0bc23b77a.jpg",
+    "imdbRating": 9.0,
+    "Type": "anime"
+  },
+  {
+    "Id": 7,
+    "Title": "Fullmetal Alchemist: Brotherhood",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/3d/d6/0f/3dd60f02fc3df1450bb927a33230d841.jpg",
+      "https://i.pinimg.com/736x/3f/d3/2f/3fd32f2cbeec48de1d245cd401a59462.jpg"
+    ],
+    "Poster": "https://i.pinimg.com/474x/a3/5c/e0/a35ce04679a900c39775e0fb27739f65.jpg",
+    "imdbRating": 9.1,
+    "Type": "anime"
+  },
+  {
+    "Id": 8,
+    "Title": "One Punch Man",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/9c/89/64/9c8964415b4de1b4fc205f573327ec19.jpg",
+      "https://i.pinimg.com/736x/57/b3/3c/57b33c81f2be70a7ebc89b82df6b92e7.jpg"
+    ],
+    "Poster": "https://i.pinimg.com/474x/d9/cb/05/d9cb05bcd0fee1c751bc8f4775a243a4.jpg",
+    "imdbRating": 8.7,
+    "Type": "anime"
+  },
+  {
+    "Id": 9,
+    "Title": "Tokyo Ghoul",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/68/d7/3b/68d73bb708ca16b2aa8b78f8cf6d8c87.jpg",
+      "https://i.pinimg.com/736x/71/f2/86/71f2863820a7d31d4d316ebba4a12e56.jpg"
+    ],
+    "Poster": "https://i.pinimg.com/736x/81/3b/56/813b5615f2b6574dff9b95463294b614.jpg",
+    "imdbRating": 7.9,
+    "Type": "anime"
+  },
+  {
+    "Id": 10,
+    "Title": "Bleach",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/66/fb/df/66fbdf7d548ea5a3b3f2b3fc0d315eb9.jpg",
+      "https://i.pinimg.com/736x/6b/99/31/6b99315bc91ee889279193772da5c783.jpg"
+    ],
+    "Poster": "https://i.pinimg.com/474x/b9/f3/51/b9f35196436a3e42eaa989d76a535dd8.jpg",
+    "imdbRating": 8.2,
+    "Type": "anime"
+  },
+  {
+    "Id": 11,
+    "Title": "Chainsaw Man",
+    "imageUrl": [
+      "https://i.pinimg.com/736x/b8/c2/5a/b8c25a2d14838b4b0a8a5b6e1d0291a0.jpg",
+      "https://i.pinimg.com/736x/d1/0e/34/d10e3404ed62eae58e5a7a3e5d7b542e.jpg"
+    ],
+    "Poster": "https://i.pinimg.com/474x/c9/5c/69/c95c69b90c1549f4352d3401d1fccb0a.jpg",
+    "imdbRating": 8.5,
+    "Type": "anime"
+  },
+    {
+      "Id": 12,
+      "Title": "One Piece",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/8e/c9/e1/8ec9e1358b8b66794bc7fa3fa2c6092e.jpg",
+        "https://i.pinimg.com/736x/6a/e3/92/6ae3923d1e41d6377e66a1e1a16b503e.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/a3/0b/43/a30b43e8a01f7bb57d73b5219890a21a.jpg",
+      "imdbRating": 9.0,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 13,
+      "Title": "Noragami",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/0d/32/1d/0d321d7ea6dc58d5d3737aaf2795fc60.jpg",
+        "https://i.pinimg.com/736x/49/12/fd/4912fd3a0aa41770bbf0b6c06474fdd4.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/94/6c/89/946c894c47fb0a232f4e8c0e626fa7e5.jpg",
+      "imdbRating": 7.9,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 14,
+      "Title": "To Your Eternity",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/b5/c6/e6/b5c6e623515b18a28e20e9dbe69c3469.jpg",
+        "https://i.pinimg.com/736x/76/27/26/7627264f0c6dfdc41557cd67f313a78a.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/67/75/fa/6775fae193513a91844a00b2ac16a873.jpg",
+      "imdbRating": 8.5,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 15,
+      "Title": "Akame ga Kill!",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/08/0e/f2/080ef204e86a04d34f789f911147f8cb.jpg",
+        "https://i.pinimg.com/736x/b0/67/42/b06742c4938678e5b7630df0905d5c6b.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/23/8f/91/238f91e72e5ca113937d6801a35d50ff.jpg",
+      "imdbRating": 7.8,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 16,
+      "Title": "Re:Zero - Starting Life in Another World",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/3c/6a/5f/3c6a5f899ae4cc1ad7811ed9ae04b418.jpg",
+        "https://i.pinimg.com/736x/95/4c/f7/954cf7d7dcbe2fdaed3e4453c0179e3a.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/1b/a3/a9/1ba3a9b80204678bbc2a13f9b11ad568.jpg",
+      "imdbRating": 8.1,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 17,
+      "Title": "Parasyte: The Maxim",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/48/c2/2e/48c22ed04d9e59bff418e319443469c7.jpg",
+        "https://i.pinimg.com/736x/33/8f/fc/338ffc5749dc3d684e2b12159e0c23b4.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/2d/a3/fd/2da3fd349915ca64aab573e871e07f30.jpg",
+      "imdbRating": 8.4,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 18,
+      "Title": "Fire Force",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/d5/99/e0/d599e01141e0b45e0e89eebd7cb6bafd.jpg",
+        "https://i.pinimg.com/736x/06/16/3f/06163f9b1926f34e2de24c05e1cd67c0.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/e3/a9/78/e3a97814098e5637bbc249b6ff637346.jpg",
+      "imdbRating": 7.7,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 19,
+      "Title": "Fruits Basket (2019)",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/2c/00/bf/2c00bfe5c580db4f8db93dcf312a69b2.jpg",
+        "https://i.pinimg.com/736x/ff/26/c6/ff26c6d235f3d4304f158e4f63e2aeb3.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/ed/11/3b/ed113bcf43727cf9020fcc05f7682683.jpg",
+      "imdbRating": 8.6,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 20,
+      "Title": "The Promised Neverland",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/cc/2c/e4/cc2ce449928f263104d11bc772ecfccc.jpg",
+        "https://i.pinimg.com/736x/42/8d/cc/428dcccf5c5c627dfc89716f31d8478d.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/08/64/6c/08646cbf3a8c825e1832625abd16dfb0.jpg",
+      "imdbRating": 8.3,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 21,
+      "Title": "Devilman Crybaby",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/8d/45/38/8d45381977aab499f12b59b0e4d163c4.jpg",
+        "https://i.pinimg.com/736x/c4/1f/2e/c41f2ed9f3b6a9e37c6451dbd8968599.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/b3/1f/67/b31f6769109ec26c3db9c625ade0eeec.jpg",
+      "imdbRating": 7.6,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 23,
+      "Title": "Made in Abyss",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/17/b7/56/17b756c0099fc8236e6b5c8b5c934ca5.jpg",
+        "https://i.pinimg.com/736x/f6/b8/c3/f6b8c37dbec3ffea7a10fd132c3c84bb.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/63/f0/b5/63f0b5144b2d5e5125adb3f1ba32817c.jpg",
+      "imdbRating": 8.4,
+      "Type": "trendinganime"
+    },
+    {
+      "Id": 24,
+      "Title": "The Ancient Magus' Bride",
+      "imageUrl": [
+        "https://i.pinimg.com/736x/1b/e6/6a/1be66a80aa179aa22751f46203ce8262.jpg",
+        "https://i.pinimg.com/736x/49/63/2f/49632f61a6042185690efb5eeaf49661.jpg"
+      ],
+      "Poster": "https://i.pinimg.com/474x/30/a1/86/30a18646914a594a1e7381327fca7e8c.jpg",
+      "imdbRating": 7.7,
+      "Type": "trendinganime"
+    }
+  
 ]
