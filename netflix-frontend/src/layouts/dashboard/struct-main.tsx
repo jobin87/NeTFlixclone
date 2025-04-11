@@ -2,6 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { paths } from "src/routes/paths";
 
+// ========== Types ==========
 type MediaItem = {
   id: string;
   title: string;
@@ -16,225 +17,63 @@ type TrendingItem = {
   posterUrl: string;
 };
 
-type MediaSectionProps = {
-  label: string;
-  mediaItems: MediaItem[];
-  trendingItems?: TrendingItem[];
+type UpcomingItem = {
+  id: string;
+  title: string;
+  posterUrl: string;
 };
 
+type MediaSectionProps = {
+  label?: string;
+  mediaItems?: MediaItem[];
+  trendingItems?: TrendingItem[];
+  upcomingItems?: UpcomingItem[];
+  nowPlaying?: UpcomingItem[];
+};
+
+// ========== Main Component ==========
 export const MediaSection = ({
   label,
-  mediaItems,
+  mediaItems = [],
   trendingItems = [],
+  upcomingItems = [],
+  nowPlaying = [],
 }: MediaSectionProps) => {
-  const featured = mediaItems[0];
+  const featured = mediaItems?.[0] || trendingItems?.[0];
   const navigate = useNavigate();
 
-  return (
+  const renderScrollSection = (
+    items: (MediaItem | TrendingItem | UpcomingItem)[],
+    sectionTitle: string
+  ) => (
     <>
-      {/* Hero Section */}
-      <Box
-        sx={{
-          bgcolor: "black",
-          display: "flex",
-          flexDirection: {
-            xs: "column-reverse",
-            lg: "row",
-          },
-          height: {
-            xs: "auto",
-            lg: "55vh",
-          },
-        }}
-      >
-        {/* Left Panel */}
-        <Box
-          sx={{
-            color: "white",
-            width: {
-              xs: "100%",
-              lg: "40%",
-            },
-            py: {
-              xs: 2,
-              lg: 0,
-            },
-            px: 2,
-            display: { xs: "none", lg: "flex" },
-            flexDirection: "column",
-            justifyContent: "center",
-            gap: 2,
-            position: "relative",
-            minHeight: 200,
-            left: 90,
-          }}
-        >
-          <Typography
-            variant="h4"
-            sx={{
-              fontSize: {
-                xs: 24,
-                sm: 28,
-                lg: 32,
-              },
-              fontWeight: "bold",
-              textAlign: {
-                xs: "center",
-                lg: "left",
-              },
-            }}
-          >
-            {featured?.title}
-          </Typography>
+      <Typography variant="h6" sx={{ ml: 1.1, color: "white", mt: 2 }}>
+        {sectionTitle}
+      </Typography>
 
-          <Typography
-            variant="body2"
-            sx={{
-              textAlign: {
-                xs: "center",
-                lg: "left",
-              },
-              display: { xs: "none", lg: "flex" },
-            }}
-          >
-            IMDb Rating: ⭐ {featured?.imdbRating}
-          </Typography>
-
-          <Box
-            sx={{
-              display: { xs: "none", lg: "flex" },
-              justifyContent: {
-                xs: "center",
-                lg: "flex-start",
-              },
-              gap: 2,
-            }}
-          >
-            <Button
-              variant="contained"
-              color="warning"
-              size="small"
-              onClick={() =>
-                navigate(paths.dashboard.subView, {
-                  state: {
-                    imdbID: featured?.id,
-                    Title: featured?.title,
-                    Poster: featured?.posterUrl,
-                    imageURL: featured?.imageUrl,
-                    imdbRating: featured?.imdbRating,
-                  },
-                })
-              }
-            >
-              Play
-            </Button>
-            <Button variant="contained" color="error" size="small">
-              Watch Trailer
-            </Button>
-          </Box>
-        </Box>
-
-        {/* Right Image (Always Visible) */}
-        {featured?.imageUrl && (
-          <Box
-            sx={{
-              position: "relative",
-              height: {
-                xs: "30vh",
-                sm: "50vh",
-                lg: "55vh",
-              },
-              width: {
-                xs: "100%",
-                lg: "60%",
-              },
-              mt: 2,
-              backgroundImage: `url(${featured.imageUrl})`,
-              backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
-              backgroundColor: "black",
-              backgroundSize: "100% 100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              overflow: "hidden",
-            }}
-          >
-            <Box
-              sx={{
-                position: "absolute",
-                inset: 0,
-                background: `
-                  linear-gradient(to right, black 0%, transparent 5%, transparent 93%, black 100%),
-                  linear-gradient(to bottom, black 0%, transparent 0%),
-                  linear-gradient(to top, black 0%, transparent 5%),
-                  linear-gradient(to top, black 0%, transparent 30%)`,
-                pointerEvents: "none",
-              }}
-            />
-          </Box>
-        )}
-      </Box>
-
-      <Box
-        sx={{
-          position: "relative",
-          width: "100%",
-          height: 0,
-        }}
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: -14,
-            left: 1,
-            px: 1.5,
-            py: 0.5,
-            borderRadius: 1,
-          }}
-        >
-          <Typography variant="h6" sx={{ color: "white" }}>
-            {label}
-          </Typography>
-        </Box>
-      </Box>
-
-      {/* Scrollable Section: Regular */}
-      <Box
-        sx={{
-          bgcolor: "black",
-          height: "33vh",
-          display: "flex",
-          flexDirection: "row",
-          overflowX: "auto",
-          whiteSpace: "nowrap",
-          pt: 3,
-          pb: 3,
-          scrollbarWidth: "none",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-        }}
-      >
-        {mediaItems.slice(1).map((item) => (
+      <Box sx={scrollBoxStyle}>
+        {items.map((item) => (
           <Box
             key={item.id}
-            onClick={() =>
-              navigate(paths.dashboard.subView, {
-                state: {
-                  imdbID: item.id,
-                  Title: item.title,
-                  Poster: item.posterUrl,
-                  imageURL: item.imageUrl,
-                  imdbRating: item.imdbRating,
-                },
-              })
-            }
+            onClick={() => {
+              const selectedItem = [
+                ...mediaItems,
+                ...trendingItems,
+                ...upcomingItems,
+                ...nowPlaying,
+              ].find((m) => m.id === item.id);
+              if (selectedItem) {
+                navigate(paths.dashboard.subView.replace(":id", item.id), {
+                  state: selectedItem,
+                });
+              }
+            }}
             sx={{
-              minWidth: 120,
               height: "100%",
+              aspectRatio: "2 / 3",
+              borderRadius: 1,
               backgroundImage: `url(${item.posterUrl})`,
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               flex: "0 0 auto",
@@ -247,63 +86,260 @@ export const MediaSection = ({
           />
         ))}
       </Box>
+    </>
+  );
 
-      {/* Scrollable Section: Trending */}
-      {trendingItems.length > 0 && (
-        <>
-          <Typography variant="h6" sx={{ ml: 1.1, color: "white" }}>
-            Trending now
-          </Typography>
+  return (
+    <Box sx={{ height: "auto" }}>
+      {/* Featured Hero Section */}
+      {featured && (
+        <Box sx={heroLayoutStyle}>
+          {/* Left Panel */}
+          <Box sx={leftPanelStyle}>
+            {/* Title + Play Button */}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+                justifyContent: {
+                  xs: "center",
+                  lg: "flex-start",
+                },
+                ml: {
+                  xs: "none",
+                  lg: 2,
+                },
+              }}
+            >
+              <Typography variant="h4" sx={heroTitleStyle}>
+                {featured.title}
+              </Typography>
+            </Box>
 
-          <Box
-            sx={{
-              bgcolor: "black",
-              height: "33vh",
-              display: "flex",
-              flexDirection: "row",
-              overflowX: "auto",
-              whiteSpace: "nowrap",
-              pt: 1,
-              pb: 4,
-              scrollbarWidth: "none",
-              "&::-webkit-scrollbar": {
-                display: "none",
-              },
-            }}
-          >
-            {trendingItems.map((movie) => (
-              <Box
-                key={movie.id}
+            {/* Rating + Trailer Button */}
+            {/* xs layout: Play + Trailer + Rating */}
+            <Box
+              sx={{
+                display: {
+                  xs: "flex",
+                  lg: "none",
+                },
+                alignItems: "center",
+                gap: 2,
+                justifyContent: "center",
+              }}
+            >
+              <Button
+                variant="contained"
+                color="warning"
+                size="small"
                 onClick={() =>
                   navigate(paths.dashboard.subView, {
                     state: {
-                      imdbID: movie.id,
-                      Title: movie.title,
-                      Poster: movie.posterUrl,
-                      imageURL: movie.posterUrl, // fallback
-                      imdbRating: 0,
+                      imdbID: featured.id,
+                      Title: featured.title,
+                      Poster: featured.posterUrl,
+                      imageURL: featured.imageUrl,
+                      imdbRating: featured.imdbRating,
                     },
                   })
                 }
-                sx={{
-                  minWidth: 120,
-                  height: "100%",
-                  backgroundImage: `url(${movie.posterUrl})`,
-                  backgroundSize: "contain",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                  flex: "0 0 auto",
-                  cursor: "pointer",
-                  transition: "transform 0.2s",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                  },
-                }}
-              />
-            ))}
+              >
+                Play
+              </Button>
+
+              <Button variant="contained" color="error" size="small">
+                Watch Trailer
+              </Button>
+
+              <Typography variant="body2" sx={heroRatingStyle}>
+                IMDb Rating: ⭐ {featured.imdbRating}
+              </Typography>
+            </Box>
+
+            {/* lg layout: Rating + Play + Trailer */}
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  lg: "flex",
+                },
+                alignItems: "center",
+                gap: 2,
+                justifyContent: "flex-start",
+              }}
+            >
+              <Typography variant="body2" sx={heroRatingStyle}>
+                IMDb Rating: ⭐ {featured.imdbRating}
+              </Typography>
+
+              <Button
+                variant="contained"
+                color="warning"
+                size="small"
+                onClick={() =>
+                  navigate(paths.dashboard.subView, {
+                    state: {
+                      imdbID: featured.id,
+                      Title: featured.title,
+                      Poster: featured.posterUrl,
+                      imageURL: featured.imageUrl,
+                      imdbRating: featured.imdbRating,
+                    },
+                  })
+                }
+              >
+                Play
+              </Button>
+
+              <Button variant="contained" color="error" size="small">
+                Watch Trailer
+              </Button>
+            </Box>
           </Box>
-        </>
+
+          {/* Right-side Big Image */}
+          {featured.imageUrl && (
+            <Box
+              sx={imageContainerStyle(featured.imageUrl)}
+              onClick={() =>
+                navigate(paths.dashboard.subView.replace(":id", featured.id), {
+                  state: featured,
+                })
+              }
+            >
+              <Box sx={imageOverlayStyle} />
+            </Box>
+          )}
+        </Box>
       )}
-    </>
+
+      {/* Section Label */}
+      {label && (
+        <Typography variant="h6" sx={{ color: "white", ml: 2, mt: 1 }}>
+          {label}
+        </Typography>
+      )}
+
+      {/* Scroll Sections */}
+      {mediaItems.length > 1 &&
+        renderScrollSection(mediaItems.slice(1), "More Like This")}
+      {trendingItems.length > 0 &&
+        renderScrollSection(trendingItems, "Trending Now")}
+      {upcomingItems.length > 0 &&
+        renderScrollSection(upcomingItems, "Upcoming")}
+      {nowPlaying.length > 0 && renderScrollSection(nowPlaying, "Now Playing")}
+    </Box>
   );
+};
+
+// ========== Styles ==========
+const heroLayoutStyle = {
+  bgcolor: "black",
+  display: "flex",
+  flexDirection: {
+    xs: "column-reverse",
+    lg: "row",
+  },
+  height: {
+    xs: "auto",
+    lg: "55vh",
+  },
+};
+
+const leftPanelStyle = {
+  color: "white",
+  width: {
+    xs: "100%",
+    lg: "40%",
+  },
+  py: {
+    xs: 2,
+    lg: 0,
+  },
+  px: 2,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: {
+    xs: "flex-start",
+    lg: "flex-start",
+  },
+  gap: 4,
+};
+
+const heroTitleStyle = {
+  fontSize: {
+    xs: 24,
+    sm: 28,
+    lg: 42,
+  },
+  fontWeight: "bold",
+};
+
+const heroRatingStyle = {
+  fontSize: 16,
+};
+
+const imageContainerStyle = (url: string) => ({
+  position: "relative",
+  height: {
+    xs: "30vh",
+    sm: "50vh",
+    lg: "55vh",
+  },
+  width: {
+    xs: "100%",
+    lg: "60%",
+  },
+  mt: {
+    xs: 2,
+    lg: 2,
+  },
+  backgroundImage: `url(${url})`,
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundColor: "black",
+  backgroundSize: "cover",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  overflow: "hidden",
+  cursor: "pointer",
+  transition: "transform 0.4s ease",
+  "&:hover": {
+    transform: "scale(1.03)",
+  },
+});
+
+const imageOverlayStyle = {
+  position: "absolute",
+  inset: 0,
+  background: `
+    linear-gradient(to right, black 0%, transparent 5%, transparent 93%, black 100%),
+    linear-gradient(to bottom, black 0%, transparent 0%),
+    linear-gradient(to top, black 0%, transparent 5%),
+    linear-gradient(to top, black 0%, transparent 30%)`,
+  pointerEvents: "none",
+};
+
+const scrollBoxStyle = {
+  bgcolor: "black",
+  height: {
+    xs: "20vh",
+    lg: "33vh",
+  },
+  display: "flex",
+  flexDirection: "row",
+  overflowX: "auto",
+  whiteSpace: "nowrap",
+  pt: 1,
+  pb: 3,
+  gap: 2,
+  scrollbarWidth: "none",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+  ml: 2,
 };

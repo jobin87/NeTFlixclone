@@ -28,6 +28,9 @@ export function Main({ children, isNavHorizontal, sx, ...other }: MainProps) {
         ml:{
           xs:"none",lg:6
         },
+        mb:{
+          xs:8,lg:"none"
+        },
         ...(isNavHorizontal && {
           '--layout-dashboard-content-pt': '40px',
         }),

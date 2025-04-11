@@ -52,11 +52,9 @@ export function DashboardLayout({
   const tabPaths = [
     paths.dashboard.home,     // index 0: Home (default)
     paths.dashboard.search,             // index 1
-    paths.dashboard.movie, // index 2
+    paths.dashboard.series, // index 2
     paths.dashboard.anime,                    // index 3
-    "/trending",              // index 4
-    "/add",                   // index 5
-    "/shuffle",               // index 6
+    paths.dashboard.trendinMovie,              // index 4
   ];
 
   // Sync active tab based on exact route
@@ -125,9 +123,9 @@ export function DashboardLayout({
                 TabIndicatorProps={{ style: { display: "none" } }}
                 sx={{
                   "& .MuiTabs-flexContainer": {
-                    gap: { xs: 3, lg: 3 },
+                    gap: { xs: 9, lg: 3 },
                     alignItems: "center",
-                    ml: { xs: 4, lg: 0 },
+                    ml: { xs: 2, lg: 0 },
                   },
                   "& .MuiTab-root": {
                     padding: 0,
@@ -146,11 +144,9 @@ export function DashboardLayout({
                 />
                 <Tab label={tabIcon(<Tv color={activeTab === 3 ? "red" : "white"} size={30} />, 3)} />
                 <Tab
-                  sx={{ display: { xs: "none", lg: "flex" } }}
+                  sx={{ display: { xs: "flex", lg: "flex" } }}
                   label={tabIcon(<TrendingUp color={activeTab === 4 ? "red" : "white"} size={34} />, 4)}
                 />
-                <Tab label={tabIcon(<AddIcon sx={{ fontSize: 34, color: activeTab === 5 ? "red" : "white" }} />, 5)} />
-                <Tab label={tabIcon(<ShuffleIcon sx={{ fontSize: 34, color: activeTab === 6 ? "red" : "white" }} />, 6)} />
               </Tabs>
             ),
           }}
@@ -170,6 +166,12 @@ export function DashboardLayout({
         "--layout-dashboard-content-px": theme.spacing(5),
       }}
       sx={{
+        overflow: "auto", // allow scrolling
+        height: "100vh",
+        scrollbarWidth: "none", // Firefox
+        "&::-webkit-scrollbar": {
+          display: "none", // Chrome, Safari, Edge
+        },
         ...(!disableSidebarPadding && {
           [`& .${layoutClasses.hasSidebar}`]: {
             [theme.breakpoints.up(layoutQuery)]: {
@@ -185,6 +187,7 @@ export function DashboardLayout({
         }),
         ...sx,
       }}
+      
     >
       <Main isNavHorizontal={isNavHorizontal}>{children}</Main>
     </LayoutSection>

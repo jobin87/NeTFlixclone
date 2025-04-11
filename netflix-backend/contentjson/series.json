@@ -14,6 +14,7 @@
         "Country": "United States",
         "Awards": "Nominated for 19 Primetime Emmys. 59 wins & 174 nominations total",
         "Poster": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn2.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQjang2tSfHU_olHQ-m_gzuGMDV-h1wMsAsoagx_ho5GW2KksCy&psig=AOvVaw0T3dVF_Y1q9y2vZFgKoogu&ust=1734681739976000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCIiVmdyus4oDFQAAAAAdAAAAABAE",
+        "imageURL":"https://i.pinimg.com/736x/04/b9/4e/04b94e7bd562206d9fa9b7e1949fafc3.jpg",
         "Ratings": [
           {
             "Source": "Internet Movie Database",
@@ -358,5 +359,36 @@
         "Production": "WIT Studio",
         "Website": "https://www.funimation.com/shows/attack-on-titan/",
         "Response": "True"
+      },
+      {
+        "Title": "Peaky Blinders",
+        "Year": "2013",
+        "Rated": "TV-MA",
+        "Released": "12 Sep 2013",
+        "Runtime": "60 min",
+        "Genre": "Crime, Drama",
+        "Director": "Steven Knight",
+        "Writer": "Steven Knight",
+        "Actors": "Cillian Murphy, Paul Anderson, Helen McCrory",
+        "Plot": "A gangster family epic set in 1919 Birmingham, England; centered on a gang who sew razor blades in the peaks of their caps.",
+        "Language": "English",
+        "Country": "United Kingdom",
+        "Awards": "Won 5 BAFTAs. 21 wins & 55 nominations total",
+        "Poster": "https://i.pinimg.com/474x/4a/5a/1d/4a5a1d8f6c03565c759442180ee112c2.jpg",
+        "Ratings": [
+          {
+            "Source": "Internet Movie Database",
+            "Value": "8.8/10"
+          }
+        ],
+        "Metascore": "N/A",
+        "imdbRating": "8.8",
+        "imdbVotes": "600,000",
+        "imdbID": "tt2442560",
+        "Type": "series",
+        "Production": "BBC, Netflix",
+        "Website": "https://www.netflix.com/title/80002479",
+        "Response": "True"
       }
+      
 ]

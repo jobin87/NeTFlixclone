@@ -21,7 +21,6 @@ export const AnimeView = () => {
   return (
     <DashboardLayout>
       <MediaSection
-        label="New This Week"
         mediaItems={movies.map((movie: any) => ({
           id: movie.imdbID,
           title: movie.Title,

@@ -21,9 +21,11 @@ const ROOTS = {
     dashboard:{
       root:ROOTS.DASHBOARD,
       home: `${ROOTS.DASHBOARD}/home`,
-      subView: `${ROOTS.DASHBOARDS}`,
+      subView: `${ROOTS.DASHBOARDS}/:id`,
       search: `${ROOTS.DASHBOARD}/search`,
       movie: `${ROOTS.DASHBOARD}/movie`,
+      series: `${ROOTS.DASHBOARD}/series`,
+      trendinMovie: `${ROOTS.DASHBOARD}/trendingmovie`,
       anime: `${ROOTS.DASHBOARD}/anime`,
       moviedetails: `${ROOTS.DASHBOARD}/moviedetails/:id`
      

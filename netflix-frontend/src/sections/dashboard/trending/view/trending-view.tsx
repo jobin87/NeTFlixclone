@@ -4,16 +4,15 @@ import { MediaSection } from "src/layouts/dashboard/struct-main";
 import { useAppDispatch, useAppSelector } from "src/store";
 import { getAllMovies } from "src/store/movie/movieThunk";
 
-export const MovieView = () => {
+export const TrendingView = () => {
   const dispatch = useAppDispatch();
 
   const movieData = useAppSelector((state) => state.movies.movies.data);
   console.log("movieData", movieData);
 
-  const movies = movieData?.movies || [];
   const trendingmovies = movieData?.trendingmovies || [];
+  console.log("trendinggg:",trendingmovies)
   const upcomingmovies = movieData?.upcomingMovies || []; // 🆕 Add this line
-  const nowPlaying = movieData?.nowPlaying || []; // 🆕 Add this line
 
 
   useEffect(() => {
@@ -22,27 +21,15 @@ export const MovieView = () => {
 
   return (
     <DashboardLayout>
-      <MediaSection
-        mediaItems={movies.map((movie: any) => ({
+    <MediaSection
+        mediaItems={trendingmovies.map((movie: any) => ({
           id: movie.imdbID,
           title: movie.Title,
           posterUrl: movie.Poster,
           imageUrl: movie.imageURL,
           imdbRating: parseFloat(movie.imdbRating),
         }))}
-        trendingItems={trendingmovies.map((movie: any) => ({
-          id: movie.imdbID,
-          title: movie.Title,
-          posterUrl: movie.Poster,
-        }))}
         upcomingItems={upcomingmovies.map((movie: any) => ({
-          id: movie.id.toString(),
-          title: movie.title,
-          posterUrl: movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-            : "", // fallback empty or some placeholder
-        }))}
-        nowPlaying={nowPlaying.map((movie: any) => ({
           id: movie.id.toString(),
           title: movie.title,
           posterUrl: movie.poster_path

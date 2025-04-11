@@ -417,6 +417,7 @@
       "Language": "English",
       "Country": "United States",
       "Awards": "Won 7 Oscars. 214 wins & 189 nominations total",
+     "imageURL":"https://i.pinimg.com/736x/2b/6b/1e/2b6b1e6bc877a5a74f48b303bc971897.jpg",
       "Poster": "https://i.pinimg.com/474x/e6/6c/a2/e66ca2fe74e5661b0c15574d2aab3fe2.jpg",
       "Ratings": [
         { "Source": "Internet Movie Database", "Value": "8.4/10" },
@@ -634,6 +635,7 @@
       "Language": "English",
       "Country": "United States",
       "Awards": "Nominated for 1 Oscar. 29 wins & 43 nominations total",
+      "imageURL":"https://i.pinimg.com/474x/bd/65/47/bd6547a69346540803b0bb607a81cc2f.jpg",
       "Poster": "https://i.pinimg.com/474x/3c/59/7a/3c597a4564c3e92876d9350c0918b9a3.jpg",
       "Ratings": [
         { "Source": "Internet Movie Database", "Value": "8.6/10" },

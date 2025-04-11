@@ -7,6 +7,7 @@
     "@fontsource-variable/open-sans": "^5.1.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/uuid": "^10.0.0",
+    "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",

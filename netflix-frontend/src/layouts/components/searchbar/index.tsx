@@ -1,10 +1,6 @@
 import type { BoxProps } from '@mui/material/Box';
-import type { NavSectionProps } from 'src/components/nav-section';
 
 import { useState, useCallback } from 'react';
-import parse from 'autosuggest-highlight/parse';
-import match from 'autosuggest-highlight/match';
-
 import Box from '@mui/material/Box';
 import SvgIcon from '@mui/material/SvgIcon';
 import InputBase from '@mui/material/InputBase';
@@ -19,34 +15,28 @@ import { isExternalLink } from 'src/routes/utils';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useEventListener } from 'src/hooks/use-event-listener';
 
-import { varAlpha } from 'src/theme/styles';
-
-import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
-import { Scrollbar } from 'src/components/scrollbar';
-import { SearchNotFound } from 'src/components/search-not-found';
-
-import { ResultItem } from './result-item';
-import { groupItems, applyFilter, getAllItems } from './utils';
-
-// ----------------------------------------------------------------------
+import { Label } from '@mui/icons-material';
 
 export type SearchbarProps = BoxProps & {
+  searchQuery?: string;
+  setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export function Searchbar({  sx, ...other }: SearchbarProps) {
+export function Searchbar({ searchQuery: propSearchQuery, setSearchQuery: propSetSearchQuery, sx, ...other }: SearchbarProps) {
   const theme = useTheme();
-
   const router = useRouter();
-
   const search = useBoolean();
 
-  const [searchQuery, setSearchQuery] = useState('');
+  // Fallback to internal state if no external state is passed
+  const [internalQuery, setInternalQuery] = useState('');
+  const searchQuery = propSearchQuery ?? internalQuery;
+  const setSearchQuery = propSetSearchQuery ?? setInternalQuery;
 
   const handleClose = useCallback(() => {
     search.onFalse();
     setSearchQuery('');
-  }, [search]);
+  }, [search, setSearchQuery]);
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'k' && event.metaKey) {
@@ -69,64 +59,31 @@ export function Searchbar({  sx, ...other }: SearchbarProps) {
     [handleClose, router]
   );
 
-  const handleSearch = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleSearch = useCallback((event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setSearchQuery(event.target.value);
-  }, []);
-
-  // const dataFiltered = applyFilter({
-  //   inputData: getAllItems({ data: navItems }),
-  //   query: searchQuery,
-  // });
-
-  // const notFound = searchQuery && !dataFiltered.length;
-
-  // const renderItems = () => {
-  //   const dataGroups = groupItems(dataFiltered);
-
-  //   return Object.keys(dataGroups)
-  //     .sort((a, b) => -b.localeCompare(a))
-  //     .map((group, index) => (
-  //       // <Box component="ul" key={`${group}-${index}`}>
-  //       //   {dataGroups[group].map((item) => {
-  //       //     const { title, path } = item;
-
-  //       //     const partsTitle = parse(title, match(title, searchQuery));
-
-  //       //     const partsPath = parse(path, match(path, searchQuery));
-
-  //       //     // return (
-  //       //     //   // <Box component="li" key={`${title}${path}`} sx={{ display: 'flex' }}>
-  //       //     //   //   <ResultItem
-  //       //     //   //     path={partsPath}
-  //       //     //   //     title={partsTitle}
-  //       //     //   //     groupLabel={searchQuery && group}
-  //       //     //   //     onClickItem={() => handleClick(path)}
-  //       //     //   //   />
-  //       //     //   // </Box>
-  //       //     // );
-  //       //   })}
-  //       // </Box>
-  //     ));
-  // };
+  }, [setSearchQuery]);
 
   const renderButton = (
-    <Box display="flex" alignItems="center" sx={{ border: "1px solid #ccc", borderRadius: "8px", px: 1, py: 0.5 ,mt: 2, ml:20}}>
-    <IconButton disableRipple>
-      <SvgIcon sx={{ width: 20, height: 20 }}>
-        <path
-          fill="currentColor"
-          d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42M5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6"
-        />
-      </SvgIcon>
-    </IconButton>
-    <InputBase
-      placeholder="Search..."
-      value={searchQuery}
-      onChange={(e) => setSearchQuery(e.target.value)}
-      sx={{ ml: 1, flex: 1 }}
-    />
-  </Box>
-
+    <Box
+      display="flex"
+      alignItems="center"
+      sx={{ border: "1px solid #ccc", borderRadius: "8px", px: 1, py: 0.5, mt: 2, ml: 20 }}
+    >
+      <IconButton disableRipple>
+        <SvgIcon sx={{ width: 20, height: 20 }}>
+          <path
+            fill="currentColor"
+            d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42M5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6"
+          />
+        </SvgIcon>
+      </IconButton>
+      <InputBase
+        placeholder="Search..."
+        value={searchQuery}
+        onChange={handleSearch}
+        sx={{ ml: 1, flex: 1 }}
+      />
+    </Box>
   );
 
   return (
@@ -159,12 +116,7 @@ export function Searchbar({  sx, ...other }: SearchbarProps) {
             inputProps={{ sx: { typography: 'h6' } }}
           />
         </Box>
-
-        {/* {notFound ? (
-          <SearchNotFound query={searchQuery} sx={{ py: 15 }} />
-        ) : (
-          <Scrollbar sx={{ px: 3, pb: 3, pt: 2, height: 400 }}>{renderItems()}</Scrollbar>
-        )} */}
+        {/* You can conditionally render search results here */}
       </Dialog>
     </>
   );

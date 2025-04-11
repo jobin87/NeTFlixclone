@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import fs from "fs";
 import path from "path";
+import axios from "axios";
 
-// Define the interface for the movie data
+// Define Movie interface
 interface Movie {
   Title: string;
   Year: string;
@@ -22,38 +23,79 @@ interface Movie {
   imdbRating: string;
   imdbVotes: string;
   imdbID: string;
-  Type: string; // Use "Type" instead of "type"
+  Type: string;
   Response: string;
   Images: string[];
 }
 
-export const getAllMovies = (req: Request, res: Response) => {
-    const filepath = path.join(__dirname, "../../contentjson/movie.json");
+// TMDB config
+const TMDB_BEARER_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Yzk4Mzk5M2MzY2JjYWIyMjQ2YTY0ODFiMzFjMWNlOCIsIm5iZiI6MTc0NDIyMjMzMS42NDEsInN1YiI6IjY3ZjZiODdiZGU1ZTRkZWM2MmFjZmRjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xOtscrrk8GIvO8a7ZBlEStmLLdQJBqUZLXJPdN5y4Wc';
+const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 
-    fs.readFile(filepath, 'utf-8', (err, data) => {
-      if (err) {
-        res.status(400).json({ message: 'Error finding movie', error: err });
-        return;
-      }
-      try {
-        // Parse the JSON data and assert the type as an array of Movie objects
-        const moviedata: Movie[] = JSON.parse(data);
-  
-        // Filter out movies only from the moviedata
-        const movies = moviedata.filter(item => item.Type === "movie");
-        const trendingmovies = moviedata.filter(item => item.Type === "trending-movie");
+export const getAllMovies = async (req: Request, res: Response) => {
+  const filepath = path.join(__dirname, "../../contentjson/movie.json");
 
-  
-  
-  
-        res.json({
-            
-              movies,
-              trendingmovies, // use camelCase here to match frontend expectations
-          });
-  
-      } catch (err) {
-        res.status(400).json({ message: "Parse error", error: err });
-      }
+  try {
+    // Load local movie JSON file
+    const fileData = fs.readFileSync(filepath, "utf-8");
+    const moviedata: Movie[] = JSON.parse(fileData);
+
+    // Filter movies by type
+    const movies = moviedata.filter(item => item.Type === "movie");
+    const trendingmovies = moviedata.filter(item => item.Type === "trending-movie");
+
+    // Fetch TMDB data
+    const [upcomingRes, nowPlayingRes, topRatedRes] = await Promise.all([
+      axios.get(`${TMDB_BASE_URL}/movie/upcoming`, {
+        params: {
+          language: "en-US",
+          region: "US",
+        },
+        headers: {
+          Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
+          accept: "application/json",
+        },
+      }),
+      axios.get(`${TMDB_BASE_URL}/movie/now_playing`, {
+        params: {
+          language: "en-US",
+          region: "US",
+        },
+        headers: {
+          Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
+          accept: "application/json",
+        },
+      }),
+      axios.get(`${TMDB_BASE_URL}/movie/top_rated`, {
+        params: {
+          language: "en-US",
+          region: "US",
+        },
+        headers: {
+          Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
+          accept: "application/json",
+        },
+      }),
+    ]);
+
+    // Extract movie arrays from TMDB responses
+    const upcomingMovies = upcomingRes.data.results;
+    const nowPlaying = nowPlayingRes.data.results;
+    const topRated = topRatedRes.data.results;
+
+    // Send response
+    res.json({
+      movies,
+      trendingmovies,
+      upcomingMovies,
+      nowPlaying,
+      topRated,
     });
-  };
+  } catch (err) {
+    console.error("Error in getAllMovies:", err);
+    res.status(400).json({
+      message: "Error processing movie data",
+      error: err instanceof Error ? err.message : err,
+    });
+  }
+};

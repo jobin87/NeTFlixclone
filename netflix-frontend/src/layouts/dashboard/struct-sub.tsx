@@ -1,12 +1,13 @@
 import { Box, Typography, Button, Stack } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 
 type MediaItem = {
   id: string;
   title?: string;
   posterUrl: string;
-  imageUrl: string;
+  imageUrl?: string;
   imdbRating: number;
   plot?: string;
 };
@@ -18,12 +19,14 @@ type TrendingItem = {
 };
 
 type MediaSectionProps = {
-  label: string;
+  label?: string;
   mediaItems: MediaItem[];
   trendingItems?: TrendingItem[];
 };
 
-export const MediaSubSection = ({ mediaItems }: MediaSectionProps) => {
+export const MediaSubSection = ({ label, mediaItems }: MediaSectionProps) => {
+  const navigate = useNavigate();
+
   if (!mediaItems || mediaItems.length === 0) {
     return (
       <Box sx={{ color: "#fff", p: 4 }}>
@@ -36,22 +39,31 @@ export const MediaSubSection = ({ mediaItems }: MediaSectionProps) => {
 
   return (
     <>
-      {/* Featured Movie Banner */}
-      <Box
-        sx={{
-          bgcolor: "black",
-          display: "flex",
-          flexDirection: {
-            xs: "column-reverse",
-            lg: "row",
-          },
-          height: {
-            xs: "auto",
-            lg: "75vh",
-          },
-        }}
-      >
-        {featured?.imageUrl && (
+      {label && (
+        <Typography
+          variant="h5"
+          sx={{ color: "#fff", mt: 3, ml: 2, fontWeight: "bold" }}
+        >
+          {label}
+        </Typography>
+      )}
+
+      {/* Banner Section */}
+      {featured?.imageUrl ? (
+        <Box
+          sx={{
+            bgcolor: "white",
+            display: "flex",
+            flexDirection: {
+              xs: "column-reverse",
+              lg: "row",
+            },
+            height: {
+              xs: "auto",
+              lg: "75vh",
+            },
+          }}
+        >
           <Box
             sx={{
               position: "relative",
@@ -61,7 +73,7 @@ export const MediaSubSection = ({ mediaItems }: MediaSectionProps) => {
                 lg: "80vh",
               },
               width: "100%",
-              mt: 2,
+              mt: 0,
               backgroundImage: `url(${featured.imageUrl})`,
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -107,12 +119,27 @@ export const MediaSubSection = ({ mediaItems }: MediaSectionProps) => {
                   backgroundColor: "rgba(255,255,255,1)",
                 },
               }}
+              onClick={() => navigate(`/media/${featured.id}`)} // Route to media detail
             >
               Play
             </Button>
           </Box>
-        )}
-      </Box>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            bgcolor: "black",
+            height: { xs: "auto", lg: "40vh" },
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#fff",
+            p: 4,
+          }}
+        >
+          <Typography variant="h5">No image available</Typography>
+        </Box>
+      )}
 
       {/* Glass Panel */}
       <Box
@@ -161,6 +188,7 @@ export const MediaSubSection = ({ mediaItems }: MediaSectionProps) => {
         >
           <Button
             startIcon={<PlayArrowIcon />}
+            onClick={() => navigate(`/media/${featured.id}`)}
             sx={{
               background: "linear-gradient(to right, #ffffff, #dddddd)",
               color: "#000",
