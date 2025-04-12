@@ -1,7 +1,7 @@
 import type { Theme, SxProps, Breakpoint } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
-import { Box, Tab, useMediaQuery } from "@mui/material";
+import { Box, Tab } from "@mui/material";
 import { iconButtonClasses } from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
