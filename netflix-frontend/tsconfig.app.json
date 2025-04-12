@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./global.d.ts"],
-    "types": ["react", "react-dom"], // Ensure React types are included
+    "types": ["react", "react-dom","node"], // Ensure React types are included
     "baseUrl": ".",
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
