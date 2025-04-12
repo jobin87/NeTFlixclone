@@ -64,8 +64,7 @@ export function HeaderSection({
         top: { xs: "auto", md: 0 },
         bottom: { xs: 0, md: "auto" },
         left: 0,
-        [layoutQuery]: "block",
-        height: { xs: 30, md: "100vh" },
+        height: { xs: 20, md: "100vh" },
         width: { xs: "100%", md: "90px" },
         bgcolor: "background.default",
         display: "flex",
@@ -88,7 +87,7 @@ export function HeaderSection({
           justifyContent: { xs: "space-between", md: "center" },
           flexGrow: 1,
           width: "100%",
-          gap: { xs: .1, md: 1.5 },
+          gap: { xs: "1px", md: 1.5 },
         }}
       >
         {slots?.topArea}
@@ -106,6 +105,7 @@ export function HeaderSection({
           alignItems: "center",
           justifyContent: "center",
           py: 1.5,
+          ml:{xs:3,lg:"none"},
           mt: { xs: 0, lg: "auto" },
           mb: { xs: 1.5, lg: 2 },
         }}

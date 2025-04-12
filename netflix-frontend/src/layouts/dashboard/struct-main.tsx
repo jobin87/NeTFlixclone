@@ -31,7 +31,6 @@ type MediaSectionProps = {
   nowPlaying?: UpcomingItem[];
 };
 
-// ========== Main Component ==========
 export const MediaSection = ({
   label,
   mediaItems = [],
@@ -46,7 +45,7 @@ export const MediaSection = ({
     items: (MediaItem | TrendingItem | UpcomingItem)[],
     sectionTitle: string
   ) => (
-    <>
+    <Box >
       <Typography variant="h6" sx={{ ml: 1.1, color: "white", mt: 2 }}>
         {sectionTitle}
       </Typography>
@@ -86,7 +85,7 @@ export const MediaSection = ({
           />
         ))}
       </Box>
-    </>
+    </Box>
   );
 
   return (
@@ -148,12 +147,11 @@ export const MediaSection = ({
               >
                 Play
               </Button>
-
-              <Box sx={{}}>
               <Button variant="contained" color="error" size="small">
-                Watch Trailer
+                <Typography variant="caption" sx={{ fontWeight: 600 }}>
+                  Watch Trailer
+                </Typography>
               </Button>
-              </Box>
 
               <Typography variant="body2" sx={heroRatingStyle}>
                 IMDb Rating: ⭐ {featured.imdbRating}
@@ -163,7 +161,10 @@ export const MediaSection = ({
             {/* lg layout: Rating + Play + Trailer */}
             <Box
               sx={{
-                display: "flex", // Show on all devices
+                display: {
+                  xs: "none",
+                  lg: "flex",
+                }, // Show on all devices
                 flexDirection: { xs: "column", sm: "row" }, // Stack on mobile
                 alignItems: "center",
                 gap: { xs: 1.5, sm: 2 },
@@ -273,7 +274,7 @@ const leftPanelStyle = {
     xs: "flex-start",
     lg: "flex-start",
   },
-  gap: 4,
+  gap: 1,
 };
 
 const heroTitleStyle = {

@@ -1,11 +1,10 @@
 import type { Theme, SxProps, Breakpoint } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
-import { Box, Tabs, Tab, useMediaQuery } from "@mui/material";
+import { Box, Tab, useMediaQuery } from "@mui/material";
 import { iconButtonClasses } from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
-
 import { Clapperboard, TrendingUp, Tv } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -42,7 +41,6 @@ export function DashboardLayout({
   const isNavHorizontal = settings.navLayout === "horizontal";
   const isNavVertical = isNavMini || settings.navLayout === "vertical";
 
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,15 +49,12 @@ export function DashboardLayout({
 
   const tabPaths = [
     paths.dashboard.home, // index 0: Home (default)
-    paths.dashboard.search, // index 1
-    paths.dashboard.series, // index 2
-    paths.dashboard.anime, // index 3
-    paths.dashboard.trendinMovie, // index 4
+    paths.dashboard.search,
+    paths.dashboard.series,
+    paths.dashboard.anime,
+    paths.dashboard.trendinMovie,
   ];
 
-  
-
-  // Sync active tab based on exact route
   useEffect(() => {
     const foundIndex = tabPaths.findIndex((path) => location.pathname === path);
     setActiveTab(foundIndex !== -1 ? foundIndex : 0);
@@ -117,92 +112,69 @@ export function DashboardLayout({
           }}
           sx={header?.sx}
           slots={{
-            centerArea: (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: isSmallScreen ? "row" : "column",
-                  alignItems: "center",
-                  gap: { xs: 4, lg: 3 },
-                  ml: { xs: 2, lg: 0 },
-                }}
-              >
-                <Tabs
-                  orientation={isSmallScreen ? "horizontal" : "vertical"}
-                  value={activeTab}
-                  onChange={handleTabChange}
-                  TabIndicatorProps={{ style: { display: "none" } }}
-                  sx={{
-                    "& .MuiTabs-flexContainer": {
-                      gap: { xs: 6.6, lg: 3 },
-                      alignItems: "center",
-                    },
-                    "& .MuiTab-root": {
-                      padding: 0,
-                      minHeight: 0,
-                      minWidth: 0,
-                      justifyContent: "center",
-                    },
-                    flexDirection: "column",
-                  }}
-                >
-                  <Tab
-                    label={tabIcon(
-                      <HomeIcon
-                        sx={{
-                          fontSize: 34,
-                          color: activeTab === 0 ? "red" : "white",
-                        }}
-                      />,
-                      0
-                    )}
-                  />
-                  <Tab
-                    label={tabIcon(
-                      <SearchIcon
-                        sx={{
-                          fontSize: 34,
-                          color: activeTab === 1 ? "red" : "white",
-                        }}
-                      />,
-                      1
-                    )}
-                  />
-                  <Tab
-                    sx={{ display: { xs: "none", lg: "flex" } }}
-                    label={tabIcon(
-                      <Clapperboard
-                        color={activeTab === 2 ? "red" : "white"}
-                        size={34}
-                      />,
-                      2
-                    )}
-                  />
-                  <Tab
-                    label={tabIcon(
-                      <Tv
-                        color={activeTab === 3 ? "red" : "white"}
-                        size={30}
-                      />,
-                      3
-                    )}
-                  />
-                  <Tab
-                    sx={{ display: { xs: "flex", lg: "flex" } }}
-                    label={tabIcon(
-                      <TrendingUp
-                        color={activeTab === 4 ? "red" : "white"}
-                        size={34}
-                      />,
-                      4
-                    )}
-                  />
-                </Tabs>
-
-                
-              </Box>
+            topArea: (
+              <Tab
+                label={tabIcon(
+                  <HomeIcon
+                    sx={{
+                      fontSize: 34,
+                      color: activeTab === 0 ? "red" : "white",
+                    }}
+                  />,
+                  0
+                )}
+                onClick={() => handleTabChange(null, 0)}
+              />
             ),
-            bottomArea:(<SignOutButton/> )
+            slotArea1: (
+              <Tab
+                label={tabIcon(
+                  <SearchIcon
+                    sx={{
+                      fontSize: 34,
+                      color: activeTab === 1 ? "red" : "white",
+                    }}
+                  />,
+                  1
+                )}
+                onClick={() => handleTabChange(null, 1)}
+              />
+            ),
+            slotArea2: (
+              <Tab
+                sx={{ display: { xs: "none", lg: "flex" } }}
+                label={tabIcon(
+                  <Clapperboard
+                    color={activeTab === 2 ? "red" : "white"}
+                    size={34}
+                  />,
+                  2
+                )}
+                onClick={() => handleTabChange(null, 2)}
+              />
+            ),
+            slotArea3: (
+              <Tab
+                label={tabIcon(
+                  <Tv color={activeTab === 3 ? "red" : "white"} size={30} />,
+                  3
+                )}
+                onClick={() => handleTabChange(null, 3)}
+              />
+            ),
+            slotArea4: (
+              <Tab
+                label={tabIcon(
+                  <TrendingUp
+                    color={activeTab === 4 ? "red" : "white"}
+                    size={34}
+                  />,
+                  4
+                )}
+                onClick={() => handleTabChange(null, 4)}
+              />
+            ),
+            bottomArea: <SignOutButton />,
           }}
         />
       }
@@ -220,11 +192,11 @@ export function DashboardLayout({
         "--layout-dashboard-content-px": theme.spacing(5),
       }}
       sx={{
-        overflow: "auto", // allow scrolling
+        overflow: "auto",
         height: "100vh",
-        scrollbarWidth: "none", // Firefox
+        scrollbarWidth: "none",
         "&::-webkit-scrollbar": {
-          display: "none", // Chrome, Safari, Edge
+          display: "none",
         },
         ...(!disableSidebarPadding && {
           [`& .${layoutClasses.hasSidebar}`]: {
