@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 const corsOptions = {
-  origin: 'https://ne-t-flixclone-fzio.vercel.app',
+  origin: 'https://netflixclone-2frontend.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 };
