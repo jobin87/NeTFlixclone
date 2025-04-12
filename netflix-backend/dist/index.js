@@ -8,7 +8,6 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./config/db"));
-const swaggerdoc_1 = require("./swagger/swaggerdoc");
 const contentRouter_1 = __importDefault(require("./routes/contentRouter"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 dotenv_1.default.config(); // Load environment variables
@@ -24,7 +23,6 @@ const PORT = process.env.PORT || 5001;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
-(0, swaggerdoc_1.setupSwagger)(app);
 // Routes
 app.use('/api/v1/auth', authRoutes_1.default);
 app.use('/api/v1/dashboard', contentRouter_1.default);
