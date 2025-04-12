@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import fs from "fs";
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import path from 'path';
+import * as bcrypt from 'bcryptjs';
 import User from '../models/user';
 import Session from '../models/session';
 const SECRET_KEY= "112eryt33"
@@ -36,7 +36,6 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
