@@ -103,11 +103,11 @@ const MuiAlert: Components<Theme>['MuiAlert'] = {
     standard: ({ ownerState, theme }) => {
       const styled = {
         colors: styleColors(ownerState, (color) => ({
-          color: theme.vars.palette[color].darker,
-          backgroundColor: theme.vars.palette[color].lighter,
+          color: theme.vars.palette[color].dark,
+          backgroundColor: theme.vars.palette[color].light,
           [stylesMode.dark]: {
-            color: theme.vars.palette[color].lighter,
-            backgroundColor: theme.vars.palette[color].darker,
+            color: theme.vars.palette[color].light,
+            backgroundColor: theme.vars.palette[color].dark,
           },
           [`& .${alertClasses.icon}`]: {
             color: theme.vars.palette[color].main,

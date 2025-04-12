@@ -3,6 +3,33 @@ import type { ColorSystemOptions } from '@mui/material/styles';
 import COLORS from './colors.json';
 import { varAlpha, createPaletteChannel } from '../styles';
 
+
+declare module '@mui/material/styles/createPalette' {
+  interface CommonColors {
+    whiteChannel: string;
+    blackChannel: string;
+  }
+  interface TypeText {
+    disabledChannel: string;
+  }
+  interface TypeBackground {
+    neutral: string;
+    neutralChannel: string;
+  }
+  interface SimplePaletteColorOptions {
+    lighter: string;
+    darker: string;
+    lighterChannel: string;
+    darkerChannel: string;
+  }
+  interface PaletteColor {
+    lighter: string;
+    darker: string;
+    lighterChannel: string;
+    darkerChannel: string;
+  }
+}
+
 // GREY
 export const grey = createPaletteChannel(COLORS.grey);
 
@@ -21,6 +48,21 @@ export const text = createPaletteChannel({
   secondary: grey[500],
   disabled: grey[600],
 });
+
+declare module '@mui/material' {
+  interface Color {
+    ['50Channel']: string;
+    ['100Channel']: string;
+    ['200Channel']: string;
+    ['300Channel']: string;
+    ['400Channel']: string;
+    ['500Channel']: string;
+    ['600Channel']: string;
+    ['700Channel']: string;
+    ['800Channel']: string;
+    ['900Channel']: string;
+  }
+}
 
 // BACKGROUND
 export const background = createPaletteChannel({
