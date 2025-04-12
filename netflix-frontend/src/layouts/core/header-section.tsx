@@ -88,7 +88,7 @@ export function HeaderSection({
           justifyContent: { xs: "space-between", md: "center" },
           flexGrow: 1,
           width: "100%",
-          gap: { xs: 1, md: 1.5 },
+          gap: { xs: .1, md: 1.5 },
         }}
       >
         {slots?.topArea}

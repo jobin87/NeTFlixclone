@@ -149,9 +149,11 @@ export const MediaSection = ({
                 Play
               </Button>
 
+              <Box sx={{}}>
               <Button variant="contained" color="error" size="small">
                 Watch Trailer
               </Button>
+              </Box>
 
               <Typography variant="body2" sx={heroRatingStyle}>
                 IMDb Rating: ⭐ {featured.imdbRating}
@@ -341,5 +343,4 @@ const scrollBoxStyle = {
   "&::-webkit-scrollbar": {
     display: "none",
   },
-  ml: 2,
 };
