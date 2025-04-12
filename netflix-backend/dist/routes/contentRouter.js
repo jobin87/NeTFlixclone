@@ -4,7 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const content_Controller_1 = require("../controllers/content Controller");
+const movie_1 = require("../controllers/movie");
+const anime_1 = require("../controllers/anime");
+const series_1 = require("../controllers/series");
+// in routes/contentRouter.ts
 /**
  * @swagger
  * /api/v1/movies:
@@ -102,5 +105,7 @@ const content_Controller_1 = require("../controllers/content Controller");
  *         description: Internal server error
  */
 const movieRoutes = express_1.default.Router();
-movieRoutes.get("/content", content_Controller_1.getContentData);
+movieRoutes.get("/getMovies", movie_1.getAllMovies);
+movieRoutes.get("/getAnimes", anime_1.getAllAnimes);
+movieRoutes.get("/getSeries", series_1.getAllSeries);
 exports.default = movieRoutes;
