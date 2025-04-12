@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes';
 import cors from 'cors';
 import connectDB from './config/db';
-import { setupSwagger } from './swagger/swaggerdoc';
 import movieroutes from './routes/contentRouter';
 import cookieParser from 'cookie-parser';
 
@@ -22,7 +21,6 @@ const PORT = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-setupSwagger(app)
 
 // Routes
 app.use('/api/v1/auth', authRoutes);
