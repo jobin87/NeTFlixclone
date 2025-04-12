@@ -3,7 +3,7 @@ import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton";
 import { useSettingsContext } from "src/components/settings/context";
 import { useColorScheme } from "@mui/material/styles";
-import { Box, Typography } from "@mui/material";
+import { Box} from "@mui/material";
 
 // ----------------------------------------------------------------------
 

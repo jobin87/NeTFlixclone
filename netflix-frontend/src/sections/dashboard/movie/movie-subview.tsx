@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Box, Typography, Button } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { MediaSubSection } from "src/layouts/dashboard/struct-sub";
 import { useAppDispatch, useAppSelector } from "src/store";
 import { getAllMovies } from "src/store/movie/movieThunk";
 
@@ -14,7 +13,6 @@ export const MovieSubView = () => {
 
   const movieData = useAppSelector((state) => state.movies.movies.data);
   const movies = movieData?.movies || [];
-  const trendingmovies = movieData?.trendingmovies || [];
 
   useEffect(() => {
     dispatch(getAllMovies());
@@ -23,11 +21,7 @@ export const MovieSubView = () => {
   const fullSelectedMovie = selectedMovie
     ? movies.find((m) => m.imdbID === (selectedMovie.imdbID || selectedMovie.id)) || selectedMovie
     : movies.find((m) => m.imdbID === id); // fallback if user refreshes
-
-  const mediaItems = fullSelectedMovie
-    ? [fullSelectedMovie, ...movies.filter((m) => m.imdbID !== fullSelectedMovie.imdbID)]
-    : movies;
-
+    
   const image =
     fullSelectedMovie?.Poster ||
     fullSelectedMovie?.posterUrl ||

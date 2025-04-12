@@ -1,11 +1,10 @@
 import type { Theme, SxProps, Breakpoint } from "@mui/material/styles";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Tabs, Tab, useMediaQuery } from "@mui/material";
 import { iconButtonClasses } from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
-import LogoutIcon from "@mui/icons-material/Logout";
 
 import { Clapperboard, TrendingUp, Tv } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -17,8 +16,6 @@ import { LayoutSection } from "../core/layout-section";
 import { HeaderSection } from "../core/header-section";
 import { useNavColorVars } from "./styles";
 import { paths } from "src/routes/paths";
-import { API_METHODS, makeNetworkCall } from "src/network";
-import { useAppDispatch } from "src/store";
 import { SignOutButton } from "../components/sign-out-button";
 
 export type DashboardLayoutProps = {

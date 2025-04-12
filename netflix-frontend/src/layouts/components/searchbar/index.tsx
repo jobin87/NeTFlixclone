@@ -9,8 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Dialog, { dialogClasses } from '@mui/material/Dialog';
 
-import { useRouter } from 'src/routes/hooks';
-import { isExternalLink } from 'src/routes/utils';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useEventListener } from 'src/hooks/use-event-listener';
@@ -23,9 +21,8 @@ export type SearchbarProps = BoxProps & {
   setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export function Searchbar({ searchQuery: propSearchQuery, setSearchQuery: propSetSearchQuery, sx, ...other }: SearchbarProps) {
+export function Searchbar({ searchQuery: propSearchQuery, setSearchQuery: propSetSearchQuery}: SearchbarProps) {
   const theme = useTheme();
-  const router = useRouter();
   const search = useBoolean();
 
   // Fallback to internal state if no external state is passed
@@ -47,17 +44,7 @@ export function Searchbar({ searchQuery: propSearchQuery, setSearchQuery: propSe
 
   useEventListener('keydown', handleKeyDown);
 
-  const handleClick = useCallback(
-    (path: string) => {
-      if (isExternalLink(path)) {
-        window.open(path);
-      } else {
-        router.push(path);
-      }
-      handleClose();
-    },
-    [handleClose, router]
-  );
+
 
   const handleSearch = useCallback((event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setSearchQuery(event.target.value);

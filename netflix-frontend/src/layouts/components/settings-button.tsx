@@ -1,5 +1,5 @@
+import { useState } from 'react';
 import type { IconButtonProps } from '@mui/material/IconButton';
-
 import { m } from 'framer-motion';
 
 import Badge from '@mui/material/Badge';
@@ -14,19 +14,25 @@ export type SettingsButtonProps = IconButtonProps;
 
 export function SettingsButton({ sx, ...other }: SettingsButtonProps) {
   const settings = useSettingsContext();
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const handleToggleDrawer = () => {
+    setOpenDrawer((prev) => !prev);
+    console.log('Drawer toggled:', !openDrawer);
+  };
 
   return (
     <IconButton
       aria-label="settings"
-      onClick={settings.onToggleDrawer}
+      onClick={handleToggleDrawer}
       sx={{ p: 0, width: 40, height: 40, ...sx }}
       {...other}
     >
       <Badge color="error" variant="dot" invisible={!settings.canReset}>
-         <SvgIcon
+        <SvgIcon
           component={m.svg}
           animate={{ rotate: 20 }}
-          transition={{ duration: 8, ease: 'linear', repeat:Infinity }}
+          transition={{ duration: 8, ease: 'linear', repeat: Infinity }}
         >
           {/* https://icon-sets.iconify.design/solar/settings-bold-duotone/ */}
           <path

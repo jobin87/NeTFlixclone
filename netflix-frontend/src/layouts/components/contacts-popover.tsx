@@ -1,6 +1,5 @@
 import type { IconButtonProps } from '@mui/material/IconButton';
 import { m } from 'framer-motion';
-import Badge from '@mui/material/Badge';
 import SvgIcon from '@mui/material/SvgIcon';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';

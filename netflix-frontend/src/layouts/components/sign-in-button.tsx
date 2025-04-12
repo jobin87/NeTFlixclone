@@ -12,7 +12,7 @@ export function SignInButton({ sx, ...other }: ButtonProps) {
   return (
     <Button
       component={RouterLink}
-      href={CONFIG.profile.redirectPath}
+      href={CONFIG.auth.redirectPath}
       variant="outlined"
       sx={sx}
       {...other}
