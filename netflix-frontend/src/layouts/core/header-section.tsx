@@ -64,6 +64,7 @@ export function HeaderSection({
         top: { xs: "auto", md: 0 },
         bottom: { xs: 0, md: "auto" },
         left: 0,
+        [layoutQuery]: "block",
         height: { xs: 30, md: "100vh" },
         width: { xs: "100%", md: "90px" },
         bgcolor: "background.default",
