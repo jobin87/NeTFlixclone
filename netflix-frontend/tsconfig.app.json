@@ -16,6 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx", // Ensure JSX is set to react-jsx
     "strict": true,
+    "noEmitOnError": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
