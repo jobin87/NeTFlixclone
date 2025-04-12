@@ -8,8 +8,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "typeRoots": ["./node_modules/@types", "./types"]
+    "resolveJsonModule": true
   },
-  "include": ["src", "types", "types"]
+  "include": ["src", "types"]
 }
