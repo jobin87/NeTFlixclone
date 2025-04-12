@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import path from 'path';
 import User from '../models/user';
 import Session from '../models/session';
-import { notifySessionUpdate } from './sessionController';
 const SECRET_KEY= "112eryt33"
 
 
