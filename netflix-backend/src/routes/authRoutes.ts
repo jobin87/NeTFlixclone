@@ -117,6 +117,5 @@ const authRoutes = express.Router();
 authRoutes.post('/login', login);
 authRoutes.post('/signup', signup);
 authRoutes.post('/checkemail', checkEmailExist);
-authRoutes.post('/logout',logout)
-
+authRoutes.delete('/logout-current-session',  logout);
 export default authRoutes;

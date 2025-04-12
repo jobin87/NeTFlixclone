@@ -20,6 +20,7 @@ export const requestSignInWithPassword = createAsyncThunk(
       url: ENDPOINT_USER_LOGIN,
       data: params,
     });
+    console.log("responhtyyey:", response)
     return response?.data;
   }
 );

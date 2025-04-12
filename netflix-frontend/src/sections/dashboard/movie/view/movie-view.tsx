@@ -35,14 +35,14 @@ export const MovieView = () => {
           title: movie.Title,
           posterUrl: movie.Poster,
         }))}
-        upcomingItems={upcomingmovies.map((movie: any) => ({
+        nowPlaying={nowPlaying.map((movie: any) => ({
           id: movie.id.toString(),
           title: movie.title,
           posterUrl: movie.poster_path
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
             : "", // fallback empty or some placeholder
         }))}
-        nowPlaying={nowPlaying.map((movie: any) => ({
+        upcomingItems={upcomingmovies.map((movie: any) => ({
           id: movie.id.toString(),
           title: movie.title,
           posterUrl: movie.poster_path

@@ -1,4 +1,4 @@
-import  {  useState } from "react";
+import { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import movieBg from "src/assets/hero.png";
 import netflicon from "src/assets/netflixlogo.png";
@@ -15,15 +15,15 @@ const LoadingView = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleCheckEmail = async()=>{
-    const response = await dispatch(checkEmailExist(email))
-    if(response.payload.success===true){
-      navigate(paths.auth.signUp)
+  const handleCheckEmail = async () => {
+    const response = await dispatch(checkEmailExist(email));
+    if (response.payload.success === true) {
+      navigate(paths.auth.signUp, { state: { email } });
+    } else {
+      toast.error("User exists with this email");
     }
-    else{
-      toast.error("user exist with email")
-    }
-  }
+  };
+  
 
   return (
     <Box
@@ -137,6 +137,9 @@ const LoadingView = () => {
                     xs: "80%",
                     lg: "60%",
                   },
+                  "& .MuiInputBase-input": {
+                    color: "black", // Makes the typed text visible
+                  },
                 }}
                 type="email"
                 variant="outlined"
@@ -146,8 +149,9 @@ const LoadingView = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+
               <Button
-              onClick={handleCheckEmail}
+                onClick={handleCheckEmail}
                 sx={{
                   bgcolor: "red",
                   color: "white",
@@ -174,7 +178,9 @@ const LoadingView = () => {
           p: 3,
         }}
       >
-        <Box sx={{ maxWidth: "500px", textAlign: { xs: "center", sm: "left" } }}>
+        <Box
+          sx={{ maxWidth: "500px", textAlign: { xs: "center", sm: "left" } }}
+        >
           <Typography
             variant="h5"
             fontWeight="bold"
@@ -222,11 +228,13 @@ const LoadingView = () => {
             mb: { xs: 2, sm: 0 },
           }}
         />
-        <Box sx={{ maxWidth: "500px", textAlign: { xs: "center", sm: "left" } }}>
+        <Box
+          sx={{ maxWidth: "500px", textAlign: { xs: "center", sm: "left" } }}
+        >
           <Typography
             variant="h5"
             fontWeight="bold"
-            sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" }}}
+            sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }}
           >
             Download your shows to watch offline
           </Typography>

@@ -4,9 +4,6 @@ import type { ToolbarProps } from "@mui/material/Toolbar";
 import type { ContainerProps } from "@mui/material/Container";
 
 import Box from "@mui/material/Box";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
 
 import { useScrollOffSetTop } from "src/hooks/use-scroll-offset-top";
@@ -41,7 +38,7 @@ export type LeftSectionProps = AppBarProps & {
     slotArea3?: React.ReactNode;
     slotArea4?: React.ReactNode;
     centerArea?: React.ReactNode;
-    bottomArea?: React.ReactNode;
+    bottomArea?: React.ReactNode; // Logout
   };
   slotprops?: {
     toolbar?: ToolbarProps;
@@ -71,9 +68,9 @@ export function HeaderSection({
         width: { xs: "100%", md: "90px" },
         bgcolor: "background.default",
         display: "flex",
-        flexDirection: { xs: "row", md: "row" },
+        flexDirection: { xs: "row", md: "column" },
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: { xs: "space-between", md: "flex-start" },
         py: { xs: 5, md: 2 },
         px: { xs: 2, md: 0 },
         boxShadow: 3,
@@ -81,33 +78,35 @@ export function HeaderSection({
       }}
       {...other}
     >
-      {/* Main content area */}
+      {/* Main Slot Area (All icons centered on md+) */}
       <Box
         sx={{
           display: "flex",
           flexDirection: { xs: "row", md: "column" },
           alignItems: "center",
-          justifyContent: { xs: "flex-start", md: "center" },
-          gap: 1,
+          justifyContent: { xs: "space-between", md: "center" },
           flexGrow: 1,
           width: "100%",
+          gap: { xs: 1, md: 1.5 },
         }}
       >
         {slots?.topArea}
         {slots?.slotArea1}
-        {slots?.centerArea}
+        {slots?.slotArea2}
         {slots?.slotArea3}
         {slots?.slotArea4}
-        {slots?.slotArea2}
+        {slots?.centerArea}
       </Box>
 
-      {/* Bottom area: on mobile it's on the right; on desktop it's at the bottom */}
+      {/* Logout Button */}
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          py: { xs: 1, md: 0 },
+          py: 1.5,
+          mt: { xs: 0, lg: "auto" },
+          mb: { xs: 1.5, lg: 2 },
         }}
       >
         {slots?.bottomArea}

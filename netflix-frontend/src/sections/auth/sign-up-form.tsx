@@ -1,7 +1,7 @@
 import { Box, TextField, Button, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import leftimage from "src/assets/hero.png";
 import { paths } from "src/routes/paths";
 import { useAppDispatch } from "src/store";
@@ -15,6 +15,15 @@ export const SignUpView = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && location.state.email) {
+      setEmail(location.state.email);
+    }
+  }, [location.state]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,16 +75,18 @@ export const SignUpView = () => {
       <Box
         sx={{
           width: "100%",
-          maxWidth: { xs: 300, lg: 400 },
+          maxWidth: { xs: 320, sm: 400 },
           p: 4,
-          bgcolor: "rgba(255, 255, 255, 0.9)",
-          borderRadius: 2,
-          boxShadow: 3,
+          borderRadius: 4,
+          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          background: "rgba(255, 255, 255, 0.15)",
+          border: "1px solid rgba(255, 255, 255, 0.18)",
           textAlign: "center",
-          pb: 8,
         }}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" color="white" gutterBottom>
           Sign Up
         </Typography>
         <form onSubmit={handleSubmit}>
@@ -86,6 +97,8 @@ export const SignUpView = () => {
             margin="normal"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            InputProps={{ sx: { color: "white" } }}
+            InputLabelProps={{ sx: { color: "white" } }}
           />
           <TextField
             fullWidth
@@ -95,6 +108,8 @@ export const SignUpView = () => {
             margin="normal"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            InputProps={{ sx: { color: "white" } }}
+            InputLabelProps={{ sx: { color: "white" } }}
           />
           <TextField
             fullWidth
@@ -104,6 +119,8 @@ export const SignUpView = () => {
             margin="normal"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputProps={{ sx: { color: "white" } }}
+            InputLabelProps={{ sx: { color: "white" } }}
           />
           <TextField
             fullWidth
@@ -113,6 +130,8 @@ export const SignUpView = () => {
             margin="normal"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            InputProps={{ sx: { color: "white" } }}
+            InputLabelProps={{ sx: { color: "white" } }}
           />
           <Button
             type="submit"

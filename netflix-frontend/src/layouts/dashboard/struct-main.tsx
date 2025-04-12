@@ -227,9 +227,9 @@ export const MediaSection = ({
         renderScrollSection(mediaItems.slice(1), "More Like This")}
       {trendingItems.length > 0 &&
         renderScrollSection(trendingItems, "Trending Now")}
+      {nowPlaying.length > 0 && renderScrollSection(nowPlaying, "Now Playing")}
       {upcomingItems.length > 0 &&
         renderScrollSection(upcomingItems, "Upcoming")}
-      {nowPlaying.length > 0 && renderScrollSection(nowPlaying, "Now Playing")}
     </Box>
   );
 };

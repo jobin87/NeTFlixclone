@@ -4,6 +4,8 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import path from 'path';
 import User from '../models/user';
+import Session from '../models/session';
+import { notifySessionUpdate } from './sessionController';
 const SECRET_KEY= "112eryt33"
 
 
@@ -11,56 +13,58 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
   try {
     const { username, email, password } = req.body;
 
-    // Check if all fields are provided
+    // Validate fields
     if (!username || !email || !password) {
       res.status(400).json({ success: false, message: 'All fields are required' });
       return;
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       res.status(400).json({ success: false, message: 'Invalid email format' });
       return;
     }
 
-    // Validate password length
     if (password.length < 6) {
       res.status(400).json({ success: false, message: 'Password must be at least 6 characters' });
       return;
     }
 
-    // Check if the email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       res.status(400).json({ success: false, message: 'User exists with this email' });
       return;
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user and save it to the database
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-
-    });
-    const userResponse = {
-      userId: newUser._id, // Map _id to userId
-      userEmail: newUser.email,
-      name: newUser.username,
-  
-    };
-
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
-    // Generate a JWT token
-    const token = jwt.sign({ id: newUser._id, email: newUser.email }, process.env.JWT_SECRET || SECRET_KEY, { expiresIn: '1h' });
+    const userResponse = {
+      userId: newUser._id,
+      userEmail: newUser.email,
+      name: newUser.username,
+    };
 
-    // Respond with the success message and token
-    res.status(200).json({ success: true, message: 'Signup successful', token , userResponse });
+    const token = jwt.sign({ id: newUser._id, email: newUser.email }, process.env.JWT_SECRET || SECRET_KEY, {
+      expiresIn: '1h',
+    });
+
+    // ✅ Set cookie first, then respond
+    res.cookie('authToken', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: 'strict',
+      maxAge: 60 * 60 * 1000, // 1 hour
+    });
+
+    res.status(200).json({
+      success: true,
+      message: 'Signup successful',
+      token,
+      userResponse,
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Internal Server Error', error });
   }
@@ -152,12 +156,42 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
 export const logout = async (req: Request, res: Response): Promise<void> => {
   try {
-    res.clearCookie('authToken'); // Clear the cookie on logout
-    res.status(200).json({ LoggedOut: true, message: 'Logout successful' });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Server error', error });
+    const authHeader = req.headers.authorization;
+    const token =
+      authHeader && authHeader.startsWith("Bearer ")
+        ? authHeader.split(" ")[1]
+        : req.cookies.authToken;
+
+    if (!token) {
+      res.status(400).json({ success: false, message: "No token provided" });
+      return;
+    }
+
+    // Find the session with this token
+    const session = await Session.findOne({ token });
+
+    if (session) {
+      // Mark the session as inactive, but keep the role
+      await Session.updateOne(
+        { _id: session._id },
+        { isActive: false, logoutTime: new Date() }
+      );
+    }
+
+    // Clear the auth cookie
+    res.clearCookie("authToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+
+    // Respond with success
+    res.status(200).json({ success: true, message: "Logout successful", loggedOut: true });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: "Logout failed", error: error.message });
   }
 };
+
 
 export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
   try {

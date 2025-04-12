@@ -9,4 +9,8 @@ export const ENDPOINT_GET_ANIME = '/api/v1/dashboard/getAnimes';
 export const ENDPOINT_GET_SERIES = '/api/v1/dashboard/getSeries';
 
 
+export const ENDPOINT_ADMIN_USER_LOGOUT_CURRENT_SESSION =
+  '/api/v1/auth/logout-current-session';
+
+
 

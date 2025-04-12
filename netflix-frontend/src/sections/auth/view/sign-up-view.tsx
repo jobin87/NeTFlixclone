@@ -1,7 +1,7 @@
 import { Box, TextField, Button, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import leftimage from "src/assets/hero.png";
 import { paths } from "src/routes/paths";
 import { useAppDispatch } from "src/store";
@@ -27,6 +27,18 @@ export const SignUpView = () => {
       toast.error("Passwords do not match");
       return;
     }
+   
+    
+      const location = useLocation();
+    
+      useEffect(() => {
+        if (location.state && location.state.email) {
+          setEmail(location.state.email);
+        }
+      }, [location.state]);
+
+    console.log("Location State:", location.state);
+
 
     setLoading(true);
     try {
@@ -60,22 +72,41 @@ export const SignUpView = () => {
         backgroundPosition: "center",
         backgroundColor: "rgba(0, 0, 0, 0.6)",
         backgroundBlendMode: "overlay",
+        mb: 4,
+        px: 2,
       }}
     >
       <Box
         sx={{
           width: "100%",
-          maxWidth: { xs: 300, lg: 400 },
+          maxWidth: { xs: 320, sm: 400 },
           p: 4,
-          bgcolor: "rgba(255, 255, 255, 0.9)",
-          borderRadius: 2,
-          boxShadow: 3,
+          borderRadius: 4,
           textAlign: "center",
-          pb: 8,
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          background: "rgba(56, 53, 53, 0.15)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
         }}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" color="white" gutterBottom>
           Sign Up
+        </Typography>
+
+        <Typography variant="body2" color="white" sx={{ mb: 2 }}>
+          Already have an account?{" "}
+          <Box
+            component="span"
+            sx={{
+              color: "#90caf9",
+              cursor: "pointer",
+              textDecoration: "underline",
+            }}
+            onClick={() => navigate(paths.auth.signIn)}
+          >
+            Sign In
+          </Box>
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
@@ -85,6 +116,8 @@ export const SignUpView = () => {
             margin="normal"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            InputProps={{ sx: { color: "white" } }}
+            InputLabelProps={{ sx: { color: "white" } }}
           />
           <TextField
             fullWidth
@@ -94,6 +127,8 @@ export const SignUpView = () => {
             margin="normal"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            InputProps={{ sx: { color: "white" } }}
+            InputLabelProps={{ sx: { color: "white" } }}
           />
           <TextField
             fullWidth
@@ -103,6 +138,8 @@ export const SignUpView = () => {
             margin="normal"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputProps={{ sx: { color: "white" } }}
+            InputLabelProps={{ sx: { color: "white" } }}
           />
           <TextField
             fullWidth
@@ -112,6 +149,8 @@ export const SignUpView = () => {
             margin="normal"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            InputProps={{ sx: { color: "white" } }}
+            InputLabelProps={{ sx: { color: "white" } }}
           />
           <Button
             type="submit"
