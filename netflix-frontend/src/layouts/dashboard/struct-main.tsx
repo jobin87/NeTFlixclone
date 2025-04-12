@@ -161,23 +161,28 @@ export const MediaSection = ({
             {/* lg layout: Rating + Play + Trailer */}
             <Box
               sx={{
-                display: {
-                  xs: "none",
-                  lg: "flex",
-                },
+                display: "flex", // Show on all devices
+                flexDirection: { xs: "column", sm: "row" }, // Stack on mobile
                 alignItems: "center",
-                gap: 2,
-                justifyContent: "flex-start",
+                gap: { xs: 1.5, sm: 2 },
+                justifyContent: { xs: "center", sm: "flex-start" },
+                mt: { xs: 2, sm: 0 },
               }}
             >
-              <Typography variant="body2" sx={heroRatingStyle}>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: { xs: "0.85rem", sm: "1rem" },
+                  textAlign: "center",
+                }}
+              >
                 IMDb Rating: ⭐ {featured.imdbRating}
               </Typography>
 
               <Button
                 variant="contained"
                 color="warning"
-                size="small"
+                size="medium"
                 onClick={() =>
                   navigate(paths.dashboard.subView, {
                     state: {
@@ -193,7 +198,7 @@ export const MediaSection = ({
                 Play
               </Button>
 
-              <Button variant="contained" color="error" size="small">
+              <Button variant="contained" color="error" size="medium">
                 Watch Trailer
               </Button>
             </Box>
