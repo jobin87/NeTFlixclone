@@ -15,9 +15,10 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5001;
 const corsOptions = {
-    origin: ['https://netflixclone-2frontend.onrender.com', 'http://localhost:8000', "https://netflicxxx.netlify.app"],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: ['https://netflixclone-2frontend.onrender.com', 'http://localhost:8000', 'https://netflicxxx.netlify.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
