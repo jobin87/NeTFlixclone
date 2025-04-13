@@ -16,7 +16,7 @@ const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5001;
 // ✅ CORS setup
 const corsOptions = {
-    origin: ['https://netflicxxx.netlify.app', 'http://localhost:8000', 'https://netflixclone-2frontend.onrender.com'],
+    origin: ['https://netflikxx.netlify.app/', 'http://localhost:8000'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
