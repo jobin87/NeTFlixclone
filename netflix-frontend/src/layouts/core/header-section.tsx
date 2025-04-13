@@ -38,7 +38,7 @@ export type LeftSectionProps = AppBarProps & {
     slotArea3?: React.ReactNode;
     slotArea4?: React.ReactNode;
     centerArea?: React.ReactNode;
-    bottomArea?: React.ReactNode; // Logout
+    bottomArea?: React.ReactNode;
   };
   slotprops?: {
     toolbar?: ToolbarProps;
@@ -105,7 +105,7 @@ export function HeaderSection({
           alignItems: "center",
           justifyContent: "center",
           py: 1.5,
-          ml:{xs:3,lg:"none"},
+          ml: { xs: 3, lg: "none" },
           mt: { xs: 0, lg: "auto" },
           mb: { xs: 1.5, lg: 2 },
         }}

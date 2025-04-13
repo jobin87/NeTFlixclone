@@ -41,14 +41,13 @@ export function DashboardLayout({
   const isNavHorizontal = settings.navLayout === "horizontal";
   const isNavVertical = isNavMini || settings.navLayout === "vertical";
 
-
   const navigate = useNavigate();
   const location = useLocation();
 
   const [activeTab, setActiveTab] = useState(0);
 
   const tabPaths = [
-    paths.dashboard.home, // index 0: Home (default)
+    paths.dashboard.home,
     paths.dashboard.search,
     paths.dashboard.series,
     paths.dashboard.anime,
@@ -114,6 +113,11 @@ export function DashboardLayout({
           slots={{
             topArea: (
               <Tab
+                sx={{
+                  overflow: "hidden",
+                  scrollbarWidth: "none",
+                  "&::-webkit-scrollbar": { display: "none" },
+                }}
                 label={tabIcon(
                   <HomeIcon
                     sx={{
@@ -128,6 +132,11 @@ export function DashboardLayout({
             ),
             slotArea1: (
               <Tab
+                sx={{
+                  overflow: "hidden",
+                  scrollbarWidth: "none",
+                  "&::-webkit-scrollbar": { display: "none" },
+                }}
                 label={tabIcon(
                   <SearchIcon
                     sx={{
@@ -142,7 +151,12 @@ export function DashboardLayout({
             ),
             slotArea2: (
               <Tab
-                sx={{ display: { xs: "none", lg: "flex" } }}
+                sx={{
+                  display: { xs: "none", lg: "flex" },
+                  overflow: "hidden",
+                  scrollbarWidth: "none",
+                  "&::-webkit-scrollbar": { display: "none" },
+                }}
                 label={tabIcon(
                   <Clapperboard
                     color={activeTab === 2 ? "red" : "white"}
@@ -155,6 +169,11 @@ export function DashboardLayout({
             ),
             slotArea3: (
               <Tab
+                sx={{
+                  overflow: "hidden",
+                  scrollbarWidth: "none",
+                  "&::-webkit-scrollbar": { display: "none" },
+                }}
                 label={tabIcon(
                   <Tv color={activeTab === 3 ? "red" : "white"} size={30} />,
                   3
@@ -164,6 +183,11 @@ export function DashboardLayout({
             ),
             slotArea4: (
               <Tab
+                sx={{
+                  overflow: "hidden",
+                  scrollbarWidth: "none",
+                  "&::-webkit-scrollbar": { display: "none" },
+                }}
                 label={tabIcon(
                   <TrendingUp
                     color={activeTab === 4 ? "red" : "white"}
@@ -192,29 +216,25 @@ export function DashboardLayout({
         "--layout-dashboard-content-px": theme.spacing(5),
       }}
       sx={{
+        pb: { xs: 5, lg: 0 },
+        ...sx,
         overflow: "auto",
-        height: "100vh",
         scrollbarWidth: "none",
         "&::-webkit-scrollbar": {
           display: "none",
         },
-        ...(!disableSidebarPadding && {
-          [`& .${layoutClasses.hasSidebar}`]: {
-            [theme.breakpoints.up(layoutQuery)]: {
-              transition: theme.transitions.create(["padding-left"], {
-                easing: "var(--layout-transition-easing)",
-                duration: "var(--layout-transition-duration)",
-              }),
-              pl: isNavMini
-                ? "var(--layout-nav-mini-width)"
-                : "var(--layout-nav-vertical-width)",
-            },
-          },
-        }),
-        ...sx,
       }}
     >
-      <Main isNavHorizontal={isNavHorizontal}>{children}</Main>
+      <Main
+        isNavHorizontal={isNavHorizontal}
+        sx={{
+          overflow: "auto",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": { display: "none" },
+        }}
+      >
+        {children}
+      </Main>
     </LayoutSection>
   );
 }

@@ -7,7 +7,6 @@ import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 
 import { layoutClasses } from 'src/layouts/classes';
-
 import { useSettingsContext } from 'src/components/settings';
 
 // ----------------------------------------------------------------------
@@ -25,16 +24,19 @@ export function Main({ children, isNavHorizontal, sx, ...other }: MainProps) {
         display: 'flex',
         flex: '1 1 auto',
         flexDirection: 'column',
-        ml:{
-          xs:"none",lg:6
+        ml: {
+          xs: 'none',
+          lg: 6,
         },
-        mb:{
-          xs:8,lg:"none"
+        overflow: 'hidden', // hides both scrollbars
+        '&::-webkit-scrollbar': {
+          display: 'none',
         },
         ...(isNavHorizontal && {
           '--layout-dashboard-content-pt': '40px',
         }),
         ...sx,
+        
       }}
       {...other}
     >
@@ -57,7 +59,6 @@ export function DashboardContent({
   ...other
 }: DashboardContentProps) {
   const theme = useTheme();
-
   const settings = useSettingsContext();
 
   const layoutQuery: Breakpoint = 'lg';
@@ -72,6 +73,10 @@ export function DashboardContent({
         flexDirection: 'column',
         pt: 'var(--layout-dashboard-content-pt): "300px"',
         pb: 'var(--layout-dashboard-content-pb): "600px"',
+        overflow: 'hidden', // hides both scrollbars
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
         [theme.breakpoints.up(layoutQuery)]: {
           px: 'var(--layout-dashboard-content-px)',
         },

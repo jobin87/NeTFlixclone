@@ -348,5 +348,6 @@ const scrollBoxStyle = {
   scrollbarWidth: "none",
   "&::-webkit-scrollbar": {
     display: "none",
+
   },
 };
