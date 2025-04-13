@@ -1,24 +1,31 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes';
 import cors from 'cors';
-import connectDB from './config/db';
-import movieroutes from './routes/contentRouter';
 import cookieParser from 'cookie-parser';
+import connectDB from './config/db';
+import authRoutes from './routes/authRoutes';
+import movieroutes from './routes/contentRouter';
 
 dotenv.config();
 connectDB();
+
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// ✅ CORS setup
 const corsOptions = {
-  origin: ['https://netflixclone-2frontend.onrender.com', 'http://localhost:8000', 'https://netflicxxx.netlify.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  origin: ['https://netflicxxx.netlify.app', 'http://localhost:8000', 'https://netflixclone-2frontend.onrender.com'],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 };
 
+// ✅ MUST come before all other middleware
 app.use(cors(corsOptions));
+
+// ✅ Explicitly handle preflight requests
+app.options('*', cors(corsOptions));
+
 app.use(express.json());
 app.use(cookieParser());
 
