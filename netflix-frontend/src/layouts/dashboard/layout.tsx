@@ -10,7 +10,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import { useSettingsContext } from "src/components/settings";
 import { Main } from "./main";
-import { layoutClasses } from "../classes";
 import { LayoutSection } from "../core/layout-section";
 import { HeaderSection } from "../core/header-section";
 import { useNavColorVars } from "./styles";
@@ -30,7 +29,6 @@ export function DashboardLayout({
   sx,
   children,
   header,
-  disableSidebarPadding,
 }: DashboardLayoutProps) {
   const theme = useTheme();
   const settings = useSettingsContext();
