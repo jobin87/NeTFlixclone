@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5001;
 
 // ✅ CORS setup
 const corsOptions = {
-  origin: ['https://netflikxx.netlify.app/', 'http://localhost:8000'],
+  origin: ['https://netflikxx.netlify.app', 'http://localhost:8000'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
